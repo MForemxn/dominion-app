@@ -3,8 +3,9 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { EXPANSIONS } from "@/data/expansions";
 import { COMBINATIONS, getCombinationsForExpansions } from "@/data/combinations";
-import { CARD_MAP } from "@/data/cards";
-import type { Combination, Expansion } from "@/types";
+import { CARD_MAP, CARDS } from "@/data/cards";
+import type { Combination, Expansion, GeneratorConstraints } from "@/types";
+import { generateKingdom, type GeneratedKingdom } from "@/lib/kingdom-generator";
 import BuildMode from "@/components/BuildMode";
 import FilterPanel from "@/components/FilterPanel";
 import {
@@ -116,16 +117,6 @@ function applyFilters(combos: Combination[], filters: Filters): Combination[] {
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function getPlayableCombinations(ownedExpansions: string[]): Combination[] {
-  return COMBINATIONS.filter((combo) =>
-    combo.expansions.every((exp) => ownedExpansions.includes(exp))
-  );
-}
-
-function randomItem<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
 
 // ─── Expansion Selector Button ────────────────────────────────────────────────
 
@@ -576,42 +567,64 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
 // ─── Auto Pick Mode ───────────────────────────────────────────────────────────
 
 function AutoPickMode({ expansionColors }: { expansionColors: Record<string, string> }) {
-  const [owned, setOwned]         = useState<string[]>([]);
-  const [filters, setFilters]     = useState<Filters>(DEFAULT_FILTERS);
+  const [owned, setOwned]             = useState<string[]>([]);
+  const [filters, setFilters]         = useState<Filters>(DEFAULT_FILTERS);
   const [showFilters, setShowFilters] = useState(false);
-  const [picked, setPicked]       = useState<Combination | null>(null);
-  const [hasRolled, setHasRolled] = useState(false);
-  const [shake, setShake]         = useState(false);
+  const [result, setResult]           = useState<GeneratedKingdom | null>(null);
+  const [hasRolled, setHasRolled]     = useState(false);
+  const [noResult, setNoResult]       = useState(false);
+  const [shake, setShake]             = useState(false);
 
   const toggleOwned = (id: string) => {
     setOwned((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
-    setPicked(null); setHasRolled(false);
+    setResult(null); setHasRolled(false); setNoResult(false);
   };
 
-  const rawPool      = useMemo(() => getPlayableCombinations(owned), [owned]);
-  const filteredPool = useMemo(() => applyFilters(rawPool, filters), [rawPool, filters]);
   const activeFilterCount = countActiveFilters(filters);
 
+  const poolSize = useMemo(
+    () => CARDS.filter((c) => ["base", ...owned].includes(c.expansion)).length,
+    [owned]
+  );
+
   const roll = useCallback(() => {
-    if (filteredPool.length === 0) return;
-    setPicked(randomItem(filteredPool));
+    if (owned.length === 0) return;
+
+    const constraints: GeneratorConstraints = { expansions: ["base", ...owned] };
+    const hasFilters = activeFilterCount > 0;
+    let kingdom: GeneratedKingdom | null = null;
+
+    for (let i = 0; i < (hasFilters ? 15 : 3); i++) {
+      const candidate = generateKingdom(constraints);
+      if (!candidate) break;
+      if (!hasFilters || meetsFilters(candidate.cards, filters)) {
+        kingdom = candidate;
+        break;
+      }
+    }
+
+    setResult(kingdom);
+    setNoResult(!kingdom);
     setHasRolled(true);
     setShake(true);
     setTimeout(() => setShake(false), 400);
-  }, [filteredPool]);
+  }, [owned, filters, activeFilterCount]);
+
+  const scoreColor = (v: number) =>
+    v >= 8 ? "text-emerald-400" : v >= 6 ? "text-amber-400" : v >= 4 ? "text-orange-400" : "text-red-400";
 
   return (
     <>
-      {/* Collection selector */}
+      {/* Expansion selector */}
       <section className="mb-8">
         <div className="flex items-center justify-between mb-1">
           <h2 className="text-base font-semibold text-stone-200">Expansions you own</h2>
           <div className="flex gap-3 text-sm text-stone-500">
             {owned.length > 0 && (
-              <button onClick={() => { setOwned([]); setPicked(null); setHasRolled(false); }} className="hover:text-stone-300 transition-colors">Clear all</button>
+              <button onClick={() => { setOwned([]); setResult(null); setHasRolled(false); setNoResult(false); }} className="hover:text-stone-300 transition-colors">Clear all</button>
             )}
             {owned.length < SELECTABLE_EXPANSIONS.length && (
-              <button onClick={() => { setOwned(SELECTABLE_EXPANSIONS.map((e) => e.id)); setPicked(null); setHasRolled(false); }} className="hover:text-stone-300 transition-colors">Select all</button>
+              <button onClick={() => { setOwned(SELECTABLE_EXPANSIONS.map((e) => e.id)); setResult(null); setHasRolled(false); }} className="hover:text-stone-300 transition-colors">Select all</button>
             )}
           </div>
         </div>
@@ -657,25 +670,22 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
           </button>
         )}
       </div>
-      {showFilters && <FilterPanel filters={filters} onChange={setFilters} />}
+      {showFilters && <FilterPanel filters={filters} onChange={setFilters} hideDifficulty />}
 
       {/* Roll button */}
       <div className="flex flex-col items-center gap-3 mb-10">
         {owned.length === 0 ? (
           <p className="text-stone-500 text-sm">Select at least one expansion above to enable auto-pick</p>
-        ) : filteredPool.length === 0 ? (
-          <p className="text-amber-500/80 text-sm">No kingdoms match your current filters</p>
         ) : (
           <p className="text-stone-400 text-sm">
-            <span className="text-amber-400 font-semibold">{filteredPool.length}</span>
-            {activeFilterCount > 0 && <span className="text-stone-600"> / {rawPool.length}</span>} kingdoms available
+            <span className="text-amber-400 font-semibold">{poolSize}</span> cards in pool
           </p>
         )}
         <button
           onClick={roll}
-          disabled={filteredPool.length === 0}
+          disabled={owned.length === 0}
           className={`px-10 py-4 rounded-2xl text-lg font-bold tracking-wide transition-all duration-150
-            ${filteredPool.length === 0
+            ${owned.length === 0
               ? "bg-stone-800 text-stone-600 cursor-not-allowed"
               : "bg-amber-600 hover:bg-amber-500 text-white shadow-lg hover:shadow-amber-700/40 active:scale-95"}
             ${shake ? "animate-bounce" : ""}`}
@@ -685,17 +695,59 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
       </div>
 
       {/* Result */}
-      {picked && (
+      {result && (
         <div className="max-w-2xl mx-auto">
-          <SupplyStrip expansions={picked.expansions} />
+          <SupplyStrip expansions={owned} />
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-stone-200">Your Kingdom</h2>
-            <div className="flex items-center gap-3 text-xs text-stone-500">
+            <div className="flex items-center gap-4 text-xs text-stone-500">
               <span><span className="text-sky-400 font-bold">+A</span> village</span>
               <span><span className="text-emerald-400 font-bold">+B</span> buy</span>
+              <span>
+                Score{" "}
+                <span className={`text-base font-bold font-mono ${scoreColor(result.score.overall)}`}>
+                  {result.score.overall}
+                </span>
+                <span className="text-stone-600">/10</span>
+              </span>
             </div>
           </div>
-          <CombinationCard combo={picked} expansionColors={expansionColors} highlighted />
+          <div className="bg-stone-900 border border-amber-500/60 rounded-xl p-5 shadow-lg shadow-amber-900/20">
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              <span className="text-[11px] px-2 py-0.5 rounded-full text-white/90 font-medium bg-amber-700">Base</span>
+              {Array.from(new Set(result.cards.map((c) => c.expansion)))
+                .filter((e) => e !== "base")
+                .map((expId) => (
+                  <span key={expId} className={`text-[11px] px-2 py-0.5 rounded-full text-white/90 font-medium ${expansionColors[expId] ?? "bg-stone-700"}`}>
+                    {expId.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ")}
+                  </span>
+                ))}
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {[...result.cards]
+                .sort((a, b) => {
+                  const ca = typeof a.cost === "number" ? a.cost : 99;
+                  const cb = typeof b.cost === "number" ? b.cost : 99;
+                  return ca - cb;
+                })
+                .map((card) => (
+                  <CardChip key={card.id} cardId={card.id} />
+                ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {hasRolled && noResult && (
+        <div className="text-center py-16 text-stone-500">
+          <div className="text-3xl mb-3">⚠</div>
+          <p>Couldn&apos;t generate a kingdom with those filters.</p>
+          <p className="text-sm mt-1">Try loosening filters or adding more expansions.</p>
+          {activeFilterCount > 0 && (
+            <button onClick={() => setFilters(DEFAULT_FILTERS)} className="mt-3 text-sm text-amber-500 hover:text-amber-400">
+              Reset filters
+            </button>
+          )}
         </div>
       )}
 
