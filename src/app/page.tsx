@@ -6,6 +6,35 @@ import { getCombinationsForExpansions } from "@/data/combinations";
 import { CARD_MAP } from "@/data/cards";
 import type { Combination, Expansion } from "@/types";
 
+// Base is always in play — only show additional expansion options
+const SELECTABLE_EXPANSIONS = EXPANSIONS.filter((e) => e.id !== "base");
+
+// ─── Supply section data ─────────────────────────────────────────────────────
+
+const STANDARD_SUPPLY = [
+  { name: "Copper",   color: "bg-amber-800",   icon: "💰" },
+  { name: "Silver",   color: "bg-stone-500",   icon: "🥈" },
+  { name: "Gold",     color: "bg-yellow-600",  icon: "🥇" },
+  { name: "Estate",   color: "bg-green-800",   icon: "🌿" },
+  { name: "Duchy",    color: "bg-green-700",   icon: "🌿" },
+  { name: "Province", color: "bg-green-600",   icon: "🌿" },
+  { name: "Curse",    color: "bg-purple-900",  icon: "💀" },
+];
+
+const SPECIAL_SUPPLY: Record<string, Array<{ name: string; color: string; note: string }>> = {
+  prosperity: [
+    { name: "Platinum",  color: "bg-slate-400",  note: "Worth 5 Coins" },
+    { name: "Colony",    color: "bg-green-500",  note: "Worth 10 VP" },
+  ],
+  "dark-ages": [
+    { name: "Shelters",  color: "bg-stone-600",  note: "Replace starting Estates (Necropolis, Hovel, Overgrown Estate)" },
+  ],
+  nocturne: [
+    { name: "Boons",     color: "bg-yellow-700", note: "Fate cards reward Boons" },
+    { name: "Hexes",     color: "bg-red-900",    note: "Doom cards inflict Hexes" },
+  ],
+};
+
 // ─── Expansion Selector ──────────────────────────────────────────────────────
 
 function ExpansionButton({
@@ -84,6 +113,70 @@ function CardChip({ cardId, highlight }: { cardId: string; highlight?: boolean }
   );
 }
 
+// ─── Supply Display ───────────────────────────────────────────────────────────
+
+function SupplySection({ selectedExpansions }: { selectedExpansions: string[] }) {
+  const specials = selectedExpansions.flatMap((id) => SPECIAL_SUPPLY[id] ?? []);
+
+  return (
+    <div className="bg-stone-900/60 border border-stone-800 rounded-xl p-4 mb-8">
+      <h2 className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-3">
+        Always in play
+      </h2>
+      <div className="flex flex-wrap gap-2 mb-3">
+        {/* Base expansion badge */}
+        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-700 text-white">
+          Base Kingdom
+        </span>
+        {selectedExpansions.map((id) => {
+          const exp = SELECTABLE_EXPANSIONS.find((e) => e.id === id);
+          if (!exp) return null;
+          return (
+            <span
+              key={id}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${exp.color} text-white`}
+            >
+              {exp.name} Kingdom
+            </span>
+          );
+        })}
+      </div>
+
+      <div className="border-t border-stone-800 pt-3">
+        <p className="text-[11px] text-stone-500 mb-2">Standard supply piles (always included)</p>
+        <div className="flex flex-wrap gap-1.5">
+          {STANDARD_SUPPLY.map((card) => (
+            <span
+              key={card.name}
+              className={`px-2 py-0.5 rounded text-xs text-white font-medium ${card.color}`}
+            >
+              {card.name}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {specials.length > 0 && (
+        <div className="border-t border-stone-800 pt-3 mt-3">
+          <p className="text-[11px] text-stone-500 mb-2">Special supply (from your expansions)</p>
+          <div className="flex flex-wrap gap-2">
+            {specials.map((item) => (
+              <span
+                key={item.name}
+                className={`px-2 py-0.5 rounded text-xs text-white font-medium ${item.color}`}
+                title={item.note}
+              >
+                {item.name}
+                <span className="ml-1 opacity-70 text-[10px]">ⓘ</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Combination Card ─────────────────────────────────────────────────────────
 
 function CombinationCard({
@@ -119,6 +212,9 @@ function CombinationCard({
 
         {/* Expansion tags */}
         <div className="flex flex-wrap gap-1.5 mb-4">
+          <span className="text-[11px] px-2 py-0.5 rounded-full text-white/90 font-medium bg-amber-700">
+            Base
+          </span>
           {combo.expansions.map((expId) => (
             <span
               key={expId}
@@ -196,14 +292,15 @@ export default function Home() {
     setSelected((prev) =>
       prev.includes(id)
         ? prev.filter((x) => x !== id)
-        : prev.length < 3
+        : prev.length < 2
         ? [...prev, id]
         : prev
     );
   };
 
+  // Base is always in play; pass only the additional selected expansions
   const combinations = useMemo(
-    () => (selected.length > 0 ? getCombinationsForExpansions(selected) : []),
+    () => getCombinationsForExpansions(selected),
     [selected]
   );
 
@@ -220,19 +317,19 @@ export default function Home() {
             Dominion Kingdom Builder
           </h1>
           <p className="text-sm text-stone-400 mt-0.5">
-            Select up to 3 expansions to find curated Kingdom combinations
+            Base is always in play. Select up to 2 additional expansions.
           </p>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         {/* Expansion Selector */}
-        <section className="mb-10">
+        <section className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-stone-200">
-              Expansions in play{" "}
+              Additional expansions{" "}
               <span className="text-stone-500 font-normal">
-                ({selected.length}/3 selected)
+                ({selected.length}/2 selected)
               </span>
             </h2>
             {selected.length > 0 && (
@@ -240,39 +337,34 @@ export default function Home() {
                 onClick={() => setSelected([])}
                 className="text-sm text-stone-500 hover:text-stone-300 transition-colors"
               >
-                Clear all
+                Clear
               </button>
             )}
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {EXPANSIONS.map((exp) => (
+            {SELECTABLE_EXPANSIONS.map((exp) => (
               <ExpansionButton
                 key={exp.id}
                 expansion={exp}
                 selected={selected.includes(exp.id)}
-                disabled={selected.length >= 3}
+                disabled={selected.length >= 2}
                 onClick={() => toggleExpansion(exp.id)}
               />
             ))}
           </div>
         </section>
 
+        {/* Supply always in play */}
+        <SupplySection selectedExpansions={selected} />
+
         {/* Results */}
-        {selected.length === 0 ? (
-          <div className="text-center py-24 text-stone-600">
-            <div className="text-5xl mb-4">♛</div>
-            <p className="text-lg">Select one to three expansions above</p>
-            <p className="text-sm mt-2">
-              Combinations will appear that use cards from all selected expansions
-            </p>
-          </div>
-        ) : combinations.length === 0 ? (
+        {combinations.length === 0 ? (
           <div className="text-center py-24 text-stone-600">
             <div className="text-4xl mb-4">∅</div>
-            <p className="text-lg">No combinations for this exact selection</p>
+            <p className="text-lg">No combinations for this selection</p>
             <p className="text-sm mt-2">
-              Try a different combination of expansions — or check back as we add more!
+              Try a different set of expansions
             </p>
           </div>
         ) : (

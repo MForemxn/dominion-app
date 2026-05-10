@@ -5,30 +5,33 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — BASE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "base-001",
     name: "Chapel Engine",
-    expansions: ["base"],
+    expansions: [],
     cards: ["chapel","village","festival","smithy","market","witch","moneylender","laboratory","sentry","throne-room"],
     strategy: "Trash hard with Chapel and Moneylender in the opening, then build a Village/Festival engine with Lab and Smithy as your draw engine. Witch applies early pressure while you set up; Throne Room doubles your best action each turn once the engine is running.",
     keyCards: ["chapel","village","throne-room"],
     difficulty: "intermediate",
     tags: ["engine","thinning","attack","multiplier"],
   },
+
   {
     id: "base-002",
     name: "Big Green",
-    expansions: ["base"],
+    expansions: [],
     cards: ["workshop","gardens","village","cellar","merchant","militia","poacher","council-room","festival","harbinger"],
     strategy: "Flood your deck with Workshops and Cellars while Merchants and Militia slow opponents. Council Room provides bursty draw and an extra Buy. Harbinger lets you cycle key cards back on top. Score Gardens late when your deck is bloated with cheap cards.",
     keyCards: ["workshop","gardens","council-room"],
     difficulty: "beginner",
     tags: ["alt-victory","big-deck","attack"],
   },
+
   {
     id: "base-003",
     name: "Throne Room Circus",
-    expansions: ["base"],
+    expansions: [],
     cards: ["throne-room","village","vassal","smithy","bandit","militia","remodel","library","market","artisan"],
     strategy: "Throne Room pairs with everything: double Smithy for 6 cards, double Militia for 4 coins and mass discard, double Remodel to trash junk and gain expensive cards. Village and Vassal keep Actions flowing. Artisan topdecks Province acquisitions for a clean finish.",
     keyCards: ["throne-room","village","smithy"],
@@ -39,6 +42,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — INTRIGUE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-001",
     name: "Noble Courts",
@@ -49,6 +53,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","attack","thinning"],
   },
+
   {
     id: "intrigue-002",
     name: "Diplomat's Dance",
@@ -59,6 +64,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","attack","reaction","hand-control"],
   },
+
   {
     id: "intrigue-003",
     name: "Swindler's Market",
@@ -73,6 +79,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "seaside-001",
     name: "Duration Engine",
@@ -83,6 +90,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["duration","engine","economy"],
   },
+
   {
     id: "seaside-002",
     name: "Sea Witch's Curse",
@@ -93,6 +101,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["attack","duration","thinning"],
   },
+
   {
     id: "seaside-003",
     name: "Smuggler's Cove",
@@ -107,6 +116,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "prosperity-001",
     name: "King's Court Engine",
@@ -117,6 +127,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","multiplier","alt-victory"],
   },
+
   {
     id: "prosperity-002",
     name: "Goons Stampede",
@@ -127,6 +138,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["attack","alt-victory","economy"],
   },
+
   {
     id: "prosperity-003",
     name: "Colony Rush",
@@ -141,6 +153,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — CORNUCOPIA
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-001",
     name: "Fair Festival",
@@ -151,6 +164,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["alt-victory","engine","diversity"],
   },
+
   {
     id: "cornucopia-002",
     name: "Jester's Carnival",
@@ -162,6 +176,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["attack","alt-victory","draw"],
   },
+
   {
     id: "cornucopia-003",
     name: "Tournament Circuit",
@@ -176,6 +191,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "hinterlands-001",
     name: "Gold Rush",
@@ -186,6 +202,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["economy","engine","village"],
   },
+
   {
     id: "hinterlands-002",
     name: "Trader's Route",
@@ -196,6 +213,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["thinning","draw","economy"],
   },
+
   {
     id: "hinterlands-003",
     name: "Ill-Gotten Empire",
@@ -210,6 +228,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — DARK AGES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-001",
     name: "Fortress Engine",
@@ -220,6 +239,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","thinning","reaction"],
   },
+
   {
     id: "dark-ages-002",
     name: "Rebuild Province",
@@ -230,6 +250,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","thinning","rush"],
   },
+
   {
     id: "dark-ages-003",
     name: "Bandit's Hoard",
@@ -244,6 +265,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-001",
     name: "Coffers Engine",
@@ -254,6 +276,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["engine","economy","coffers"],
   },
+
   {
     id: "guilds-002",
     name: "Overpay Workshop",
@@ -264,6 +287,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["thinning","economy","overpay"],
   },
+
   {
     id: "guilds-003",
     name: "Guild Hall Feast",
@@ -278,6 +302,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — ADVENTURES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-001",
     name: "Reserve Engine",
@@ -288,6 +313,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","reserve","duration"],
   },
+
   {
     id: "adventures-002",
     name: "Giant Expedition",
@@ -298,6 +324,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["attack","duration","economy"],
   },
+
   {
     id: "adventures-003",
     name: "Duration Wave",
@@ -312,6 +339,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — EMPIRES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-001",
     name: "Debt Empire",
@@ -322,6 +350,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","debt","alt-victory"],
   },
+
   {
     id: "empires-002",
     name: "Gladiator's Arena",
@@ -332,6 +361,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["attack","economy","alt-victory"],
   },
+
   {
     id: "empires-003",
     name: "Castle Siege",
@@ -346,6 +376,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "nocturne-001",
     name: "Night Crypt",
@@ -356,6 +387,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["night","duration","attack"],
   },
+
   {
     id: "nocturne-002",
     name: "Vampire Court",
@@ -366,6 +398,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["night","attack","draw"],
   },
+
   {
     id: "nocturne-003",
     name: "Boon Festival",
@@ -380,6 +413,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "renaissance-001",
     name: "Villager Workshop",
@@ -390,6 +424,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["engine","villagers","attack"],
   },
+
   {
     id: "renaissance-002",
     name: "Coffers Market",
@@ -400,6 +435,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["coffers","engine","attack"],
   },
+
   {
     id: "renaissance-003",
     name: "Scholar's Engine",
@@ -414,6 +450,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "menagerie-001",
     name: "Horse Parade",
@@ -425,6 +462,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["engine","draw","gain"],
   },
+
   {
     id: "menagerie-002",
     name: "Exile Engine",
@@ -435,6 +473,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["exile","multiplier","attack"],
   },
+
   {
     id: "menagerie-003",
     name: "Black Cat Chaos",
@@ -449,6 +488,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — ALLIES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-001",
     name: "Favor Factory",
@@ -459,6 +499,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["favors","engine","economy"],
   },
+
   {
     id: "allies-002",
     name: "Transfer Guild",
@@ -469,6 +510,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["thinning","exile","draw"],
   },
+
   {
     id: "allies-003",
     name: "March Engine",
@@ -483,6 +525,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // SINGLE EXPANSION — PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "plunder-001",
     name: "Pirate Hoard",
@@ -493,6 +536,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["loot","economy","engine"],
   },
+
   {
     id: "plunder-002",
     name: "Duration Fleet",
@@ -503,6 +547,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["duration","draw","thinning"],
   },
+
   {
     id: "plunder-003",
     name: "Treasure Hunter",
@@ -517,6 +562,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-guilds-001",
     name: "The Grand Fair",
@@ -531,108 +577,19 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — BASE + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-intrigue-001",
-    name: "Throne Intrigue",
-    expansions: ["base","intrigue"],
-    cards: ["throne-room","village","festival","nobles","mining-village","conspirator","upgrade","witch","chapel","bridge"],
-    strategy: "Multiple village-types make Conspirator's bonus (+1 Card, +1 Action after 3 Actions) trivial to trigger. Throne Room doubles Nobles for +6 Cards or +4 Actions. Chapel thins the deck in opening turns. Bridge drives down costs — by mid-game, Provinces are cheaper. Witch applies early Curse pressure while you build.",
-    keyCards: ["throne-room","nobles","conspirator"],
-    difficulty: "advanced",
-    tags: ["engine","multiplier","attack","thinning"],
-  },
-  {
-    id: "base-intrigue-002",
-    name: "Torturer's Market",
-    expansions: ["base","intrigue"],
-    cards: ["torturer","shanty-town","village","smithy","market","steward","replace","militia","witch","remodel"],
-    strategy: "Torturer is brutal: +3 Cards plus opponents either discard 2 or gain a Curse to hand. Shanty Town draws cards when you have no Actions in hand — synergises with wanting to play it before other Actions. Village and Market chain naturally. Steward provides early thinning or draw. Replace upgrades cards into Provinces, cursing opponents if the gained card is Victory.",
-    keyCards: ["torturer","shanty-town","replace"],
-    difficulty: "advanced",
-    tags: ["attack","engine","draw"],
-  },
-  {
-    id: "base-intrigue-003",
-    name: "Swindler's Chapel",
-    expansions: ["base","intrigue"],
-    cards: ["swindler","chapel","village","festival","lurker","minion","patrol","wishing-well","smithy","market"],
-    strategy: "Chapel thins in the opening while Swindler converts opponents' Silvers into Curses or junk mid-game. Lurker rescues Action cards that get trashed — great for recovering powerful cards from the common trash. Minion draws and disrupts. Wishing Well is a cheap cantrip that can consistently hit top cards once your deck is thin. Market provides the buy.",
-    keyCards: ["chapel","swindler","lurker"],
-    difficulty: "intermediate",
-    tags: ["thinning","attack","engine"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — BASE + SEASIDE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-seaside-001",
-    name: "Duration Witch",
-    expansions: ["base","seaside"],
-    cards: ["witch","fishing-village","wharf","village","festival","lighthouse","warehouse","treasury","salvager","chapel"],
-    strategy: "Lighthouse blocks attacks while providing 1 Coin for two turns. Fishing Village chains into the heavy Actions. Wharf's sustained draw and Buy over two turns makes Province buying trivial. Witch cursing while Warehouse filters your hand. Chapel opens the game; salvager converts late junk for economy.",
-    keyCards: ["wharf","fishing-village","witch"],
-    difficulty: "intermediate",
-    tags: ["attack","duration","engine"],
-  },
-  {
-    id: "base-seaside-002",
-    name: "Ambassador Market",
-    expansions: ["base","seaside"],
-    cards: ["ambassador","village","market","festival","smithy","lighthouse","caravan","treasury","chapel","militia"],
-    strategy: "Ambassador is a premier trasher: return up to 2 copies of a card to the supply. Return Estates, Coppers, Curses — and if someone gave you one, return it. Village, Festival, and Market chain easily. Militia attacks complement Lighthouse protection. Treasury topdecks itself after non-Victory buys.",
-    keyCards: ["ambassador","market","lighthouse"],
-    difficulty: "beginner",
-    tags: ["thinning","engine","attack"],
-  },
-  {
-    id: "base-seaside-003",
-    name: "Tactician Setup",
-    expansions: ["base","seaside"],
-    cards: ["tactician","fishing-village","village","smithy","cellar","warehouse","lighthouse","market","harbinger","chapel"],
-    strategy: "Tactician requires discarding your whole hand — ideally a hand with nothing valuable. Cellar, Warehouse, and Harbinger help clear junk before Tactician. Then next turn: 5 cards, 1 Action, 1 Buy — a clean powerful turn. Chapel thins early so Tactician turns are huge. Fishing Village and Village give the Actions you need to chain after Tactician.",
-    keyCards: ["tactician","warehouse","chapel"],
-    difficulty: "advanced",
-    tags: ["duration","draw","thinning"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — BASE + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-prosperity-001",
-    name: "King's Court Base",
-    expansions: ["base","prosperity"],
-    cards: ["kings-court","workers-village","vault","smithy","market","monument","bishop","witch","chapel","grand-market"],
-    strategy: "King's Court tripling a Smithy draws 9 cards. King's Court tripling Witch gives 6 cards and Curses every opponent three times. Workers' Village and Grand Market handle the Action and Buy chains. Monument and Bishop accumulate VP tokens so the Province race matters less. Chapel opens with aggressive thinning.",
-    keyCards: ["kings-court","smithy","workers-village"],
-    difficulty: "advanced",
-    tags: ["engine","multiplier","attack","thinning"],
-  },
-  {
-    id: "base-prosperity-002",
-    name: "Goons Chapel",
-    expansions: ["base","prosperity"],
-    cards: ["goons","workers-village","chapel","smithy","village","mountebank","rabble","vault","market","militia"],
-    strategy: "Goons turns every Buy into a VP token — stack Buys aggressively with Market, Workers' Village, and Vault. Mountebank with Militia creates a brutal attack combination forcing discard and Curse gain. Chapel trims early. With enough Buys per turn, Goons can outscore Province buying entirely.",
-    keyCards: ["goons","mountebank","workers-village"],
-    difficulty: "advanced",
-    tags: ["attack","alt-victory","engine"],
-  },
-  {
-    id: "base-prosperity-003",
-    name: "Colony Engine Base",
-    expansions: ["base","prosperity"],
-    cards: ["city","workers-village","peddler","watchtower","grand-market","village","chapel","smithy","throne-room","mine"],
-    strategy: "Colony is the win condition: 10 VP per Colony. City accelerates dramatically as piles empty — bonus cards, coins, and buys for free. Peddler's cost drops to 0 with enough Actions in play. Watchtower converts gained cards into instant topdecks or trash. Mine upgrades Silvers to Gold and Gold to Platinum for the Colony economy.",
-    keyCards: ["city","peddler","grand-market"],
-    difficulty: "advanced",
-    tags: ["engine","economy","thinning"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-seaside-001",
     name: "Minion Fleet",
@@ -643,6 +600,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["attack","engine","duration"],
   },
+
   {
     id: "intrigue-seaside-002",
     name: "Nobles Duration",
@@ -653,6 +611,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["attack","draw","duration"],
   },
+
   {
     id: "intrigue-seaside-003",
     name: "Swindler's Sea",
@@ -667,6 +626,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-prosperity-001",
     name: "Nobles Court",
@@ -677,6 +637,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","multiplier","attack"],
   },
+
   {
     id: "intrigue-prosperity-002",
     name: "Goons Intrigue",
@@ -687,6 +648,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["alt-victory","attack","engine"],
   },
+
   {
     id: "intrigue-prosperity-003",
     name: "Duke's Prosperity",
@@ -701,6 +663,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — SEASIDE + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "seaside-prosperity-001",
     name: "Wharf Fortune",
@@ -711,6 +674,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","draw","attack"],
   },
+
   {
     id: "seaside-prosperity-002",
     name: "Kings Fleet",
@@ -721,6 +685,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","multiplier","draw"],
   },
+
   {
     id: "seaside-prosperity-003",
     name: "Monument Sea",
@@ -735,74 +700,15 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — BASE + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-hinterlands-001",
-    name: "Highway Chapel",
-    expansions: ["base","hinterlands"],
-    cards: ["highway","inn","chapel","village","festival","smithy","haggler","cartographer","margrave","develop"],
-    strategy: "Highway's cost reduction stacks with each copy in play — two Highways makes Province cost 6, three makes it 5. Haggler gains a cheaper non-Victory card whenever you buy, combining explosively with Highway. Inn is a Village that reloads your discard into the deck on gain. Chapel opens fast. Cartographer keeps your draws smooth.",
-    keyCards: ["highway","haggler","chapel"],
-    difficulty: "intermediate",
-    tags: ["economy","engine","thinning"],
-  },
-  {
-    id: "base-hinterlands-002",
-    name: "Embassy Engine",
-    expansions: ["base","hinterlands"],
-    cards: ["embassy","inn","village","festival","market","chapel","trader","spice-merchant","oasis","scheme"],
-    strategy: "Embassy draws 5 cards for 5 cost — exceptional even with the discard. When bought, opponents gain Silver, so use it before they can exploit it. Inn shuffles Actions from your discard into your deck on gain — play Inn to gain Inn, loading Actions back immediately. Trader trashes cards for Silver piles. Scheme topdecks useful Actions.",
-    keyCards: ["embassy","inn","trader"],
-    difficulty: "intermediate",
-    tags: ["draw","thinning","engine"],
-  },
-  {
-    id: "base-hinterlands-003",
-    name: "Fool's Rush",
-    expansions: ["base","hinterlands"],
-    cards: ["fools-gold","tunnel","village","festival","margrave","jack-of-all-trades","cartographer","haggler","smithy","remodel"],
-    strategy: "Fool's Gold is worth 4 Coins when you have multiples — a cheap Treasure with major upside. Tunnel reacts to being discarded by giving free Gold — combine with Cellar, Warehouse, or Cartographer's forced discards. Jack of All Trades gains Silver, draws to 5, and can trash junk. Margrave draws 3 and gives a Buy while disrupting opponents.",
-    keyCards: ["fools-gold","tunnel","jack-of-all-trades"],
-    difficulty: "beginner",
-    tags: ["economy","draw","reaction"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — BASE + DARK AGES
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-dark-ages-001",
-    name: "Fortress Chapel",
-    expansions: ["base","dark-ages"],
-    cards: ["fortress","wandering-minstrel","chapel","village","smithy","junk-dealer","bandit-camp","market-square","sage","witch"],
-    strategy: "Fortress returns to your hand when trashed — so Bandit Camp's Procession effect on it loops indefinitely. Junk Dealer trashes and draws and gives coins. Wandering Minstrel reveals top 3 and keeps Actions. Market Square reacts to any trash by gaining Gold — combine with Chapel, Junk Dealer for Gold floods. Sage reliably hits a 3+ cost card.",
-    keyCards: ["fortress","market-square","junk-dealer"],
-    difficulty: "advanced",
-    tags: ["engine","thinning","reaction"],
-  },
-  {
-    id: "base-dark-ages-002",
-    name: "Rebuild Province",
-    expansions: ["base","dark-ages"],
-    cards: ["rebuild","wandering-minstrel","village","festival","chapel","remodel","sage","storeroom","militia","smithy"],
-    strategy: "Rebuild directly trashes Estates and Duchies into Provinces — a VP acceleration that bypasses Province buying entirely. Chapel opens with aggressive thinning. Storeroom provides a Buy and can dump then refill your hand for coins. Militia slows opponents. Once Rebuild is assembled with a village, you can upgrade two Victory cards per turn.",
-    keyCards: ["rebuild","chapel","storeroom"],
-    difficulty: "advanced",
-    tags: ["thinning","engine","rush"],
-  },
-  {
-    id: "base-dark-ages-003",
-    name: "Count Festival",
-    expansions: ["base","dark-ages"],
-    cards: ["count","fortress","wandering-minstrel","festival","market","chapel","village","rogue","cultist","market-square"],
-    strategy: "Count is extremely flexible: topdeck your hand for later, gain a Copper for now, or discard 2. Then choose: +3 Coins, trash your entire hand for fast thinning, or gain a Duchy. Rogue steals 3–6 cost cards from the trash — pair with Cultist since Cultist yields +3 Cards when trashed. Market Square reacts to all the trashing with free Gold.",
-    keyCards: ["count","rogue","market-square"],
-    difficulty: "advanced",
-    tags: ["thinning","economy","engine"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-menagerie-001",
     name: "Nobles Stampede",
@@ -813,6 +719,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["engine","village","draw"],
   },
+
   {
     id: "intrigue-menagerie-002",
     name: "Minion Stampede",
@@ -823,6 +730,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "advanced",
     tags: ["attack","reaction","draw"],
   },
+
   {
     id: "intrigue-menagerie-003",
     name: "Exile Intrigue",
@@ -837,6 +745,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — SEASIDE + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "seaside-renaissance-001",
     name: "Duration Coffers",
@@ -847,6 +756,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["engine","coffers","duration"],
   },
+
   {
     id: "seaside-renaissance-002",
     name: "Research Fleet",
@@ -857,6 +767,7 @@ export const COMBINATIONS: Combination[] = [
     difficulty: "intermediate",
     tags: ["draw","thinning","duration"],
   },
+
   {
     id: "seaside-renaissance-003",
     name: "Scholar's Sea",
@@ -871,280 +782,39 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — BASE + INTRIGUE + SEASIDE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-intrigue-seaside-001",
-    name: "Triple Classic",
-    expansions: ["base","intrigue","seaside"],
-    cards: ["chapel","village","festival","nobles","mining-village","fishing-village","wharf","torturer","witch","market"],
-    strategy: "The three classic expansions at their best. Five village-type cards mean you'll never stall on Actions. Witch and Torturer stack Curses aggressively. Wharf delivers sustained draw and Buys. Chapel thins early, and Market provides a steady buy and economy. A benchmark 'textbook engine' kingdom.",
-    keyCards: ["wharf","nobles","chapel"],
-    difficulty: "intermediate",
-    tags: ["engine","attack","duration","thinning"],
-  },
-  {
-    id: "base-intrigue-seaside-002",
-    name: "Duration Nobles",
-    expansions: ["base","intrigue","seaside"],
-    cards: ["wharf","fishing-village","lighthouse","nobles","shanty-town","village","smithy","steward","upgrade","market"],
-    strategy: "Lighthouse provides attack immunity and coins for free. Fishing Village and Village chain easily. Nobles chooses between +3 Cards and +2 Actions based on your need each turn. Wharf draws 2 and gives a Buy now and again next turn. Steward thins or draws depending on opening hand quality.",
-    keyCards: ["wharf","nobles","lighthouse"],
-    difficulty: "beginner",
-    tags: ["engine","duration","draw"],
-  },
-  {
-    id: "base-intrigue-seaside-003",
-    name: "Ambassador's Intrigue",
-    expansions: ["base","intrigue","seaside"],
-    cards: ["ambassador","fishing-village","caravan","minion","mining-village","shanty-town","village","chapel","upgrade","salvager"],
-    strategy: "Ambassador thins aggressively. Chapel opens with Copper/Estate removal. Minion redraws your hand and attacks. Shanty Town draws when your hand has no Actions — naturally after chapelling down to low hand size. Multiple villages and Caravan sustain the engine. Salvager converts end-game junk for economy.",
-    keyCards: ["ambassador","minion","chapel"],
-    difficulty: "intermediate",
-    tags: ["thinning","attack","engine"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — BASE + PROSPERITY + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-prosperity-intrigue-001",
-    name: "King's Nobles",
-    expansions: ["base","intrigue","prosperity"],
-    cards: ["kings-court","workers-village","nobles","mining-village","vault","grand-market","chapel","conspirator","mountebank","witch"],
-    strategy: "King's Court tripling Nobles draws 9 cards and gives 6 Actions — absurd power. Conspirator triggers after just 3 Actions. Workers' Village provides cheap village chaining. Mountebank and Witch stack Curses. Grand Market draws, gives an Action, and a Buy. Chapel shreds the opening hand. Vault converts spare cards to coins.",
-    keyCards: ["kings-court","nobles","mountebank"],
-    difficulty: "advanced",
-    tags: ["engine","multiplier","attack"],
-  },
-  {
-    id: "base-prosperity-intrigue-002",
-    name: "Goons and Bridges",
-    expansions: ["base","intrigue","prosperity"],
-    cards: ["goons","workers-village","shanty-town","chapel","village","vault","bishop","monument","steward","bridge"],
-    strategy: "Bridge lowers all card costs; Goons gives +1 Buy. Stack enough Bridges and Goons in play and you buy multiple Provinces at 2 coins each, scoring VP tokens the whole time. Monument and Bishop both give VP tokens. Chapel and Steward handle early thinning. Shanty Town draws when Actions are scarce.",
-    keyCards: ["goons","bridge","monument"],
-    difficulty: "advanced",
-    tags: ["alt-victory","attack","engine"],
-  },
-  {
-    id: "base-prosperity-intrigue-003",
-    name: "Colony Nobles",
-    expansions: ["base","intrigue","prosperity"],
-    cards: ["city","workers-village","nobles","conspirator","upgrade","grand-market","chapel","witch","vault","harem"],
-    strategy: "Colony is worth 10VP. City accelerates toward it by growing as piles empty. Conspirator's bonus triggers on the third Action — trivial with Nobles, Workers' Village, and City all in play. Harem provides floating VP and income. Upgrade reshapes mid-tier cards. Chapel thins. Witch attacks throughout.",
-    keyCards: ["city","nobles","conspirator"],
-    difficulty: "advanced",
-    tags: ["engine","alt-victory","attack"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — BASE + SEASIDE + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-seaside-hinterlands-001",
-    name: "Sea Road",
-    expansions: ["base","hinterlands","seaside"],
-    cards: ["fishing-village","wharf","highway","inn","chapel","village","festival","cartographer","margrave","smithy"],
-    strategy: "Highway reduces costs while Wharf delivers sustained draw and Buys. Inn is a Village that reloads discarded Actions into the deck when gained — play Inn to gain Inn and instantly reload your engine. Festival and Fishing Village chain comfortably. Margrave draws 3 and forces opponents to discard. Chapel opens.",
-    keyCards: ["highway","inn","wharf"],
-    difficulty: "intermediate",
-    tags: ["engine","duration","economy"],
-  },
-  {
-    id: "base-seaside-hinterlands-002",
-    name: "Duration Embassy",
-    expansions: ["base","hinterlands","seaside"],
-    cards: ["wharf","caravan","fishing-village","embassy","inn","highway","village","chapel","spice-merchant","treasury"],
-    strategy: "Embassy's 5-card draw powers the engine; opponents gaining Silver from Embassy actually helps fund the game. Spice Merchant trashes Coppers for draw-or-economy. Caravan and Wharf make your next turn powerful. Inn reloads discarded Actions. Chapel opens. Treasury returns to your deck after non-Victory buys.",
-    keyCards: ["embassy","spice-merchant","wharf"],
-    difficulty: "intermediate",
-    tags: ["draw","thinning","duration"],
-  },
-  {
-    id: "base-seaside-hinterlands-003",
-    name: "Tunnel Seas",
-    expansions: ["base","hinterlands","seaside"],
-    cards: ["tunnel","fools-gold","fishing-village","native-village","chapel","village","festival","lighthouse","cartographer","salvager"],
-    strategy: "Tunnel reacts to discard by gaining Gold — Cartographer and Native Village force discards, triggering free Gold gains. Fool's Gold is 4 Coins with multiples. Chapel thins early. Fishing Village and Village provide Actions. Salvager turns end-game junk into economy. Lighthouse protects and coins.",
-    keyCards: ["tunnel","cartographer","fools-gold"],
-    difficulty: "intermediate",
-    tags: ["economy","reaction","draw"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — INTRIGUE + SEASIDE + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "intrigue-seaside-prosperity-001",
-    name: "Noble Fleet Fortune",
-    expansions: ["intrigue","prosperity","seaside"],
-    cards: ["nobles","mining-village","fishing-village","wharf","workers-village","grand-market","kings-court","vault","steward","upgrade"],
-    strategy: "Five village sources and King's Court makes this a high-ceiling engine. KC tripling Wharf gives 6 cards and 3 Buys next turn. Nobles provides both draw and Actions. Grand Market is the buy anchor. Vault converts excess hand cards into coins. Steward thins or draws depending on your opening.",
-    keyCards: ["kings-court","wharf","nobles"],
-    difficulty: "advanced",
-    tags: ["engine","multiplier","draw"],
-  },
-  {
-    id: "intrigue-seaside-prosperity-002",
-    name: "Tactician Nobles",
-    expansions: ["intrigue","prosperity","seaside"],
-    cards: ["tactician","fishing-village","shanty-town","nobles","workers-village","vault","mountebank","rabble","upgrade","bridge"],
-    strategy: "Tactician requires discarding your hand — Fishing Village and Shanty Town help clear it before discarding. Next turn: 5 cards, 1 Action, 1 Buy. Mountebank and Rabble attack opponents. Nobles provides flexible draw or Actions. Vault's discard mechanism helps set up Tactician hands. Bridge reduces Province cost.",
-    keyCards: ["tactician","nobles","mountebank"],
-    difficulty: "advanced",
-    tags: ["duration","attack","engine"],
-  },
-  {
-    id: "intrigue-seaside-prosperity-003",
-    name: "Monument Intrigue Sea",
-    expansions: ["intrigue","prosperity","seaside"],
-    cards: ["monument","goons","workers-village","minion","mining-village","wharf","caravan","bishop","bridge","lighthouse"],
-    strategy: "Monument and Bishop give VP tokens each turn. Goons multiplies VP per buy. Minion disrupts opponents. Wharf sustains draw and Buys across turns. Workers' Village, Mining Village, and Minion chain. Bridge makes Province buying cheap. Lighthouse protects you while you accumulate VP tokens.",
-    keyCards: ["goons","monument","bishop"],
-    difficulty: "advanced",
-    tags: ["alt-victory","attack","engine"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — BASE + INTRIGUE + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-intrigue-hinterlands-001",
-    name: "Chapel Highway",
-    expansions: ["base","hinterlands","intrigue"],
-    cards: ["chapel","village","festival","nobles","mining-village","highway","inn","cartographer","haggler","margrave"],
-    strategy: "Highway makes expensive cards accessible. Haggler gains a free cheaper non-Victory card on every buy — combine with Highway and buy Province, getting a Gold for free. Inn is a village that reloads discarded Actions. Nobles and Mining Village provide additional Action chains. Chapel opens aggressively. Margrave draws 3 and attacks.",
-    keyCards: ["highway","haggler","nobles"],
-    difficulty: "intermediate",
-    tags: ["engine","economy","draw"],
-  },
-  {
-    id: "base-intrigue-hinterlands-002",
-    name: "Tunnel Embassy",
-    expansions: ["base","hinterlands","intrigue"],
-    cards: ["tunnel","embassy","village","festival","shanty-town","steward","bridge","fools-gold","jack-of-all-trades","smithy"],
-    strategy: "Embassy draws 5 and opponents gain Silver — the opponents' Silvers are actually fine since your Fool's Gold generates 4 Coins when multiples are in play. Tunnel reacts to Embassy's discard for free Gold. Jack of All Trades gains Silver, draws to 5, and trashes junk. Bridge and Festival together give cheap buys and Actions.",
-    keyCards: ["embassy","tunnel","fools-gold"],
-    difficulty: "intermediate",
-    tags: ["draw","economy","reaction"],
-  },
-  {
-    id: "base-intrigue-hinterlands-003",
-    name: "Brigand's Passage",
-    expansions: ["base","hinterlands","intrigue"],
-    cards: ["bridge","shanty-town","mining-village","highway","inn","border-village","cartographer","steward","village","chapel"],
-    strategy: "Bridge and Highway stack cost reductions so mid and late game cards become trivially cheap. Border Village gives +2 Actions and gains a card costing less when you gain it. Inn reloads Actions. Mining Village can sacrifice itself for +2 Coins. Shanty Town draws when Action-light. Chapel opens the game.",
-    keyCards: ["bridge","highway","border-village"],
-    difficulty: "intermediate",
-    tags: ["economy","engine","thinning"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — BASE + DARK AGES + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "base-dark-ages-intrigue-001",
-    name: "Dark Nobles",
-    expansions: ["base","dark-ages","intrigue"],
-    cards: ["nobles","mining-village","wandering-minstrel","fortress","junk-dealer","village","chapel","steward","market-square","cultist"],
-    strategy: "Fortress loops with Procession — Procession plays Fortress twice then trashes it, but Fortress goes to hand not trash. Cultist draws 2 and gives opponents Ruins. Junk Dealer trashes for economy. Nobles and Mining Village provide flexible Actions. Market Square reacts to all the trashing with Gold gains.",
-    keyCards: ["fortress","cultist","market-square"],
-    difficulty: "advanced",
-    tags: ["engine","loop","attack"],
-  },
-  {
-    id: "base-dark-ages-intrigue-002",
-    name: "Rebuild Intrigue",
-    expansions: ["base","dark-ages","intrigue"],
-    cards: ["rebuild","shanty-town","mining-village","wandering-minstrel","chapel","village","steward","upgrade","sage","forager"],
-    strategy: "Rebuild's VP acceleration pairs with Upgrade's card-by-card improvement. Sage digs for useful 3+ cost cards. Shanty Town draws when Action-light — useful after chapel sessions. Multiple village sources keep Rebuild playable every turn. Forager trashes for coin equal to unique Treasures in the trash.",
-    keyCards: ["rebuild","upgrade","shanty-town"],
-    difficulty: "advanced",
-    tags: ["thinning","engine","rush"],
-  },
-  {
-    id: "base-dark-ages-intrigue-003",
-    name: "Fortified Minion",
-    expansions: ["base","dark-ages","intrigue"],
-    cards: ["fortress","bandit-camp","wandering-minstrel","minion","shanty-town","village","junk-dealer","cultist","upgrade","market-square"],
-    strategy: "Fortress as village, Bandit Camp for Spoils, Wandering Minstrel filtering the top 3. Minion redraws and attacks. Cultist gives +2 Cards while Ruining opponents. Junk Dealer cleans the deck. Market Square turns every trash into a Gold. Shanty Town draws when you've emptied your Action hand for redraw purposes.",
-    keyCards: ["fortress","minion","market-square"],
-    difficulty: "advanced",
-    tags: ["engine","attack","reaction"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — SEASIDE + PROSPERITY + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "seaside-prosperity-renaissance-001",
-    name: "Grand Fleet",
-    expansions: ["prosperity","renaissance","seaside"],
-    cards: ["grand-market","workers-village","fishing-village","wharf","mountain-village","silk-merchant","swashbuckler","vault","recruiter","lighthouse"],
-    strategy: "Grand Market plus Silk Merchant plus Wharf is a three-Buy engine generating enormous card flow. Swashbuckler compounds Coffers turn over turn. Recruiter converts big cards into Villagers. Vault discards for coins mid-hand. Workers' Village chains easily. Mountain Village recovers key cards from discard.",
-    keyCards: ["grand-market","wharf","swashbuckler"],
-    difficulty: "advanced",
-    tags: ["engine","coffers","draw"],
-  },
-  {
-    id: "seaside-prosperity-renaissance-002",
-    name: "Coffers Sea",
-    expansions: ["prosperity","renaissance","seaside"],
-    cards: ["caravan","fishing-village","tactician","workers-village","ducat","patron","mountain-village","vault","monument","old-witch"],
-    strategy: "Ducat and Patron generate Coffers constantly. Monument adds VP tokens per turn. Tactician is the power turn. Old Witch gives +3 Cards and Curses opponents — they can trash a Curse, so it's a softer attack that still stresses them. Mountain Village recovers discarded cards. Vault converts hand excess into economy.",
-    keyCards: ["tactician","monument","patron"],
-    difficulty: "intermediate",
-    tags: ["duration","alt-victory","coffers"],
-  },
-  {
-    id: "seaside-prosperity-renaissance-003",
-    name: "Kings Sea Scholar",
-    expansions: ["prosperity","renaissance","seaside"],
-    cards: ["kings-court","workers-village","fishing-village","wharf","scholar","seer","hideout","silk-merchant","vault","watchtower"],
-    strategy: "Scholar draws 7 for free and enables King's Court to be drawn reliably. King's Court tripling Wharf is a guaranteed win. Hideout and Workers' Village provide Actions. Seer draws mid-cost cards to hand. Watchtower controls what you keep from your gains. Silk Merchant is a strong economy and draw card.",
-    keyCards: ["kings-court","scholar","wharf"],
-    difficulty: "advanced",
-    tags: ["engine","multiplier","draw"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // TRIPLES — MENAGERIE + ALLIES + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
-  {
-    id: "menagerie-allies-renaissance-001",
-    name: "Horse Alliance",
-    expansions: ["allies","menagerie","renaissance"],
-    cards: ["paddock","destrier","snowy-village","sentinel","destination","silk-merchant","mountain-village","sheepdog","cavalry","acting-troupe"],
-    strategy: "Acting Troupe gives 4 Villagers then disappears. Snowy Village gives 4 Actions and a Buy — the most generous village in the game. Destrier becomes cheaper per Horse gained. Cavalry gains Horses and returns you to Action phase on buy. Silk Merchant draws and buys. Sentinel filters the top 5. Sheepdog reacts to every gain for +2 Cards.",
-    keyCards: ["snowy-village","acting-troupe","cavalry"],
-    nonSupplyCard: "horse",
-    difficulty: "intermediate",
-    tags: ["engine","villagers","draw"],
-  },
-  {
-    id: "menagerie-allies-renaissance-002",
-    name: "Exile Villagers",
-    expansions: ["allies","menagerie","renaissance"],
-    cards: ["bounty-hunter","cardinal","sanctuary","sentinel","sycophant","mountain-village","hideout","acting-troupe","sheepdog","animal-fair"],
-    strategy: "Cardinal Exiles opponent cards. Bounty Hunter Exiles your own for coins. Sycophant gives +1 Action and 3 Coins when 3+ Favors spent. Sentinel trashes and reorders the top 5. Acting Troupe dumps Villagers. Animal Fair can trash an Action from hand instead of paying its cost. Sheepdog reacts to gains. Mountain Village and Hideout for villages.",
-    keyCards: ["cardinal","sycophant","acting-troupe"],
-    difficulty: "advanced",
-    tags: ["exile","favors","attack"],
-  },
-  {
-    id: "menagerie-allies-renaissance-003",
-    name: "Favor Horses",
-    expansions: ["allies","menagerie","renaissance"],
-    cards: ["snowy-village","cavalry","livery","sycophant","broker","galleria","recruiter","mountain-village","kiln","guard-dog"],
-    strategy: "Galleria gives Favors whenever you buy cards costing 4 or less — combine with Snowy Village's +1 Buy to buy two cheap things and bank 2 Favors. Broker trashes and converts cost into Actions, Cards, Coins, or Favors. Livery gives Horses per 4+ cost gain. Kiln copies a card you play next. Recruiter converts trashed cards into Villagers.",
-    keyCards: ["galleria","broker","livery"],
-    nonSupplyCard: "horse",
-    difficulty: "advanced",
-    tags: ["favors","engine","draw"],
-  },
 
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + ALLIES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-allies-001",
     name: "Reserve Alliance",
@@ -1159,6 +829,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + CORNUCOPIA
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-cornucopia-001",
     name: "Diverse Expedition",
@@ -1173,6 +844,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + DARK AGES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-dark-ages-001",
     name: "Relic Ruins",
@@ -1187,6 +859,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + EMPIRES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-empires-001",
     name: "Crown Expedition",
@@ -1201,6 +874,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-guilds-001",
     name: "Coffers Reserve",
@@ -1215,6 +889,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-hinterlands-001",
     name: "Distant Roads",
@@ -1229,6 +904,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-intrigue-001",
     name: "Noble Reserve",
@@ -1243,6 +919,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-menagerie-001",
     name: "Horse Expedition",
@@ -1258,6 +935,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-nocturne-001",
     name: "Night Expedition",
@@ -1272,6 +950,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-plunder-001",
     name: "Treasure Fleet",
@@ -1286,6 +965,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-prosperity-001",
     name: "Kings Expedition",
@@ -1300,6 +980,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-renaissance-001",
     name: "Villager Reserve",
@@ -1314,6 +995,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ADVENTURES + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-seaside-001",
     name: "Duration Reserve",
@@ -1328,6 +1010,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + CORNUCOPIA
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-cornucopia-001",
     name: "Diverse Favors",
@@ -1342,6 +1025,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + DARK AGES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-dark-ages-001",
     name: "Sentinel Scavenger",
@@ -1356,6 +1040,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + EMPIRES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-empires-001",
     name: "Favor Empire",
@@ -1370,6 +1055,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-guilds-001",
     name: "Coffer Favors",
@@ -1384,6 +1070,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-hinterlands-001",
     name: "Favor Roads",
@@ -1398,6 +1085,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-intrigue-001",
     name: "Noble Alliance",
@@ -1412,6 +1100,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-menagerie-001",
     name: "Favor Stampede",
@@ -1427,6 +1116,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-nocturne-001",
     name: "Night Favors",
@@ -1441,6 +1131,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-plunder-001",
     name: "Favor Fleet",
@@ -1455,6 +1146,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-prosperity-001",
     name: "Favor Fortune",
@@ -1469,6 +1161,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-renaissance-001",
     name: "Favor Villagers",
@@ -1483,6 +1176,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — ALLIES + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-seaside-001",
     name: "Favor Fleet",
@@ -1497,6 +1191,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + DARK AGES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-dark-ages-001",
     name: "Jester's Dark Fair",
@@ -1511,6 +1206,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + EMPIRES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-empires-001",
     name: "Tournament Empire",
@@ -1525,6 +1221,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-hinterlands-001",
     name: "Fair Roads",
@@ -1539,6 +1236,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-intrigue-001",
     name: "Noble Fair",
@@ -1553,6 +1251,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-menagerie-001",
     name: "Animal Fair",
@@ -1568,6 +1267,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-nocturne-001",
     name: "Dark Carnival",
@@ -1582,6 +1282,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-plunder-001",
     name: "Fair Plunder",
@@ -1596,6 +1297,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-prosperity-001",
     name: "Fair Fortune",
@@ -1610,6 +1312,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-renaissance-001",
     name: "Scholar's Fair",
@@ -1624,6 +1327,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — CORNUCOPIA + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-seaside-001",
     name: "Carnival Sea",
@@ -1638,6 +1342,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + EMPIRES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-empires-001",
     name: "Ruins Empire",
@@ -1652,6 +1357,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-guilds-001",
     name: "Dark Coffers",
@@ -1666,6 +1372,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-hinterlands-001",
     name: "Dark Roads",
@@ -1680,6 +1387,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-menagerie-001",
     name: "Dark Stampede",
@@ -1695,6 +1403,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-nocturne-001",
     name: "Crypt Ruins",
@@ -1709,6 +1418,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-plunder-001",
     name: "Dark Plunder",
@@ -1723,6 +1433,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-prosperity-001",
     name: "Dark Prosperity",
@@ -1737,6 +1448,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-renaissance-001",
     name: "Dark Renaissance",
@@ -1751,6 +1463,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — DARK AGES + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "dark-ages-seaside-001",
     name: "Dark Seas",
@@ -1765,6 +1478,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-guilds-001",
     name: "Coffer Empire",
@@ -1779,6 +1493,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-hinterlands-001",
     name: "Empire Roads",
@@ -1793,6 +1508,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-intrigue-001",
     name: "Noble Empire",
@@ -1807,6 +1523,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-menagerie-001",
     name: "Empire Stampede",
@@ -1822,6 +1539,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-nocturne-001",
     name: "Dark Empire",
@@ -1836,6 +1554,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-plunder-001",
     name: "Empire Plunder",
@@ -1850,6 +1569,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-prosperity-001",
     name: "Empire of Plenty",
@@ -1864,6 +1584,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-renaissance-001",
     name: "Villager Empire",
@@ -1878,6 +1599,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — EMPIRES + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-seaside-001",
     name: "Empire Seas",
@@ -1892,6 +1614,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-hinterlands-001",
     name: "Overpay Roads",
@@ -1906,6 +1629,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-intrigue-001",
     name: "Guild Nobles",
@@ -1920,6 +1644,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-menagerie-001",
     name: "Guild Stampede",
@@ -1935,6 +1660,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-nocturne-001",
     name: "Dark Guild",
@@ -1949,6 +1675,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-plunder-001",
     name: "Guild Fleet",
@@ -1963,6 +1690,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-prosperity-001",
     name: "Grand Guild",
@@ -1977,6 +1705,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-renaissance-001",
     name: "Double Coffers",
@@ -1991,6 +1720,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — GUILDS + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-seaside-001",
     name: "Sea Guild",
@@ -2005,6 +1735,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — HINTERLANDS + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "hinterlands-menagerie-001",
     name: "Road Stampede",
@@ -2020,6 +1751,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — HINTERLANDS + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "hinterlands-nocturne-001",
     name: "Night Roads",
@@ -2034,6 +1766,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — HINTERLANDS + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "hinterlands-plunder-001",
     name: "Road Plunder",
@@ -2048,6 +1781,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — HINTERLANDS + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "hinterlands-prosperity-001",
     name: "Highway Fortune",
@@ -2062,6 +1796,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — HINTERLANDS + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "hinterlands-renaissance-001",
     name: "Road Renaissance",
@@ -2076,6 +1811,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — HINTERLANDS + ALLIES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-hinterlands-001",
     name: "Favor Roads",
@@ -2090,6 +1826,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-nocturne-001",
     name: "Dark Nobles",
@@ -2104,6 +1841,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-plunder-001",
     name: "Noble Plunder",
@@ -2118,6 +1856,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "intrigue-renaissance-001",
     name: "Noble Villagers",
@@ -2132,6 +1871,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + EMPIRES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "empires-intrigue-001",
     name: "Crown Nobles",
@@ -2146,6 +1886,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + GUILDS
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "guilds-intrigue-001",
     name: "Noble Coffers",
@@ -2160,6 +1901,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + CORNUCOPIA
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "cornucopia-intrigue-001",
     name: "Noble Carnival",
@@ -2174,6 +1916,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + ADVENTURES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "adventures-intrigue-001",
     name: "Noble Reserve",
@@ -2188,6 +1931,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — INTRIGUE + ALLIES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-intrigue-001",
     name: "Noble Favors",
@@ -2202,6 +1946,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — MENAGERIE + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "menagerie-nocturne-001",
     name: "Night Stampede",
@@ -2217,6 +1962,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — MENAGERIE + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "menagerie-plunder-001",
     name: "Stampede Fleet",
@@ -2232,6 +1978,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — MENAGERIE + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "menagerie-prosperity-001",
     name: "Stampede Fortune",
@@ -2247,6 +1994,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — MENAGERIE + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "menagerie-renaissance-001",
     name: "Villager Stampede",
@@ -2264,6 +2012,7 @@ export const COMBINATIONS: Combination[] = [
   // (already written above as allies-menagerie-001, skip duplicate)
   // PAIRS — MENAGERIE + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "menagerie-seaside-001",
     name: "Sea Stampede",
@@ -2279,6 +2028,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — NOCTURNE + PLUNDER
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "nocturne-plunder-001",
     name: "Night Plunder",
@@ -2293,6 +2043,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — NOCTURNE + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "nocturne-prosperity-001",
     name: "Dark Fortune",
@@ -2307,6 +2058,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — NOCTURNE + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "nocturne-renaissance-001",
     name: "Dark Villagers",
@@ -2321,6 +2073,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — NOCTURNE + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "nocturne-seaside-001",
     name: "Night Seas",
@@ -2335,6 +2088,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — PLUNDER + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "plunder-prosperity-001",
     name: "Treasure Hoard",
@@ -2349,6 +2103,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — PLUNDER + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "plunder-renaissance-001",
     name: "Treasure Villagers",
@@ -2363,6 +2118,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — PLUNDER + SEASIDE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "plunder-seaside-001",
     name: "Sea Plunder",
@@ -2377,6 +2133,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — PROSPERITY + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "prosperity-renaissance-001",
     name: "Grand Coffers",
@@ -2391,6 +2148,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — SEASIDE + ALLIES
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "allies-seaside-001",
     name: "Alliance at Sea",
@@ -2405,6 +2163,7 @@ export const COMBINATIONS: Combination[] = [
   // ═══════════════════════════════════════════════════════════════
   // PAIRS — SEASIDE + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
+
   {
     id: "seaside-menagerie-001",
     name: "Sea of Animals",
@@ -2415,6 +2174,47 @@ export const COMBINATIONS: Combination[] = [
     nonSupplyCard: "horse",
     difficulty: "intermediate",
     tags: ["duration","engine","draw"],
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-intrigue-001",
+    name: "Ruined Courts",
+    expansions: ["dark-ages","intrigue"],
+    cards: ["wandering-minstrel","shanty-town","mining-village","fortress","conspirator","bridge","nobles","junk-dealer","rebuild","steward"],
+    strategy: "Four village effects — Wandering Minstrel, Shanty Town, Mining Village and Fortress — ensure Conspirator fires reliably for draw and Coins. Wandering Minstrel stacks 3 Actions on top. Fortress loops back from the trash. Junk Dealer thins while drawing. Steward trashes early, draws later. Rebuild converts Estates into Provinces. Bridge reduces all costs and gives a Buy. Nobles serves as VP card and village.",
+    keyCards: ["conspirator","fortress","rebuild"],
+    difficulty: "advanced",
+    tags: ["engine","thinning","multiplier"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-intrigue-001",
+    name: "Noble Roads",
+    expansions: ["hinterlands","intrigue"],
+    cards: ["inn","shanty-town","mining-village","conspirator","bridge","nobles","haggler","margrave","cartographer","scheme"],
+    strategy: "Inn, Shanty Town and Mining Village give triple village coverage. Inn's reshuffle ability keeps Actions cycling back into the deck. Conspirator fires for draw and Coins after the third Action. Haggler gains a free cheaper non-Victory card on every buy. Margrave draws 3 and gives a Buy while forcing opponents to draw down. Bridge reduces all costs and gives a Buy. Nobles serves as VP and village. Scheme topdecks an Action.",
+    keyCards: ["conspirator","inn","haggler"],
+    difficulty: "intermediate",
+    tags: ["engine","thinning","gain"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-seaside-001",
+    name: "Merchant Tides",
+    expansions: ["hinterlands","seaside"],
+    cards: ["inn","fishing-village","native-village","wharf","caravan","haggler","margrave","cartographer","scheme","salvager"],
+    strategy: "Fishing Village and Caravan extend their benefits across turns. Wharf draws 2 and gives a Buy each turn in play. Inn gives +2 Actions and shuffles discarded Actions back into the deck. Haggler gains a free cheaper non-Victory card on every buy. Margrave draws 3 and gives a Buy while pressuring opponents. Cartographer sifts the top 4. Native Village stores or retrieves cards. Salvager earns Coins and a Buy from trash. Scheme topdecks an Action.",
+    keyCards: ["fishing-village","inn","haggler"],
+    difficulty: "intermediate",
+    tags: ["engine","gain","duration"],
   },
 
 ];
