@@ -43,10 +43,37 @@ export interface Card {
   expansion: string;
   cost: number | string;
   types: CardType[];
-  plusActions: number;   // how many +Actions the card gives
-  plusBuys: number;      // how many +Buys the card gives
+  plusActions: number;
+  plusBuys: number;
+  plusCards: number;
+  plusCoins: number;
   roles: CardRole[];
   notes: string;
+}
+
+export interface KingdomScore {
+  overall: number;
+  villageCoverage: number;
+  drawAvailability: number;
+  costCurve: number;
+  terminalBalance: number; // now represents +Buy availability
+  interaction: number;
+  economy: number;
+  strategicDiversity: number;
+  thinningAccess: number;
+}
+
+export interface GeneratorConstraints {
+  expansions: string[];
+  costRange?: [number, number];
+  minPlusActions?: number;
+  minPlusBuys?: number;
+  minPlusCards?: number;
+  minPlusCoins?: number;
+  requireRoles?: Partial<Record<CardRole, number>>;
+  mustInclude?: string[];
+  mustExclude?: string[];
+  minScore?: number;
 }
 
 export interface Combination {

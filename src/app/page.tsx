@@ -1,10 +1,19 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { EXPANSIONS } from "@/data/expansions";
 import { COMBINATIONS, getCombinationsForExpansions } from "@/data/combinations";
 import { CARD_MAP } from "@/data/cards";
 import type { Combination, Expansion } from "@/types";
+import BuildMode from "@/components/BuildMode";
+import {
+  loadSavedKingdoms,
+  deleteKingdom,
+  exportKingdoms,
+  importKingdoms,
+  mergeImported,
+  type SavedKingdom,
+} from "@/lib/saved-kingdoms";
 
 // Base is always in play — only show additional expansion options
 const SELECTABLE_EXPANSIONS = EXPANSIONS.filter((e) => e.id !== "base");
@@ -54,9 +63,10 @@ interface ComboStats {
 function getComboStats(combo: Combination): ComboStats {
   const cards = combo.cards.map((id) => CARD_MAP[id]).filter(Boolean);
 
-  const earlyGame = cards.filter((c) => c.cost >= 2 && c.cost <= 3).length;
-  const midGame   = cards.filter((c) => c.cost >= 4 && c.cost <= 5).length;
-  const lateGame  = cards.filter((c) => c.cost >= 6).length;
+  const numCost = (c: { cost: number | string }) => typeof c.cost === "number" ? c.cost : 5;
+  const earlyGame = cards.filter((c) => numCost(c) >= 2 && numCost(c) <= 3).length;
+  const midGame   = cards.filter((c) => numCost(c) >= 4 && numCost(c) <= 5).length;
+  const lateGame  = cards.filter((c) => numCost(c) >= 6).length;
 
   const terminals = cards.filter(
     (c) => c.types.includes("Action") && c.plusActions === 0
@@ -554,6 +564,31 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
   const [selected, setSelected]       = useState<string[]>([]);
   const [filters, setFilters]         = useState<Filters>(DEFAULT_FILTERS);
   const [showFilters, setShowFilters] = useState(false);
+  const [savedKingdoms, setSavedKingdoms] = useState<SavedKingdom[]>([]);
+  const [showSaved, setShowSaved] = useState(true);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setSavedKingdoms(loadSavedKingdoms());
+  }, []);
+
+  const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const imported = await importKingdoms(file);
+      mergeImported(imported);
+      setSavedKingdoms(loadSavedKingdoms());
+    } catch {
+      alert("Failed to import kingdoms. Check the file format.");
+    }
+    e.target.value = "";
+  };
+
+  const handleDelete = (id: string) => {
+    deleteKingdom(id);
+    setSavedKingdoms(loadSavedKingdoms());
+  };
 
   const toggleExpansion = (id: string) =>
     setSelected((prev) =>
@@ -568,6 +603,84 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
 
   return (
     <>
+      {/* My Kingdoms */}
+      <section className="mb-10">
+        <div className="flex items-center justify-between mb-4">
+          <button
+            onClick={() => setShowSaved(!showSaved)}
+            className="text-base font-semibold text-stone-200 flex items-center gap-2 hover:text-white transition-colors"
+          >
+            My Kingdoms
+            <span className="text-stone-500 font-normal text-sm">({savedKingdoms.length})</span>
+            <span className="text-stone-500 text-xs">{showSaved ? "▼" : "▶"}</span>
+          </button>
+          <div className="flex items-center gap-2">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleImport}
+              className="hidden"
+            />
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="px-3 py-1.5 rounded-lg border border-stone-700 text-xs font-medium text-stone-400 hover:border-stone-500 hover:text-stone-200 transition-colors"
+            >
+              Import
+            </button>
+            {savedKingdoms.length > 0 && (
+              <button
+                onClick={() => exportKingdoms(savedKingdoms)}
+                className="px-3 py-1.5 rounded-lg border border-stone-700 text-xs font-medium text-stone-400 hover:border-stone-500 hover:text-stone-200 transition-colors"
+              >
+                Export
+              </button>
+            )}
+          </div>
+        </div>
+
+        {showSaved && savedKingdoms.length > 0 && (
+          <div className="grid gap-4 md:grid-cols-2 mb-6">
+            {savedKingdoms.map((kingdom) => (
+              <div key={kingdom.id} className="bg-stone-900 border border-stone-800 rounded-xl p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-bold text-stone-100">{kingdom.name}</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-stone-500 font-mono">{kingdom.score.overall}/10</span>
+                    <button
+                      onClick={() => handleDelete(kingdom.id)}
+                      className="text-xs text-stone-600 hover:text-red-400 transition-colors"
+                      title="Delete"
+                    >
+                      &times;
+                    </button>
+                  </div>
+                </div>
+                {kingdom.notes && (
+                  <p className="text-xs text-stone-400 mb-2">{kingdom.notes}</p>
+                )}
+                <div className="flex flex-wrap gap-1">
+                  {kingdom.cards.map((cardId) => (
+                    <CardChip key={cardId} cardId={cardId} />
+                  ))}
+                </div>
+                <p className="text-[10px] text-stone-600 mt-2">
+                  {new Date(kingdom.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {showSaved && savedKingdoms.length === 0 && (
+          <p className="text-sm text-stone-500 mb-6">
+            No saved kingdoms yet. Generate one in the Build tab and save it, or import a .json file.
+          </p>
+        )}
+      </section>
+
+      <hr className="border-stone-800 mb-8" />
+
       {/* Expansion selector */}
       <section className="mb-8">
         <div className="flex items-center justify-between mb-4">
@@ -797,7 +910,7 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Home() {
-  const [mode, setMode] = useState<"browse" | "auto">("browse");
+  const [mode, setMode] = useState<"browse" | "auto" | "build">("build");
   const expansionColors = Object.fromEntries(EXPANSIONS.map((e) => [e.id, e.color]));
 
   return (
@@ -806,9 +919,16 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-amber-400 font-serif tracking-wide">Dominion Kingdom Builder</h1>
-            <p className="text-sm text-stone-400 mt-0.5">Base is always in play. Mix in up to 2 additional expansions.</p>
+            <p className="text-sm text-stone-400 mt-0.5">Build, browse, or randomize your perfect kingdom.</p>
           </div>
           <div className="flex rounded-lg border border-stone-700 overflow-hidden shrink-0">
+            <button
+              onClick={() => setMode("build")}
+              className={`px-4 py-2 text-sm font-medium transition-colors
+                ${mode === "build" ? "bg-amber-700 text-white" : "text-stone-400 hover:text-stone-200 hover:bg-stone-800"}`}
+            >
+              Build ✦
+            </button>
             <button
               onClick={() => setMode("browse")}
               className={`px-4 py-2 text-sm font-medium transition-colors
@@ -819,19 +939,18 @@ export default function Home() {
             <button
               onClick={() => setMode("auto")}
               className={`px-4 py-2 text-sm font-medium transition-colors
-                ${mode === "auto" ? "bg-amber-700 text-white" : "text-stone-400 hover:text-stone-200 hover:bg-stone-800"}`}
+                ${mode === "auto" ? "bg-stone-700 text-white" : "text-stone-400 hover:text-stone-200 hover:bg-stone-800"}`}
             >
-              Pick for me ✦
+              Random
             </button>
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        {mode === "browse"
-          ? <BrowseMode expansionColors={expansionColors} />
-          : <AutoPickMode expansionColors={expansionColors} />
-        }
+        {mode === "build" && <BuildMode />}
+        {mode === "browse" && <BrowseMode expansionColors={expansionColors} />}
+        {mode === "auto" && <AutoPickMode expansionColors={expansionColors} />}
       </main>
 
       <footer className="border-t border-stone-800 mt-16 py-6 text-center text-xs text-stone-600">
