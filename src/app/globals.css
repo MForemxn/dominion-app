@@ -1,6 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-parchment-50: #fdf8f0;
+  --color-parchment-100: #f9edd8;
+  --color-parchment-200: #f2d9af;
+  --color-parchment-300: #e8be7e;
+  --color-parchment-400: #dc9e4d;
+  --color-parchment-500: #d4842a;
+  --color-parchment-600: #c16920;
+  --color-parchment-700: #a0511c;
+  --color-parchment-800: #81411d;
+  --color-parchment-900: #6a371b;
+
+  --color-card-action: #2d5a8e;
+  --color-card-attack: #8b1a1a;
+  --color-card-reaction: #1a5c2e;
+  --color-card-treasure: #8b7400;
+  --color-card-victory: #4a1a6b;
+  --color-card-duration: #7a4e00;
+  --color-card-night: #1a1a3a;
+  --color-card-reserve: #4a3000;
+
+  --font-serif: Georgia, Cambria, "Times New Roman", serif;
+}
 
 @layer base {
   body {
