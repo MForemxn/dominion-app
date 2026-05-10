@@ -1142,6 +1142,1281 @@ export const COMBINATIONS: Combination[] = [
     tags: ["favors","engine","draw"],
   },
 
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + ALLIES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-allies-001",
+    name: "Reserve Alliance",
+    expansions: ["adventures","allies"],
+    cards: ["port","coin-of-the-realm","dungeon","gear","wine-merchant","destination","innkeeper","sycophant","galleria","sentinel"],
+    strategy: "Port doubles your village buy while building a reserve mat. Coin of the Realm and Dungeon sit on the Tavern mat until needed. Sycophant generates Favors and burst economy. Galleria earns Favors on cheap buys. Innkeeper provides flexible village and hand filtering. Sentinel trashes and filters to keep the engine tight.",
+    keyCards: ["port","coin-of-the-realm","sycophant"],
+    difficulty: "intermediate",
+    tags: ["reserve","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + CORNUCOPIA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-cornucopia-001",
+    name: "Diverse Expedition",
+    expansions: ["adventures","cornucopia"],
+    cards: ["port","lost-city","gear","dungeon","ranger","farming-village","hamlet","hunting-party","fairgrounds","horse-traders"],
+    strategy: "Fairgrounds rewards deck diversity; Adventures supplies plenty of unique card names. Port gives two villages for one buy. Lost City provides +2 Actions and +2 Cards, turbocharging the engine. Hunting Party reliably finds the exact card needed. Hamlet's flexible +1 Action or +1 Buy covers whatever the turn requires. Ranger's +1 Buy on flip rewards building the expedition token.",
+    keyCards: ["fairgrounds","hunting-party","lost-city"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","draw","diversity"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + DARK AGES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-dark-ages-001",
+    name: "Relic Ruins",
+    expansions: ["adventures","dark-ages"],
+    cards: ["relic","giant","port","lost-city","dungeon","wandering-minstrel","fortress","junk-dealer","market-square","forager"],
+    strategy: "Relic places a -1 Card token on opponents each turn it's in play, compounding with Giant's alternate attack that trashes mid-cost cards. Fortress is an indestructible village — chain it with Wandering Minstrel for reliable Actions. Junk Dealer and Forager trash Ruins and junk. Market Square reacts to all trashing by generating Gold.",
+    keyCards: ["relic","fortress","market-square"],
+    difficulty: "advanced",
+    tags: ["attack","engine","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + EMPIRES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-empires-001",
+    name: "Crown Expedition",
+    expansions: ["adventures","empires"],
+    cards: ["port","lost-city","dungeon","gear","royal-carriage","crown","city-quarter","encampment","farmers-market","groundskeeper"],
+    strategy: "Crown doubles the next Action or Treasure — combine with Royal Carriage to replay the best card yet again. Lost City and Encampment provide generous Action sources. City Quarter draws as many cards as Actions in hand. Port is bought as two villages. Groundskeeper earns VP tokens for every Victory gained. Farmers' Market accumulates VP tokens and provides a Buy.",
+    keyCards: ["crown","royal-carriage","city-quarter"],
+    difficulty: "advanced",
+    tags: ["engine","multiplier","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + GUILDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-guilds-001",
+    name: "Coffers Reserve",
+    expansions: ["adventures","guilds"],
+    cards: ["port","coin-of-the-realm","royal-carriage","storyteller","plaza","herald","merchant-guild","butcher","candlestick-maker","dungeon"],
+    strategy: "Plaza discards Treasures to earn Coffers. Merchant Guild banks a Coffer for every card bought. Butcher spends Coffers to freely gain or upgrade cards. Royal Carriage replays your best Action at zero cost. Coin of the Realm sits on the Tavern mat as a free +2 Actions mid-turn. Storyteller spends Treasures for card draw. Herald plays the top card if it's an Action.",
+    keyCards: ["plaza","merchant-guild","royal-carriage"],
+    difficulty: "intermediate",
+    tags: ["coffers","reserve","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + HINTERLANDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-hinterlands-001",
+    name: "Distant Roads",
+    expansions: ["adventures","hinterlands"],
+    cards: ["port","lost-city","bridge-troll","dungeon","gear","inn","highway","haggler","cartographer","spice-merchant"],
+    strategy: "Bridge Troll reduces card costs each turn it's in Duration play, stacking with Highway for dramatic discounts. Haggler gains a free cheaper non-Victory card whenever you buy. Port provides cheap villages. Inn reloads discarded Actions from the discard when gained. Spice Merchant trashes Coppers for draw or economy. Cartographer filters the top 4 for smooth draws.",
+    keyCards: ["bridge-troll","highway","haggler"],
+    difficulty: "intermediate",
+    tags: ["economy","duration","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-intrigue-001",
+    name: "Noble Reserve",
+    expansions: ["adventures","intrigue"],
+    cards: ["port","lost-city","royal-carriage","coin-of-the-realm","dungeon","nobles","mining-village","conspirator","upgrade","bridge"],
+    strategy: "Royal Carriage replays Nobles for free — double +3 Cards or double +2 Actions in a single turn. Coin of the Realm provides on-demand +2 Actions from the Tavern mat. Conspirator triggers after 3 Actions, which is trivial with Port, Lost City, and Mining Village. Bridge reduces costs. Upgrade reshapes mid-tier cards progressively.",
+    keyCards: ["royal-carriage","nobles","conspirator"],
+    difficulty: "advanced",
+    tags: ["engine","reserve","multiplier"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-menagerie-001",
+    name: "Horse Expedition",
+    expansions: ["adventures","menagerie"],
+    cards: ["port","lost-city","dungeon","gear","ranger","paddock","destrier","cavalry","snowy-village","sheepdog"],
+    strategy: "Horses are disposable +2 Card cards generated en masse. Paddock gives +2 Actions and 2 Horses. Destrier costs less per Horse gained — by mid-game it's a 2-cost village. Cavalry gives two Horses and lets you re-enter the Action phase on buy. Snowy Village gives 4 Actions and a Buy. Sheepdog reacts to every gain for +2 Cards. Port provides cheap dual villages.",
+    keyCards: ["paddock","destrier","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["engine","draw","village"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-nocturne-001",
+    name: "Night Expedition",
+    expansions: ["adventures","nocturne"],
+    cards: ["port","lost-city","dungeon","gear","hireling","blessed-village","conclave","cobbler","vampire","skulk"],
+    strategy: "Hireling permanently draws a card at the start of every turn — stack several for guaranteed card flow. Cobbler is a Night card gaining any card costing up to 4 for next turn. Vampire attacks and gains non-Vampire cards costing up to 5 on Night plays. Blessed Village receives Boons. Conclave plays an Action from hand for free. Skulk gains Gold when bought. Port and Lost City cover villages.",
+    keyCards: ["hireling","cobbler","vampire"],
+    difficulty: "intermediate",
+    tags: ["night","duration","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-plunder-001",
+    name: "Treasure Fleet",
+    expansions: ["adventures","plunder"],
+    cards: ["port","lost-city","royal-carriage","dungeon","gear","wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain powerful Loot. Wealthy Village provides a village and Loot when three different Treasures are in play — easy with Loot variety. Royal Carriage replays the best action. Lost City and Port provide ample Actions. Harbor Village rewards playing multiple Actions with bonus coins. Mapmaker draws and gives a Buy.",
+    keyCards: ["pickaxe","wealthy-village","royal-carriage"],
+    difficulty: "intermediate",
+    tags: ["loot","engine","economy"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-prosperity-001",
+    name: "Kings Expedition",
+    expansions: ["adventures","prosperity"],
+    cards: ["port","lost-city","royal-carriage","coin-of-the-realm","workers-village","kings-court","peddler","grand-market","vault","watchtower"],
+    strategy: "King's Court tripled with Royal Carriage's replay creates turns of absurd power. Peddler's cost drops to 0 with many Actions in play. Lost City and Port provide cheap villages alongside Workers' Village. Vault converts cards to coins. Grand Market draws and buys. Watchtower controls gained cards instantly. Coin of the Realm is emergency Actions from the mat.",
+    keyCards: ["kings-court","royal-carriage","peddler"],
+    difficulty: "advanced",
+    tags: ["engine","multiplier","economy"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-renaissance-001",
+    name: "Villager Reserve",
+    expansions: ["adventures","renaissance"],
+    cards: ["port","lost-city","royal-carriage","coin-of-the-realm","dungeon","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe gives 4 Villagers before disappearing, providing sustained Action fuel. Recruiter converts trashed cards into Villagers based on cost. Coin of the Realm on the Tavern mat adds +2 Actions from reserve. Royal Carriage replays the best Action. Mountain Village recovers key cards from the discard. Silk Merchant provides draw and a Buy while giving Coffers on entry.",
+    keyCards: ["acting-troupe","royal-carriage","recruiter"],
+    difficulty: "intermediate",
+    tags: ["engine","villagers","reserve"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ADVENTURES + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-seaside-001",
+    name: "Duration Reserve",
+    expansions: ["adventures","seaside"],
+    cards: ["port","coin-of-the-realm","royal-carriage","dungeon","hireling","wharf","fishing-village","caravan","lighthouse","salvager"],
+    strategy: "Hireling and Wharf both stay in play providing persistent draw and Buys. Fishing Village supplies cheap recurring Actions and coins. Royal Carriage replays Wharf or Fishing Village for free each turn. Coin of the Realm provides emergency +2 Actions. Lighthouse blocks attacks while dripping coins. Port chains villages. Salvager converts junk for economy.",
+    keyCards: ["hireling","wharf","royal-carriage"],
+    difficulty: "intermediate",
+    tags: ["duration","reserve","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + CORNUCOPIA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-cornucopia-001",
+    name: "Diverse Favors",
+    expansions: ["allies","cornucopia"],
+    cards: ["destination","innkeeper","galleria","sycophant","sentinel","farming-village","hamlet","hunting-party","fairgrounds","horse-traders"],
+    strategy: "Fairgrounds VP scales with deck diversity — Allies cards add more unique names cheaply. Galleria earns Favors when buying cheap cards; pair with Hamlet's flexible buy to bank Favors. Hunting Party reliably finds the card you need from any hand. Sycophant provides burst economy when Favors are spent. Innkeeper filters hand and provides village. Sentinel trashes to keep the deck lean.",
+    keyCards: ["fairgrounds","galleria","hunting-party"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","favors","diversity"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + DARK AGES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-dark-ages-001",
+    name: "Sentinel Scavenger",
+    expansions: ["allies","dark-ages"],
+    cards: ["sentinel","broker","sycophant","destination","galleria","guard-dog","wandering-minstrel","fortress","junk-dealer","market-square"],
+    strategy: "Sentinel filters the top 5 cards and trashes up to 2, keeping the deck pristine. Broker trashes cards and converts their cost into chosen bonuses — including Favors for the Ally. Junk Dealer trashes and draws for free. Market Square reacts to all trashing for free Gold. Fortress is an indestructible village. Sycophant's Favor spending gives +1 Action and burst coins. Guard Dog reacts to attacks for draw.",
+    keyCards: ["sentinel","broker","market-square"],
+    difficulty: "advanced",
+    tags: ["thinning","favors","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + EMPIRES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-empires-001",
+    name: "Favor Empire",
+    expansions: ["allies","empires"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","city-quarter","encampment","crown","farmers-market","groundskeeper"],
+    strategy: "City Quarter draws cards equal to Actions in hand — pair with Encampment for cheap villages. Crown doubles an Action or Treasure. Groundskeeper earns VP tokens for every Victory gained. Farmers' Market provides a Buy and accumulates VP tokens. Galleria earns Favors from cheap buys. Sycophant's Favor spending triggers burst economy. Sentinel keeps the deck tidy.",
+    keyCards: ["city-quarter","crown","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["engine","favors","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + GUILDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-guilds-001",
+    name: "Coffer Favors",
+    expansions: ["allies","guilds"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","plaza","herald","merchant-guild","butcher","candlestick-maker"],
+    strategy: "Plaza discards Treasures for Coffers; Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade any card. Galleria earns Favors on cheap buys and Herald is a cantrip that plays the top card if it's an Action. Sycophant spends Favors for burst economy. Destination and Innkeeper provide village effects. Sentinel trashes to keep the engine tight.",
+    keyCards: ["merchant-guild","butcher","galleria"],
+    difficulty: "intermediate",
+    tags: ["coffers","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + HINTERLANDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-hinterlands-001",
+    name: "Favor Roads",
+    expansions: ["allies","hinterlands"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","inn","highway","haggler","cartographer","spice-merchant"],
+    strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy — combine with Highway discounts for expensive free gains. Inn provides a village that reloads discarded Actions on gain. Galleria earns Favors on cheap buys alongside Highway. Spice Merchant trashes Copper for draw or economy. Cartographer smooths draws. Sycophant provides burst economy from Favors.",
+    keyCards: ["highway","haggler","galleria"],
+    difficulty: "intermediate",
+    tags: ["economy","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-intrigue-001",
+    name: "Noble Alliance",
+    expansions: ["allies","intrigue"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","nobles","mining-village","shanty-town","conspirator","steward"],
+    strategy: "Nobles and Conspirator synergise with the heavy Action density from Allies. Conspirator triggers after 3 Actions — easy with Destination, Innkeeper, Nobles, and Mining Village all available. Sycophant spends Favors for +1 Action and burst coins. Shanty Town draws when your hand is Action-light. Steward thins early. Galleria earns Favors on cheap buys.",
+    keyCards: ["nobles","conspirator","sycophant"],
+    difficulty: "intermediate",
+    tags: ["engine","favors","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-menagerie-001",
+    name: "Favor Stampede",
+    expansions: ["allies","menagerie"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
+    strategy: "Snowy Village gives 4 Actions and a Buy — the best village for multi-Action turns. Cavalry gains Horses and returns to Action phase on buy, triggering Sheepdog's +2 Cards reaction. Paddock gives +2 Actions and two Horses. Galleria earns Favors on cheap buys from Cavalry's multiple Horse gains. Sycophant's Favor spending funds the engine. Animal Fair can trash an Action instead of paying.",
+    keyCards: ["snowy-village","cavalry","galleria"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["engine","favors","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-nocturne-001",
+    name: "Night Favors",
+    expansions: ["allies","nocturne"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","blessed-village","conclave","cobbler","skulk","shepherd"],
+    strategy: "Cobbler is a Night card gaining any card costing up to 4 to hand next turn — use it to chain gaining and playing Galleria for Favors. Blessed Village receives a Boon on gain or start of turn. Conclave plays an Action from hand for free. Shepherd discards Victory cards to draw 2 each, keeping your hand full. Skulk gains Gold when bought. Innkeeper and Destination provide villages. Sycophant spends Favors for coins.",
+    keyCards: ["cobbler","galleria","blessed-village"],
+    difficulty: "intermediate",
+    tags: ["night","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-plunder-001",
+    name: "Favor Fleet",
+    expansions: ["allies","plunder"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","harbor-village","wealthy-village","pickaxe","mapmaker","rope"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Harbor Village rewards multiple Actions with bonus coins. Galleria earns Favors on cheap buys. Rope is a Duration that draws and trashes next turn while giving a Buy now. Sycophant's Favor spending provides burst economy. Mapmaker draws and filters.",
+    keyCards: ["pickaxe","wealthy-village","galleria"],
+    difficulty: "intermediate",
+    tags: ["loot","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-prosperity-001",
+    name: "Favor Fortune",
+    expansions: ["allies","prosperity"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","workers-village","city","grand-market","vault","monument"],
+    strategy: "Monument accumulates VP tokens every turn it's played. City surges as piles empty. Grand Market draws, provides an Action, and a Buy. Workers' Village chains cheaply. Galleria earns Favors on cheap buys. Sycophant's Favor spending triggers +3 Coins. Vault converts excess cards into coins. Destination and Innkeeper are solid villages for chaining.",
+    keyCards: ["monument","city","galleria"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-renaissance-001",
+    name: "Favor Villagers",
+    expansions: ["allies","renaissance"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes — Recruiter converts trashed cards into more Villagers. Mountain Village recovers key cards from the discard. Silk Merchant draws and buys while giving Coffers on entry. Galleria earns Favors on cheap buys. Sycophant spends Favors for +1 Action and burst economy. Innkeeper and Destination are clean village sources.",
+    keyCards: ["acting-troupe","recruiter","galleria"],
+    difficulty: "intermediate",
+    tags: ["villagers","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — ALLIES + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-seaside-001",
+    name: "Favor Fleet",
+    expansions: ["allies","seaside"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns — stack several for dominant card flow. Fishing Village provides cheap recurring Actions and coins. Lighthouse blocks attacks while dripping coins. Galleria earns Favors on cheap buys alongside Fishing Village gains. Sycophant provides burst economy when Favors are spent. Salvager converts junk for economy. Caravan drips cards over two turns.",
+    keyCards: ["wharf","galleria","fishing-village"],
+    difficulty: "intermediate",
+    tags: ["duration","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + DARK AGES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-dark-ages-001",
+    name: "Jester's Dark Fair",
+    expansions: ["cornucopia","dark-ages"],
+    cards: ["farming-village","hamlet","jester","hunting-party","fairgrounds","wandering-minstrel","fortress","junk-dealer","market-square","forager"],
+    strategy: "Jester punishes Victory-heavy decks and gains copies of revealed actions or Treasures. Fairgrounds rewards diversity — Dark Ages cards add many unique names. Fortress as indestructible village. Wandering Minstrel reveals top 3 and keeps Actions. Hunting Party reliably draws what you need. Market Square reacts to junk-dealing trashing for free Gold. Forager trashes for coins from unique Treasures.",
+    keyCards: ["jester","fortress","market-square"],
+    difficulty: "advanced",
+    tags: ["alt-victory","attack","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + EMPIRES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-empires-001",
+    name: "Tournament Empire",
+    expansions: ["cornucopia","empires"],
+    cards: ["farming-village","hamlet","tournament","hunting-party","fairgrounds","city-quarter","encampment","crown","farmers-market","groundskeeper"],
+    strategy: "Tournament grants Prizes when you reveal a Province — combine with Groundskeeper to earn VP tokens every time you gain a Victory card. Crown doubles the next Action or Treasure. City Quarter draws as many cards as Actions in hand. Fairgrounds VP grows with deck diversity. Farming Village and Hamlet ensure reliable Action chains. Farmers' Market provides a Buy and accumulates VP tokens.",
+    keyCards: ["tournament","groundskeeper","city-quarter"],
+    difficulty: "advanced",
+    tags: ["alt-victory","engine","attack"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + HINTERLANDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-hinterlands-001",
+    name: "Fair Roads",
+    expansions: ["cornucopia","hinterlands"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","inn","highway","haggler","cartographer","jack-of-all-trades"],
+    strategy: "Highway drives down costs and stacks with Haggler's free gains for an explosive value engine. Fairgrounds rewards deck diversity — both sets contribute many unique names. Hunting Party reliably finds the exact card needed. Inn reloads discarded Actions when gained. Jack of All Trades gains Silver, draws to 5, and trashes junk. Hamlet gives flexible +Action or +Buy.",
+    keyCards: ["highway","fairgrounds","hunting-party"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","economy","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-intrigue-001",
+    name: "Noble Fair",
+    expansions: ["cornucopia","intrigue"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","tournament","nobles","mining-village","shanty-town","conspirator","upgrade"],
+    strategy: "Nobles and Farming Village provide flexible Action and draw options. Conspirator triggers after 3 Actions — easy with four village types available. Tournament grants Prizes on Province reveals. Fairgrounds VP grows with the dense diversity across both sets. Hunting Party reliably finds the card needed. Shanty Town draws when Action-light. Upgrade reshapes mid-tier cards.",
+    keyCards: ["nobles","conspirator","fairgrounds"],
+    difficulty: "advanced",
+    tags: ["alt-victory","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-menagerie-001",
+    name: "Animal Fair",
+    expansions: ["cornucopia","menagerie"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
+    strategy: "Fairgrounds with Cornucopia and Menagerie gives enormous card name diversity. Snowy Village provides 4 Actions and a Buy. Paddock gives +2 Actions and two Horses. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions for draw. Animal Fair trashes an Action instead of paying cost. Hunting Party finds key cards reliably.",
+    keyCards: ["fairgrounds","snowy-village","cavalry"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["alt-victory","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-nocturne-001",
+    name: "Dark Carnival",
+    expansions: ["cornucopia","nocturne"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","jester","blessed-village","conclave","cobbler","shepherd","skulk"],
+    strategy: "Jester punishes Victory-heavy decks and grants copies of revealed Actions/Treasures. Fairgrounds VP grows with diversity across both sets. Cobbler is a Night card gaining any card up to 4 for next turn. Blessed Village receives Boons. Shepherd discards Victories to draw 2 each. Skulk gains Gold when bought. Hunting Party finds the card needed. Conclave plays an Action from hand for free.",
+    keyCards: ["jester","fairgrounds","cobbler"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","night","attack"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-plunder-001",
+    name: "Fair Plunder",
+    expansions: ["cornucopia","plunder"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","wealthy-village","harbor-village","pickaxe","mapmaker","mining-road"],
+    strategy: "Fairgrounds rewards deck diversity — Plunder's Loot cards add many unique Treasure names. Wealthy Village provides a village and Loot when three different Treasures are in play. Pickaxe trashes a card costing 3+ to gain Loot. Harbor Village rewards multiple Actions with bonus coins. Mining Road gives a Buy and lets you play gained Treasures. Hunting Party finds key cards. Mapmaker draws and filters.",
+    keyCards: ["fairgrounds","wealthy-village","pickaxe"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","loot","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-prosperity-001",
+    name: "Fair Fortune",
+    expansions: ["cornucopia","prosperity"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","tournament","workers-village","city","grand-market","peddler","vault"],
+    strategy: "Fairgrounds VP combined with Colony as the win condition creates a dual scoring axis. City surges as piles empty. Peddler's cost drops to 0 with many Actions. Grand Market draws and buys. Workers' Village chains cheaply alongside Farming Village. Tournament grants Prizes on Province reveals. Vault discards excess cards for coins. Hunting Party finds the card needed every turn.",
+    keyCards: ["fairgrounds","city","grand-market"],
+    difficulty: "advanced",
+    tags: ["alt-victory","engine","economy"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-renaissance-001",
+    name: "Scholar's Fair",
+    expansions: ["cornucopia","renaissance"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Fairgrounds rewards diversity — Renaissance's Villager and Coffer cards add many unique names cheaply. Acting Troupe dumps 4 Villagers then disappears. Recruiter converts trashed cards into Villagers. Silk Merchant draws and buys. Mountain Village recovers discarded cards. Hunting Party reliably finds the card needed. Hamlet's flexible +Action or +Buy covers whatever the turn requires.",
+    keyCards: ["fairgrounds","acting-troupe","hunting-party"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","villagers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — CORNUCOPIA + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-seaside-001",
+    name: "Carnival Sea",
+    expansions: ["cornucopia","seaside"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf's sustained draw and Buys across two turns keeps the engine running. Fairgrounds VP grows quickly with both sets adding unique card names. Farming Village and Fishing Village provide flexible village types. Hunting Party finds what you need reliably. Caravan drips cards over two turns. Horse Traders provides burst economy and a Reaction. Salvager converts junk for economy.",
+    keyCards: ["fairgrounds","wharf","hunting-party"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","duration","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + EMPIRES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-empires-001",
+    name: "Ruins Empire",
+    expansions: ["dark-ages","empires"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","cultist","market-square","city-quarter","encampment","crown","temple","groundskeeper"],
+    strategy: "Cultist draws 2 and gives opponents Ruins — opponents trash Ruins, which feeds Market Square Gold reactions. Crown doubles the next Action. City Quarter draws cards equal to Actions in hand. Temple trashes up to 3 different cards accumulating VP tokens — claim them on Province gain. Groundskeeper earns VP tokens for every Victory card gained. Fortress is an indestructible village.",
+    keyCards: ["cultist","crown","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["attack","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + GUILDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-guilds-001",
+    name: "Dark Coffers",
+    expansions: ["dark-ages","guilds"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","market-square","forager","plaza","herald","merchant-guild","butcher","candlestick-maker"],
+    strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards freely. Junk Dealer trashes for economy. Market Square reacts to trashing for Gold. Herald plays top card if it's an Action. Forager trashes for coins per unique Treasure in trash. Fortress is the indestructible village. Wandering Minstrel keeps Actions flowing.",
+    keyCards: ["plaza","merchant-guild","market-square"],
+    difficulty: "advanced",
+    tags: ["coffers","thinning","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + HINTERLANDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-hinterlands-001",
+    name: "Dark Roads",
+    expansions: ["dark-ages","hinterlands"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","market-square","cultist","inn","highway","haggler","cartographer","spice-merchant"],
+    strategy: "Highway reduces costs while Haggler gains a free cheaper non-Victory card on every buy. Junk Dealer trashes for economy. Market Square reacts to trashing for Gold. Cultist draws and gives opponents Ruins. Inn reloads discarded Actions on gain. Spice Merchant trashes Copper for draw or economy. Wandering Minstrel keeps Actions flowing. Fortress is the indestructible village.",
+    keyCards: ["highway","haggler","market-square"],
+    difficulty: "intermediate",
+    tags: ["economy","thinning","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-menagerie-001",
+    name: "Dark Stampede",
+    expansions: ["dark-ages","menagerie"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","market-square","cultist","snowy-village","paddock","cavalry","sheepdog","scrap"],
+    strategy: "Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions for +2 Cards. Paddock gives +2 Actions and two Horses. Scrap trashes for flexible bonuses. Junk Dealer trashes Ruins and junk for economy. Market Square reacts to all trashing for Gold. Cultist draws and gives opponents Ruins. Fortress is indestructible. Wandering Minstrel keeps Actions flowing.",
+    keyCards: ["cavalry","scrap","market-square"],
+    nonSupplyCard: "horse",
+    difficulty: "advanced",
+    tags: ["attack","reaction","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-nocturne-001",
+    name: "Crypt Ruins",
+    expansions: ["dark-ages","nocturne"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","cultist","market-square","blessed-village","conclave","cobbler","vampire","shepherd"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Cultist draws and gives Ruins to opponents. Market Square reacts to trashing for Gold. Shepherd discards Victories to draw 2 each. Blessed Village receives Boons. Fortress is indestructible. Junk Dealer cleans junk. Wandering Minstrel keeps Actions flowing.",
+    keyCards: ["cobbler","vampire","market-square"],
+    difficulty: "advanced",
+    tags: ["night","attack","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-plunder-001",
+    name: "Dark Plunder",
+    expansions: ["dark-ages","plunder"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","market-square","cultist","wealthy-village","harbor-village","pickaxe","sack-of-loot","rope"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Market Square reacts to trashing for Gold — combine with junk Dealer and Pickaxe for constant Gold gains. Wealthy Village provides a village and Loot when three different Treasures are in play. Harbor Village rewards multiple Actions with bonus coins. Rope draws and trashes next turn. Cultist draws and gives opponents Ruins.",
+    keyCards: ["pickaxe","market-square","wealthy-village"],
+    difficulty: "advanced",
+    tags: ["loot","reaction","thinning"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-prosperity-001",
+    name: "Dark Prosperity",
+    expansions: ["dark-ages","prosperity"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","cultist","market-square","workers-village","kings-court","city","grand-market","watchtower"],
+    strategy: "King's Court tripling Cultist draws 6 cards and gives opponents 3 Ruins each — opponents trashing Ruins triggers Market Square Gold reactions. City surges as piles empty. Grand Market provides draw and Buy. Workers' Village chains cheaply. Junk Dealer cleans the deck. Watchtower controls gained cards. Fortress is indestructible.",
+    keyCards: ["kings-court","cultist","market-square"],
+    difficulty: "advanced",
+    tags: ["engine","multiplier","attack"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-renaissance-001",
+    name: "Dark Renaissance",
+    expansions: ["dark-ages","renaissance"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","market-square","cultist","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers based on cost — synergises perfectly with Junk Dealer and Cultist's Ruins. Market Square reacts to all trashing for Gold. Silk Merchant provides draw and a Buy while giving Coffers on entry. Mountain Village recovers discarded cards. Wandering Minstrel and Fortress provide indestructible village chaining.",
+    keyCards: ["acting-troupe","recruiter","market-square"],
+    difficulty: "advanced",
+    tags: ["thinning","villagers","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — DARK AGES + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "dark-ages-seaside-001",
+    name: "Dark Seas",
+    expansions: ["dark-ages","seaside"],
+    cards: ["wandering-minstrel","fortress","junk-dealer","market-square","cultist","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Lighthouse blocks attacks while dripping coins. Fishing Village provides cheap recurring Actions and coins. Junk Dealer trashes Ruins and junk for economy. Market Square reacts to all trashing for Gold — a Lighthouse-protected deck can freely trash without fear. Cultist draws and gives opponents Ruins. Fortress is indestructible.",
+    keyCards: ["wharf","market-square","junk-dealer"],
+    difficulty: "intermediate",
+    tags: ["duration","thinning","reaction"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + GUILDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-guilds-001",
+    name: "Coffer Empire",
+    expansions: ["empires","guilds"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","plaza","herald","merchant-guild","butcher","candlestick-maker"],
+    strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards freely. Crown doubles the next Action or Treasure — double Plaza for double Coffers. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Farmers' Market provides a Buy and accumulates VP tokens.",
+    keyCards: ["crown","merchant-guild","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["coffers","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + HINTERLANDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-hinterlands-001",
+    name: "Empire Roads",
+    expansions: ["empires","hinterlands"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","inn","highway","haggler","cartographer","spice-merchant"],
+    strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy — with Highway, expensive free cards become common. Crown doubles the next Action or Treasure. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Inn provides a village that reloads discarded Actions. Spice Merchant trashes Copper for draw or economy.",
+    keyCards: ["highway","crown","groundskeeper"],
+    difficulty: "intermediate",
+    tags: ["economy","engine","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-intrigue-001",
+    name: "Noble Empire",
+    expansions: ["empires","intrigue"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","nobles","mining-village","shanty-town","conspirator","steward"],
+    strategy: "Crown doubles Nobles for +6 Cards or +4 Actions in one play. Conspirator triggers after 3 Actions. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Nobles, Mining Village, and Encampment provide abundant Action sources. Shanty Town draws when Action-light. Steward thins or draws. Farmers' Market provides a Buy.",
+    keyCards: ["crown","nobles","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["engine","multiplier","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-menagerie-001",
+    name: "Empire Stampede",
+    expansions: ["empires","menagerie"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
+    strategy: "Snowy Village gives 4 Actions and a Buy. Paddock gives +2 Actions and two Horses. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Crown doubles the next Action or Treasure. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Farmers' Market provides a Buy and accumulates VP tokens. Animal Fair can trash an Action instead of paying.",
+    keyCards: ["snowy-village","crown","groundskeeper"],
+    nonSupplyCard: "horse",
+    difficulty: "advanced",
+    tags: ["engine","alt-victory","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-nocturne-001",
+    name: "Dark Empire",
+    expansions: ["empires","nocturne"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","blessed-village","conclave","cobbler","vampire","skulk"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Crown doubles the next Action or Treasure. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Blessed Village receives Boons. Conclave plays an Action from hand for free. Skulk gains Gold when bought. Farmers' Market provides a Buy.",
+    keyCards: ["cobbler","crown","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["night","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-plunder-001",
+    name: "Empire Plunder",
+    expansions: ["empires","plunder"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Crown doubles the next Action or Treasure — double Pickaxe for two Loot. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Harbor Village rewards multiple Actions with bonus coins. Mapmaker draws and gives a Buy.",
+    keyCards: ["crown","pickaxe","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["loot","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-prosperity-001",
+    name: "Empire of Plenty",
+    expansions: ["empires","prosperity"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","workers-village","kings-court","city","grand-market","monument"],
+    strategy: "King's Court tripling City Quarter draws massive cards. City surges as piles empty. Grand Market draws and buys. Workers' Village chains cheaply. Crown doubles any Action or Treasure. Groundskeeper earns VP tokens for every Victory gained. Monument accumulates VP tokens every turn it's played. Farmers' Market provides a Buy and accumulates VP tokens. Encampment provides another cheap village.",
+    keyCards: ["kings-court","city-quarter","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["engine","multiplier","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-renaissance-001",
+    name: "Villager Empire",
+    expansions: ["empires","renaissance"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers. City Quarter draws cards equal to Actions in hand — more Villagers means more cards. Crown doubles an Action or Treasure. Groundskeeper earns VP tokens for every Victory gained. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Farmers' Market provides a Buy.",
+    keyCards: ["city-quarter","acting-troupe","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["engine","villagers","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — EMPIRES + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-seaside-001",
+    name: "Empire Seas",
+    expansions: ["empires","seaside"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Fishing Village provides cheap recurring Actions and coins. Crown doubles the next Action or Treasure. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Lighthouse blocks attacks while dripping coins. Salvager converts junk for economy. Caravan drips cards. Farmers' Market provides a Buy.",
+    keyCards: ["wharf","crown","groundskeeper"],
+    difficulty: "intermediate",
+    tags: ["duration","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + HINTERLANDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-hinterlands-001",
+    name: "Overpay Roads",
+    expansions: ["guilds","hinterlands"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","inn","highway","haggler","cartographer","spice-merchant"],
+    strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards. Herald plays the top card if it's an Action. Inn provides a village that reloads discarded Actions. Spice Merchant trashes Copper for draw or economy. Cartographer smooths draws.",
+    keyCards: ["highway","haggler","merchant-guild"],
+    difficulty: "intermediate",
+    tags: ["economy","coffers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + INTRIGUE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-intrigue-001",
+    name: "Guild Nobles",
+    expansions: ["guilds","intrigue"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","nobles","mining-village","shanty-town","conspirator","steward"],
+    strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards. Herald plays top card if it's an Action. Nobles and Mining Village provide flexible Action chains. Conspirator triggers after 3 Actions — easy with all the village types. Shanty Town draws when Action-light. Steward thins early.",
+    keyCards: ["merchant-guild","nobles","conspirator"],
+    difficulty: "intermediate",
+    tags: ["coffers","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-menagerie-001",
+    name: "Guild Stampede",
+    expansions: ["guilds","menagerie"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
+    strategy: "Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions for +2 Cards. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Herald plays the top card if it's an Action. Animal Fair can trash an Action instead of paying.",
+    keyCards: ["cavalry","merchant-guild","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["coffers","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-nocturne-001",
+    name: "Dark Guild",
+    expansions: ["guilds","nocturne"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","blessed-village","conclave","cobbler","shepherd","skulk"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn — gain Candlestick Maker for early Coffers, or gain Plaza to set up Coffer generation. Shepherd discards Victories to draw 2 each. Blessed Village receives Boons. Conclave plays an Action from hand for free. Skulk gains Gold when bought. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers freely.",
+    keyCards: ["cobbler","merchant-guild","shepherd"],
+    difficulty: "intermediate",
+    tags: ["night","coffers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-plunder-001",
+    name: "Guild Fleet",
+    expansions: ["guilds","plunder"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","wealthy-village","harbor-village","pickaxe","mapmaker","mining-road"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Harbor Village rewards multiple Actions with bonus coins. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Mining Road gives a Buy and lets you play gained Treasures. Mapmaker draws and filters.",
+    keyCards: ["pickaxe","merchant-guild","wealthy-village"],
+    difficulty: "intermediate",
+    tags: ["loot","coffers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-prosperity-001",
+    name: "Grand Guild",
+    expansions: ["guilds","prosperity"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","workers-village","city","grand-market","vault","monument"],
+    strategy: "Monument accumulates VP tokens every turn it's played. City surges as piles empty. Grand Market draws and buys — never buy it with Copper in hand. Workers' Village chains cheaply. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Herald plays top card. Vault discards excess for coins.",
+    keyCards: ["monument","merchant-guild","city"],
+    difficulty: "intermediate",
+    tags: ["coffers","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-renaissance-001",
+    name: "Double Coffers",
+    expansions: ["guilds","renaissance"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Double Coffers engine: Guilds generates Coffers from Plaza and Merchant Guild; Renaissance adds Silk Merchant's Coffers on entry. Acting Troupe dumps 4 Villagers. Recruiter converts trashed cards into Villagers. Mountain Village recovers discarded cards. Herald plays top card. Butcher spends Coffers to gain or upgrade. Hideout is a village with thinning upside.",
+    keyCards: ["merchant-guild","acting-troupe","butcher"],
+    difficulty: "intermediate",
+    tags: ["coffers","villagers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — GUILDS + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-seaside-001",
+    name: "Sea Guild",
+    expansions: ["guilds","seaside"],
+    cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Fishing Village provides cheap recurring Actions and coins. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Herald plays top card. Lighthouse blocks attacks. Salvager converts junk for economy. Caravan drips cards over two turns.",
+    keyCards: ["wharf","merchant-guild","fishing-village"],
+    difficulty: "intermediate",
+    tags: ["coffers","duration","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-menagerie-001",
+    name: "Road Stampede",
+    expansions: ["hinterlands","menagerie"],
+    cards: ["inn","highway","haggler","cartographer","spice-merchant","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
+    strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy — combine with Highway for expensive free gains. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Inn reloads discarded Actions. Spice Merchant trashes Copper for draw or economy.",
+    keyCards: ["highway","cavalry","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["economy","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-nocturne-001",
+    name: "Night Roads",
+    expansions: ["hinterlands","nocturne"],
+    cards: ["inn","highway","haggler","cartographer","spice-merchant","blessed-village","conclave","cobbler","vampire","shepherd"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn — gain Highway or Haggler to accelerate your economy setup. Vampire attacks and gains non-Vampire cards up to 5 at Night. Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy. Inn reloads discarded Actions on gain. Shepherd discards Victories to draw 2 each. Spice Merchant trashes Copper.",
+    keyCards: ["cobbler","highway","haggler"],
+    difficulty: "intermediate",
+    tags: ["night","economy","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-plunder-001",
+    name: "Road Plunder",
+    expansions: ["hinterlands","plunder"],
+    cards: ["inn","highway","haggler","cartographer","spice-merchant","wealthy-village","harbor-village","pickaxe","mapmaker","mining-road"],
+    strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy. Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Harbor Village rewards multiple Actions with bonus coins. Mining Road gives a Buy and lets you play gained Treasures. Spice Merchant trashes Copper. Mapmaker draws and filters.",
+    keyCards: ["highway","pickaxe","wealthy-village"],
+    difficulty: "intermediate",
+    tags: ["loot","economy","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-prosperity-001",
+    name: "Highway Fortune",
+    expansions: ["hinterlands","prosperity"],
+    cards: ["inn","highway","haggler","cartographer","spice-merchant","workers-village","city","grand-market","vault","watchtower"],
+    strategy: "Highway stacks cost reductions — Colony becomes reachable for ordinary decks. Haggler gains a free cheaper non-Victory card on every buy. City surges as piles empty. Grand Market provides draw and Buy. Workers' Village chains cheaply. Vault discards excess for coins. Watchtower controls gained cards. Spice Merchant trashes Copper. Inn reloads discarded Actions.",
+    keyCards: ["highway","city","grand-market"],
+    difficulty: "advanced",
+    tags: ["economy","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "hinterlands-renaissance-001",
+    name: "Road Renaissance",
+    expansions: ["hinterlands","renaissance"],
+    cards: ["inn","highway","haggler","cartographer","spice-merchant","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy. Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Inn reloads discarded Actions on gain. Spice Merchant trashes Copper. Cartographer smooths draws.",
+    keyCards: ["highway","acting-troupe","haggler"],
+    difficulty: "intermediate",
+    tags: ["economy","villagers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — HINTERLANDS + ALLIES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-hinterlands-001",
+    name: "Favor Roads",
+    expansions: ["allies","hinterlands"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","inn","highway","haggler","cartographer","spice-merchant"],
+    strategy: "Highway stacks cost reductions and Haggler gains a free cheaper non-Victory card on every buy. Galleria earns Favors on cheap buys — combine with Haggler's free gains for passive Favor generation. Sycophant spends Favors for +1 Action and burst coins. Inn provides a village that reloads discarded Actions. Sentinel trashes and filters. Cartographer smooths draws. Spice Merchant trashes Copper.",
+    keyCards: ["highway","haggler","galleria"],
+    difficulty: "intermediate",
+    tags: ["economy","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "intrigue-nocturne-001",
+    name: "Dark Nobles",
+    expansions: ["intrigue","nocturne"],
+    cards: ["nobles","mining-village","shanty-town","conspirator","steward","blessed-village","conclave","cobbler","vampire","shepherd"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn — gain Conspirator or Steward to accelerate the engine. Vampire attacks and gains non-Vampire cards up to 5 at Night. Nobles and Conspirator synergise with heavy Action density. Shepherd discards Victories to draw 2 each. Blessed Village receives Boons. Conclave plays an Action from hand for free. Shanty Town draws when Action-light.",
+    keyCards: ["cobbler","nobles","conspirator"],
+    difficulty: "advanced",
+    tags: ["night","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "intrigue-plunder-001",
+    name: "Noble Plunder",
+    expansions: ["intrigue","plunder"],
+    cards: ["nobles","mining-village","shanty-town","conspirator","steward","wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Nobles and Conspirator synergise with heavy Action density. Harbor Village rewards multiple Actions with bonus coins. Shanty Town draws when Action-light. Steward thins or draws. Mapmaker draws and gives a Buy. Mining Village provides Actions.",
+    keyCards: ["pickaxe","nobles","wealthy-village"],
+    difficulty: "intermediate",
+    tags: ["loot","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "intrigue-renaissance-001",
+    name: "Noble Villagers",
+    expansions: ["intrigue","renaissance"],
+    cards: ["nobles","mining-village","shanty-town","conspirator","steward","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers. Nobles and Conspirator synergise with heavy Action density — Conspirator's bonus triggers after 3 Actions. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Shanty Town draws when Action-light. Steward thins or draws. Hideout is a village with thinning upside.",
+    keyCards: ["acting-troupe","nobles","conspirator"],
+    difficulty: "intermediate",
+    tags: ["villagers","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + EMPIRES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "empires-intrigue-001",
+    name: "Crown Nobles",
+    expansions: ["empires","intrigue"],
+    cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","nobles","mining-village","shanty-town","conspirator","upgrade"],
+    strategy: "Crown doubles Nobles for +6 Cards or +4 Actions. Conspirator triggers after 3 Actions. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Nobles, Mining Village, Encampment, and Shanty Town provide abundant Action sources. Upgrade reshapes mid-tier cards. Farmers' Market provides a Buy and accumulates VP tokens.",
+    keyCards: ["crown","nobles","groundskeeper"],
+    difficulty: "advanced",
+    tags: ["engine","multiplier","alt-victory"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + GUILDS
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "guilds-intrigue-001",
+    name: "Noble Coffers",
+    expansions: ["guilds","intrigue"],
+    cards: ["plaza","herald","merchant-guild","butcher","soothsayer","nobles","mining-village","shanty-town","conspirator","bridge"],
+    strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Soothsayer gains Gold while opponents gain Curses and draw a card. Nobles and Conspirator synergise with heavy Action density. Bridge reduces costs. Herald plays the top card if it's an Action. Shanty Town draws when Action-light.",
+    keyCards: ["merchant-guild","nobles","soothsayer"],
+    difficulty: "intermediate",
+    tags: ["coffers","engine","attack"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + CORNUCOPIA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "cornucopia-intrigue-001",
+    name: "Noble Carnival",
+    expansions: ["cornucopia","intrigue"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","jester","nobles","mining-village","shanty-town","conspirator","bridge"],
+    strategy: "Fairgrounds VP grows quickly with both sets' diversity. Jester punishes Victory-heavy decks. Nobles and Conspirator synergise with heavy Action density. Farming Village and Hamlet alongside Nobles and Mining Village give four village types. Hunting Party reliably finds the card needed. Bridge reduces costs. Shanty Town draws when Action-light.",
+    keyCards: ["fairgrounds","nobles","jester"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","attack","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + ADVENTURES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "adventures-intrigue-001",
+    name: "Noble Reserve",
+    expansions: ["adventures","intrigue"],
+    cards: ["port","lost-city","royal-carriage","coin-of-the-realm","dungeon","nobles","mining-village","conspirator","upgrade","bridge"],
+    strategy: "Royal Carriage replays Nobles for free — double +3 Cards or double +2 Actions in a single turn. Coin of the Realm provides on-demand +2 Actions from the Tavern mat. Conspirator triggers after 3 Actions. Port and Lost City provide cheap villages. Dungeon sits on the mat for later. Bridge reduces costs. Upgrade reshapes mid-tier cards.",
+    keyCards: ["royal-carriage","nobles","conspirator"],
+    difficulty: "advanced",
+    tags: ["engine","reserve","multiplier"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — INTRIGUE + ALLIES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-intrigue-001",
+    name: "Noble Favors",
+    expansions: ["allies","intrigue"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","nobles","mining-village","shanty-town","conspirator","steward"],
+    strategy: "Nobles and Conspirator synergise with heavy Action density from Allies. Conspirator triggers after 3 Actions — easy with Destination, Innkeeper, Nobles, and Mining Village. Sycophant spends Favors for +1 Action and burst coins. Shanty Town draws when Action-light. Steward thins early. Galleria earns Favors on cheap buys. Sentinel filters the top 5.",
+    keyCards: ["nobles","conspirator","sycophant"],
+    difficulty: "intermediate",
+    tags: ["engine","favors","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — MENAGERIE + NOCTURNE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "menagerie-nocturne-001",
+    name: "Night Stampede",
+    expansions: ["menagerie","nocturne"],
+    cards: ["snowy-village","paddock","cavalry","sheepdog","animal-fair","blessed-village","conclave","cobbler","vampire","shepherd"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Shepherd discards Victories to draw 2 each. Conclave plays an Action from hand for free. Animal Fair can trash an Action instead of paying.",
+    keyCards: ["cobbler","cavalry","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "advanced",
+    tags: ["night","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — MENAGERIE + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "menagerie-plunder-001",
+    name: "Stampede Fleet",
+    expansions: ["menagerie","plunder"],
+    cards: ["snowy-village","paddock","cavalry","sheepdog","animal-fair","wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Harbor Village rewards multiple Actions with bonus coins. Mapmaker draws and gives a Buy.",
+    keyCards: ["cavalry","pickaxe","wealthy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["loot","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — MENAGERIE + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "menagerie-prosperity-001",
+    name: "Stampede Fortune",
+    expansions: ["menagerie","prosperity"],
+    cards: ["snowy-village","paddock","cavalry","sheepdog","animal-fair","workers-village","city","grand-market","vault","monument"],
+    strategy: "Monument accumulates VP tokens every turn it's played. City surges as piles empty. Grand Market provides draw and Buy. Workers' Village and Snowy Village chain cheaply. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Vault discards excess for coins. Animal Fair can trash an Action instead of paying.",
+    keyCards: ["monument","cavalry","grand-market"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["alt-victory","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — MENAGERIE + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "menagerie-renaissance-001",
+    name: "Villager Stampede",
+    expansions: ["menagerie","renaissance"],
+    cards: ["snowy-village","paddock","cavalry","sheepdog","animal-fair","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Animal Fair can trash an Action instead of paying.",
+    keyCards: ["acting-troupe","cavalry","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["villagers","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — MENAGERIE + ALLIES
+  // (already written above as allies-menagerie-001, skip duplicate)
+  // PAIRS — MENAGERIE + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "menagerie-seaside-001",
+    name: "Sea Stampede",
+    expansions: ["menagerie","seaside"],
+    cards: ["snowy-village","paddock","cavalry","sheepdog","animal-fair","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Fishing Village provides cheap recurring Actions and coins. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Lighthouse blocks attacks while dripping coins. Salvager converts junk for economy. Caravan drips cards.",
+    keyCards: ["wharf","cavalry","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["duration","engine","draw"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — NOCTURNE + PLUNDER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nocturne-plunder-001",
+    name: "Night Plunder",
+    expansions: ["nocturne","plunder"],
+    cards: ["blessed-village","conclave","cobbler","vampire","skulk","wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker"],
+    strategy: "Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Skulk gains Gold when bought. Harbor Village rewards multiple Actions with bonus coins. Blessed Village receives Boons. Mapmaker draws and gives a Buy.",
+    keyCards: ["cobbler","pickaxe","wealthy-village"],
+    difficulty: "intermediate",
+    tags: ["night","loot","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — NOCTURNE + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nocturne-prosperity-001",
+    name: "Dark Fortune",
+    expansions: ["nocturne","prosperity"],
+    cards: ["blessed-village","conclave","cobbler","vampire","shepherd","workers-village","city","grand-market","vault","monument"],
+    strategy: "Monument accumulates VP tokens every turn it's played. City surges as piles empty. Grand Market provides draw and Buy. Workers' Village chains cheaply. Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Shepherd discards Victories to draw 2 each. Vault discards excess for coins. Blessed Village receives Boons.",
+    keyCards: ["monument","cobbler","grand-market"],
+    difficulty: "intermediate",
+    tags: ["night","alt-victory","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — NOCTURNE + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nocturne-renaissance-001",
+    name: "Dark Villagers",
+    expansions: ["nocturne","renaissance"],
+    cards: ["blessed-village","conclave","cobbler","vampire","shepherd","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers. Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Shepherd discards Victories to draw 2 each. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Blessed Village receives Boons. Conclave plays an Action from hand for free.",
+    keyCards: ["cobbler","acting-troupe","vampire"],
+    difficulty: "intermediate",
+    tags: ["night","villagers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — NOCTURNE + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "nocturne-seaside-001",
+    name: "Night Seas",
+    expansions: ["nocturne","seaside"],
+    cards: ["blessed-village","conclave","cobbler","vampire","shepherd","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Cobbler gains any card up to 4 at Night for next turn. Vampire attacks and gains non-Vampire cards up to 5 at Night. Fishing Village provides cheap recurring Actions and coins. Shepherd discards Victories to draw 2 each. Lighthouse blocks attacks while dripping coins. Blessed Village receives Boons. Salvager converts junk for economy.",
+    keyCards: ["wharf","cobbler","vampire"],
+    difficulty: "intermediate",
+    tags: ["night","duration","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — PLUNDER + PROSPERITY
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "plunder-prosperity-001",
+    name: "Treasure Hoard",
+    expansions: ["plunder","prosperity"],
+    cards: ["wealthy-village","harbor-village","pickaxe","sack-of-loot","kings-cache","workers-village","city","grand-market","vault","watchtower"],
+    strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Kings' Cache plays a Treasure three times — triple Sack of Loot for enormous economy. Wealthy Village provides a village and Loot when three different Treasures are in play. City surges as piles empty. Grand Market provides draw and Buy. Workers' Village chains cheaply. Vault discards excess for coins. Watchtower controls gained cards.",
+    keyCards: ["kings-cache","pickaxe","city"],
+    difficulty: "advanced",
+    tags: ["loot","economy","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — PLUNDER + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "plunder-renaissance-001",
+    name: "Treasure Villagers",
+    expansions: ["plunder","renaissance"],
+    cards: ["wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers based on cost. Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Harbor Village rewards multiple Actions with bonus coins. Mapmaker draws and gives a Buy.",
+    keyCards: ["acting-troupe","pickaxe","wealthy-village"],
+    difficulty: "intermediate",
+    tags: ["loot","villagers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — PLUNDER + SEASIDE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "plunder-seaside-001",
+    name: "Sea Plunder",
+    expansions: ["plunder","seaside"],
+    cards: ["wealthy-village","harbor-village","pickaxe","sack-of-loot","mapmaker","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Fishing Village provides cheap recurring Actions and coins. Harbor Village rewards multiple Actions with bonus coins. Lighthouse blocks attacks while dripping coins. Salvager converts junk for economy. Mapmaker draws and gives a Buy.",
+    keyCards: ["wharf","pickaxe","wealthy-village"],
+    difficulty: "intermediate",
+    tags: ["loot","duration","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — PROSPERITY + RENAISSANCE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "prosperity-renaissance-001",
+    name: "Grand Coffers",
+    expansions: ["prosperity","renaissance"],
+    cards: ["workers-village","city","grand-market","vault","monument","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
+    strategy: "Monument accumulates VP tokens every turn it's played. City surges as piles empty. Grand Market provides draw and Buy. Workers' Village chains cheaply. Acting Troupe dumps 4 Villagers then vanishes. Recruiter converts trashed cards into Villagers. Silk Merchant provides draw and a Buy. Mountain Village recovers discarded cards. Vault discards excess for coins.",
+    keyCards: ["monument","acting-troupe","grand-market"],
+    difficulty: "intermediate",
+    tags: ["alt-victory","villagers","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — SEASIDE + ALLIES
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "allies-seaside-001",
+    name: "Alliance at Sea",
+    expansions: ["allies","seaside"],
+    cards: ["destination","innkeeper","sycophant","galleria","sentinel","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Fishing Village provides cheap recurring Actions and coins. Lighthouse blocks attacks while dripping coins. Galleria earns Favors on cheap buys alongside Fishing Village gains. Sycophant provides burst economy when Favors are spent. Innkeeper and Destination provide clean village effects. Salvager converts junk. Sentinel filters top 5.",
+    keyCards: ["wharf","galleria","fishing-village"],
+    difficulty: "intermediate",
+    tags: ["duration","favors","engine"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // PAIRS — SEASIDE + MENAGERIE
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "seaside-menagerie-001",
+    name: "Sea of Animals",
+    expansions: ["menagerie","seaside"],
+    cards: ["snowy-village","paddock","cavalry","sheepdog","animal-fair","fishing-village","wharf","caravan","lighthouse","salvager"],
+    strategy: "Wharf provides sustained draw and Buys across two turns. Fishing Village provides cheap recurring Actions and coins. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Lighthouse blocks attacks while dripping coins. Salvager converts junk. Caravan drips cards over two turns.",
+    keyCards: ["wharf","cavalry","snowy-village"],
+    nonSupplyCard: "horse",
+    difficulty: "intermediate",
+    tags: ["duration","engine","draw"],
+  },
+
 ];
 
 export const COMBINATION_MAP = Object.fromEntries(
