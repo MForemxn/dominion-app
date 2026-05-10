@@ -42,8 +42,11 @@ interface ComboStats {
   midGame:   number;    // cards costing $4–$5
   lateGame:  number;    // cards costing $6+
   terminals: number;    // Actions with plusActions === 0
+  villages:  number;    // Actions with plusActions >= 1 (non-terminals)
   hasDraw:   boolean;
+  drawCount: number;    // how many draw-role cards
   hasAttack: boolean;
+  attackCount: number;  // how many Attack-type cards
   hasGainer: boolean;
   costCurveOk: boolean; // ≥2 early + ≥2 mid
 }
@@ -55,13 +58,19 @@ function getComboStats(combo: Combination): ComboStats {
   const midGame   = cards.filter((c) => c.cost >= 4 && c.cost <= 5).length;
   const lateGame  = cards.filter((c) => c.cost >= 6).length;
 
-  // A terminal = an Action that gives zero extra Actions (stall if chained)
   const terminals = cards.filter(
     (c) => c.types.includes("Action") && c.plusActions === 0
   ).length;
 
-  const hasDraw   = cards.some((c) => c.roles.includes("draw"));
-  const hasAttack = cards.some((c) => c.types.includes("Attack"));
+  const villages = cards.filter(
+    (c) => c.types.includes("Action") && c.plusActions >= 1
+  ).length;
+
+  const drawCount   = cards.filter((c) => c.roles.includes("draw")).length;
+  const attackCount = cards.filter((c) => c.types.includes("Attack")).length;
+
+  const hasDraw   = drawCount > 0;
+  const hasAttack = attackCount > 0;
   const hasGainer = cards.some((c) => c.roles.includes("gain"));
 
   return {
@@ -69,8 +78,11 @@ function getComboStats(combo: Combination): ComboStats {
     midGame,
     lateGame,
     terminals,
+    villages,
     hasDraw,
+    drawCount,
     hasAttack,
+    attackCount,
     hasGainer,
     costCurveOk: earlyGame >= 2 && midGame >= 2,
   };
@@ -79,21 +91,23 @@ function getComboStats(combo: Combination): ComboStats {
 // ─── Filter state ─────────────────────────────────────────────────────────────
 
 interface Filters {
-  costCurve:     boolean;            // only show combos with good cost spread
-  maxTerminals:  number | null;      // null = any; 3 = at most 3 terminals
-  requireDraw:   boolean;
-  attackFilter:  "any" | "yes" | "no";
-  requireGainer: boolean;
-  difficulty:    "any" | "beginner" | "intermediate" | "advanced";
+  costCurve:       boolean;
+  maxTerminals:    number | null;
+  drawLevel:       "any" | "some" | "many";
+  attackIntensity: "any" | "none" | "light" | "heavy";
+  requireGainer:   boolean;
+  difficulty:      "any" | "beginner" | "intermediate" | "advanced";
+  minVillages:     number | null;   // min non-terminal Action cards (plusActions ≥ 1)
 }
 
 const DEFAULT_FILTERS: Filters = {
-  costCurve:    false,
-  maxTerminals: null,
-  requireDraw:  false,
-  attackFilter: "any",
-  requireGainer: false,
-  difficulty:   "any",
+  costCurve:       false,
+  maxTerminals:    null,
+  drawLevel:       "any",
+  attackIntensity: "any",
+  requireGainer:   false,
+  difficulty:      "any",
+  minVillages:     null,
 };
 
 function applyFilters(combos: Combination[], filters: Filters): Combination[] {
@@ -103,10 +117,16 @@ function applyFilters(combos: Combination[], filters: Filters): Combination[] {
     const stats = getComboStats(combo);
     if (filters.costCurve && !stats.costCurveOk) return false;
     if (filters.maxTerminals !== null && stats.terminals > filters.maxTerminals) return false;
-    if (filters.requireDraw && !stats.hasDraw) return false;
-    if (filters.attackFilter === "yes" && !stats.hasAttack) return false;
-    if (filters.attackFilter === "no"  &&  stats.hasAttack) return false;
+
+    if (filters.drawLevel === "some" && stats.drawCount < 1) return false;
+    if (filters.drawLevel === "many" && stats.drawCount < 2) return false;
+
+    if (filters.attackIntensity === "none"  && stats.attackCount > 0) return false;
+    if (filters.attackIntensity === "light" && stats.attackCount !== 1) return false;
+    if (filters.attackIntensity === "heavy" && stats.attackCount < 2) return false;
+
     if (filters.requireGainer && !stats.hasGainer) return false;
+    if (filters.minVillages !== null && stats.villages < filters.minVillages) return false;
 
     return true;
   });
@@ -116,10 +136,11 @@ function countActiveFilters(filters: Filters): number {
   let n = 0;
   if (filters.costCurve)             n++;
   if (filters.maxTerminals !== null) n++;
-  if (filters.requireDraw)           n++;
-  if (filters.attackFilter !== "any") n++;
+  if (filters.drawLevel !== "any")   n++;
+  if (filters.attackIntensity !== "any") n++;
   if (filters.requireGainer)         n++;
   if (filters.difficulty !== "any")  n++;
+  if (filters.minVillages !== null)  n++;
   return n;
 }
 
@@ -230,39 +251,75 @@ function FilterPanel({
 
         {/* Draw */}
         <div>
-          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Draw</p>
-          <FilterToggle
-            label="Must have draw"
-            active={filters.requireDraw}
-            onClick={() => set("requireDraw", !filters.requireDraw)}
-            title="At least one card with a draw role (+cards beyond the base draw)"
-          />
-        </div>
-
-        {/* Attack */}
-        <div>
-          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Attacks</p>
+          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Draw availability</p>
           <div className="flex flex-wrap gap-1.5">
-            {(["any", "yes", "no"] as const).map((v) => (
+            {([
+              { label: "Any",    val: "any"  as const, title: "Don't filter by draw" },
+              { label: "Some",   val: "some" as const, title: "At least 1 draw card" },
+              { label: "Loaded", val: "many" as const, title: "At least 2 draw cards" },
+            ]).map(({ label, val, title }) => (
               <FilterToggle
-                key={v}
-                label={v === "any" ? "Any" : v === "yes" ? "Has attacks" : "No attacks"}
-                active={filters.attackFilter === v}
-                onClick={() => set("attackFilter", v)}
+                key={val}
+                label={label}
+                active={filters.drawLevel === val}
+                onClick={() => set("drawLevel", val)}
+                title={title}
               />
             ))}
           </div>
         </div>
 
-        {/* Gainers */}
+        {/* Attack severity */}
         <div>
-          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Gainers</p>
+          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Attack severity</p>
+          <div className="flex flex-wrap gap-1.5">
+            {([
+              { label: "Any",    val: "any"   as const, title: "Include all attack levels" },
+              { label: "None",   val: "none"  as const, title: "Peaceful — no attack cards" },
+              { label: "Light",  val: "light" as const, title: "Exactly 1 attack card" },
+              { label: "Brutal", val: "heavy" as const, title: "2+ attack cards — prepare to suffer" },
+            ]).map(({ label, val, title }) => (
+              <FilterToggle
+                key={val}
+                label={label}
+                active={filters.attackIntensity === val}
+                onClick={() => set("attackIntensity", val)}
+                title={title}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Gain outside buy */}
+        <div>
+          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Gain outside buy</p>
           <FilterToggle
             label="Must have gainer"
             active={filters.requireGainer}
             onClick={() => set("requireGainer", !filters.requireGainer)}
-            title="At least one card that gains other cards outside the buy phase"
+            title="At least one card that gains other cards outside the buy phase (Workshop, Haggler, Vampire, etc.)"
           />
+        </div>
+
+        {/* Non-terminal actions */}
+        <div>
+          <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">+Action cards (villages)</p>
+          <div className="flex flex-wrap gap-1.5">
+            {([
+              { label: "Any", val: null },
+              { label: "1+",  val: 1    },
+              { label: "2+",  val: 2    },
+              { label: "3+",  val: 3    },
+            ] as const).map(({ label, val }) => (
+              <FilterToggle
+                key={label}
+                label={label}
+                active={filters.minVillages === val}
+                onClick={() => set("minVillages", filters.minVillages === val ? null : val)}
+                title="Non-terminal Action cards — cards that give +1 or more Actions when played"
+              />
+            ))}
+          </div>
         </div>
 
         {/* Difficulty */}
@@ -340,6 +397,20 @@ function StatBadges({ stats }: { stats: ComboStats }) {
         title={`${stats.terminals} terminal(s) — Actions that don't give +Actions`}
       >
         {stats.terminals}T
+      </span>
+
+      {/* Village / non-terminal count */}
+      <span
+        className={`text-[10px] px-1.5 py-0.5 rounded font-medium border ${
+          stats.villages >= 3
+            ? "bg-sky-900/60 text-sky-400 border-sky-800/40"
+            : stats.villages >= 1
+            ? "bg-stone-800/60 text-stone-400 border-stone-700/40"
+            : "bg-red-900/40 text-red-400 border-red-800/40"
+        }`}
+        title={`${stats.villages} non-terminal action(s) — cards that give +1 or more Actions`}
+      >
+        {stats.villages}V
       </span>
 
       {/* Draw */}
@@ -573,7 +644,7 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
             <div className="flex items-center gap-3 text-xs text-stone-500">
               <span><span className="text-sky-400 font-bold">+A</span> village</span>
               <span><span className="text-emerald-400 font-bold">+B</span> buy</span>
-              <span className="text-stone-600">↓ cheap  ◆ mid  ↑ exp  T terminals</span>
+              <span className="text-stone-600">↓ cheap  ◆ mid  ↑ exp  T terminals  V villages</span>
             </div>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
