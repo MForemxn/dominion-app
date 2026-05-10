@@ -12,6 +12,8 @@ import {
 } from "@/lib/kingdom-scorer";
 import type { Card, CardRole, GeneratorConstraints, KingdomScore } from "@/types";
 import { saveKingdom, type SavedKingdom } from "@/lib/saved-kingdoms";
+import FilterPanel from "@/components/FilterPanel";
+import { type Filters, DEFAULT_FILTERS, countActiveFilters, meetsFilters } from "@/lib/filters";
 
 const ALL_ROLES: { id: CardRole; label: string }[] = [
   { id: "village", label: "Village (+Actions)" },
@@ -217,6 +219,8 @@ export default function BuildMode() {
   const [requireRoles, setRequireRoles] = useState<Partial<Record<CardRole, number>>>({});
   const [mustInclude, setMustInclude] = useState<string[]>([]);
   const [mustExclude, setMustExclude] = useState<string[]>([]);
+  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
+  const [showFilters, setShowFilters] = useState(false);
   const [result, setResult] = useState<GeneratedKingdom | null>(null);
   const [locked, setLocked] = useState<Set<string>>(new Set());
   const [hasGenerated, setHasGenerated] = useState(false);
@@ -295,12 +299,24 @@ export default function BuildMode() {
       mustExclude: mustExclude.length > 0 ? mustExclude : undefined,
     };
 
-    const kingdom = generateBestMode
-      ? generateBest(constraints, customWeights, 30)
-      : generateKingdom(constraints, customWeights);
+    const activeFilters = countActiveFilters(filters) > 0;
+    let kingdom: GeneratedKingdom | null = null;
+
+    const maxAttempts = activeFilters ? 15 : 1;
+    for (let i = 0; i < maxAttempts; i++) {
+      const candidate = generateBestMode
+        ? generateBest(constraints, customWeights, 30)
+        : generateKingdom(constraints, customWeights);
+      if (!candidate) break;
+      if (!activeFilters || meetsFilters(candidate.cards, filters)) {
+        kingdom = candidate;
+        break;
+      }
+    }
+
     setResult(kingdom);
     setHasGenerated(true);
-  }, [expansions, costMin, costMax, minPlusActions, minPlusBuys, minPlusCards, minPlusCoins, requireRoles, mustInclude, mustExclude, locked, customWeights, generateBestMode]);
+  }, [expansions, costMin, costMax, minPlusActions, minPlusBuys, minPlusCards, minPlusCoins, requireRoles, mustInclude, mustExclude, locked, customWeights, generateBestMode, filters]);
 
   const poolSize = useMemo(() => {
     return CARDS.filter((c) => expansions.includes(c.expansion) && !mustExclude.includes(c.id)).length;
@@ -539,6 +555,37 @@ export default function BuildMode() {
               </label>
             ))}
           </div>
+        )}
+      </section>
+
+      {/* Filters */}
+      <section>
+        <div className="flex items-center justify-between mb-3">
+          <button
+            onClick={() => setShowFilters((v) => !v)}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors
+              ${showFilters || countActiveFilters(filters) > 0
+                ? "border-amber-600 text-amber-400 bg-amber-950/30"
+                : "border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200"}`}
+          >
+            <span>⚙ Result filters</span>
+            {countActiveFilters(filters) > 0 && (
+              <span className="text-xs bg-amber-600 text-white rounded-full w-4 h-4 flex items-center justify-center leading-none">
+                {countActiveFilters(filters)}
+              </span>
+            )}
+          </button>
+          {countActiveFilters(filters) > 0 && (
+            <button
+              onClick={() => setFilters(DEFAULT_FILTERS)}
+              className="text-xs text-stone-500 hover:text-stone-300 transition-colors"
+            >
+              Reset filters
+            </button>
+          )}
+        </div>
+        {showFilters && (
+          <FilterPanel filters={filters} onChange={setFilters} hideDifficulty />
         )}
       </section>
 
