@@ -515,37 +515,17 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // SINGLE EXPANSION — RISING SUN
+  // PAIRS — CORNUCOPIA + GUILDS
   // ═══════════════════════════════════════════════════════════════
   {
-    id: "rising-sun-001",
-    name: "Samurai Engine",
-    expansions: ["rising-sun"],
-    cards: ["samurai","daimyo","ninja","tanuki","litter","cloak","rustic-village","tea-house","mountain-shrine","kintsugi"],
-    strategy: "Samurai stays in play generating +1 Coin each turn while forcing opponents to discard to 3 repeatedly. Daimyo replays the next Action you play — pair with Ninja for a double draw-and-discard attack. Litter is a cheap village that draws 2. Cloak and Rustic Village round out the village suite. Kintsugi upgrades cards and chains Gold gains.",
-    keyCards: ["samurai","daimyo","ninja"],
-    difficulty: "advanced",
-    tags: ["attack","duration","engine"],
-  },
-  {
-    id: "rising-sun-002",
-    name: "Shrine Circuit",
-    expansions: ["rising-sun"],
-    cards: ["mountain-shrine","shaman","acolyte","cloak","rustic-village","ronin","specialist","scroll","tea-house","bonsai"],
-    strategy: "Mountain Shrine trashes for coins and draws when there are cards in the trash — gets better as the game goes on. Shaman opens with a free trash and generates coin. Acolyte converts Actions or Victories into Gold. Specialist plays a card again or copies it — with Ronin it draws to 7 twice. Scroll is a cheap Throne Room Treasure. Bonsai provides delayed economy.",
-    keyCards: ["mountain-shrine","specialist","acolyte"],
+    id: "cornucopia-guilds-001",
+    name: "The Grand Fair",
+    expansions: ["cornucopia","guilds"],
+    cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","herald","plaza","butcher","merchant-guild","soothsayer"],
+    strategy: "Cornucopia rewards deck diversity; Guilds rewards accumulating Coffers. Hunting Party reliably draws distinct cards to hand, padding Fairgrounds VP. Herald plays the top card if it's an Action — combine with topdecking from Hamlet to chain powerful turns. Merchant Guild banks a Coffer for every card bought. Butcher spends Coffers to freely upgrade or gain any card.",
+    keyCards: ["hunting-party","herald","merchant-guild"],
     difficulty: "intermediate",
-    tags: ["thinning","draw","multiplier"],
-  },
-  {
-    id: "rising-sun-003",
-    name: "Daimyo's Court",
-    expansions: ["rising-sun"],
-    cards: ["daimyo","warlord-rs","samurai","ninja","litter","rustic-village","cloak","tanuki","tea-house","rice-broker"],
-    strategy: "Warlord locks opponents out of Actions they have 2+ copies of in play — devastating against engine players. Daimyo replays the next Action you play, chains beautifully with Ninja for double draw-and-attack. Rice Broker trashes an Action for +2 Cards +2 Actions — an explosive pivot. Litter, Rustic Village, and Cloak provide a deep village base.",
-    keyCards: ["daimyo","warlord-rs","rice-broker"],
-    difficulty: "advanced",
-    tags: ["attack","duration","engine"],
+    tags: ["alt-victory","coffers","draw"],
   },
 
   // ═══════════════════════════════════════════════════════════════

@@ -16,7 +16,6 @@ export const EXPANSIONS: Expansion[] = [
   { id: "menagerie",   name: "Menagerie",          year: 2020, color: "bg-lime-600" },
   { id: "allies",      name: "Allies",             year: 2022, color: "bg-pink-600" },
   { id: "plunder",     name: "Plunder",            year: 2022, color: "bg-sky-700" },
-  { id: "rising-sun",  name: "Rising Sun",         year: 2024, color: "bg-red-500" },
 ];
 
 export const EXPANSION_MAP = Object.fromEntries(
