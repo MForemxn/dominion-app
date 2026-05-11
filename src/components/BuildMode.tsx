@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { EXPANSIONS } from "@/data/expansions";
+import { EXPANSIONS, EXPANSION_MAP } from "@/data/expansions";
 import { CARDS, CARD_MAP } from "@/data/cards";
 import { generateKingdom, generateBest, type GeneratedKingdom } from "@/lib/kingdom-generator";
 import {
@@ -10,7 +10,7 @@ import {
   DEFAULT_WEIGHTS,
   type ScoringWeights,
 } from "@/lib/kingdom-scorer";
-import type { Card, CardRole, GeneratorConstraints, KingdomScore } from "@/types";
+import type { Card, CardRole, GeneratorConstraints, KingdomScore, ComponentRequirement, SelectedNonSupply, NonSupplyCard } from "@/types";
 import { saveKingdom, type SavedKingdom } from "@/lib/saved-kingdoms";
 import FilterPanel from "@/components/FilterPanel";
 import { type Filters, DEFAULT_FILTERS, countActiveFilters, meetsFilters } from "@/lib/filters";
@@ -28,6 +28,8 @@ const ALL_ROLES: { id: CardRole; label: string }[] = [
   { id: "multiplier", label: "Multiplier" },
   { id: "sifting", label: "Sifting" },
 ];
+
+// ── Score display ─────────────────────────────────────────────────────────────
 
 function ScoreBar({ label, value, max = 10 }: { label: string; value: number; max?: number }) {
   const pct = (value / max) * 100;
@@ -47,20 +49,9 @@ function ScoreBar({ label, value, max = 10 }: { label: string; value: number; ma
   );
 }
 
-function ScorePanel({
-  score,
-  fitScore,
-  presetName,
-}: {
-  score: KingdomScore;
-  fitScore?: KingdomScore;
-  presetName?: string;
-}) {
+function ScorePanel({ score, fitScore, presetName }: { score: KingdomScore; fitScore?: KingdomScore; presetName?: string }) {
   const overallColor = (val: number) =>
-    val >= 8 ? "text-emerald-400" :
-    val >= 6 ? "text-amber-400" :
-    val >= 4 ? "text-orange-400" : "text-red-400";
-
+    val >= 8 ? "text-emerald-400" : val >= 6 ? "text-amber-400" : val >= 4 ? "text-orange-400" : "text-red-400";
   const showFit = fitScore && presetName && presetName !== "Balanced" && presetName !== "None";
 
   return (
@@ -81,7 +72,6 @@ function ScorePanel({
           <ScoreBar label="Thinning" value={score.thinningAccess} />
         </div>
       </div>
-
       {showFit && (
         <div className="border-t border-stone-700 pt-4">
           <div className="flex items-center justify-between mb-1">
@@ -95,14 +85,14 @@ function ScorePanel({
   );
 }
 
+// ── Card search picker (searches ALL cards, not just selected expansions) ─────
+
 function CardSearchPicker({
-  expansions,
   selected,
   excluded,
   onToggle,
   placeholder,
 }: {
-  expansions: string[];
   selected: string[];
   excluded?: string[];
   onToggle: (id: string) => void;
@@ -115,11 +105,10 @@ function CardSearchPicker({
     const q = query.toLowerCase();
     return CARDS.filter(
       (c) =>
-        expansions.includes(c.expansion) &&
         !excluded?.includes(c.id) &&
-        (c.name.toLowerCase().includes(q) || c.id.includes(q))
-    ).slice(0, 8);
-  }, [query, expansions, excluded]);
+        (c.name.toLowerCase().includes(q) || c.id.includes(q) || c.expansion.includes(q))
+    ).slice(0, 10);
+  }, [query, excluded]);
 
   return (
     <div>
@@ -132,18 +121,27 @@ function CardSearchPicker({
       />
       {results.length > 0 && (
         <div className="mt-1 bg-stone-800 border border-stone-700 rounded-lg overflow-hidden">
-          {results.map((card) => (
-            <button
-              key={card.id}
-              onClick={() => { onToggle(card.id); setQuery(""); }}
-              className={`w-full text-left px-3 py-1.5 text-sm hover:bg-stone-700 transition-colors flex items-center justify-between ${
-                selected.includes(card.id) ? "text-amber-400" : "text-stone-300"
-              }`}
-            >
-              <span>{card.name} <span className="text-stone-500">({card.expansion})</span></span>
-              <span className="text-stone-500 text-xs">${typeof card.cost === "number" ? card.cost : card.cost}</span>
-            </button>
-          ))}
+          {results.map((card) => {
+            const exp = EXPANSION_MAP[card.expansion];
+            return (
+              <button
+                key={card.id}
+                onClick={() => { onToggle(card.id); setQuery(""); }}
+                className={`w-full text-left px-3 py-1.5 text-sm hover:bg-stone-700 transition-colors flex items-center justify-between gap-2 ${
+                  selected.includes(card.id) ? "text-amber-400" : "text-stone-300"
+                }`}
+              >
+                <span>{card.name}</span>
+                <span className="flex items-center gap-1.5 shrink-0">
+                  {card.edition && <span className="text-[10px] text-stone-500">{card.edition}e</span>}
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded text-white/80 ${exp?.color ?? "bg-stone-700"}`}>
+                    {card.expansion.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ")}
+                  </span>
+                  <span className="text-stone-500 text-xs">${typeof card.cost === "number" ? card.cost : card.cost}</span>
+                </span>
+              </button>
+            );
+          })}
         </div>
       )}
       {selected.length > 0 && (
@@ -168,6 +166,8 @@ function CardSearchPicker({
   );
 }
 
+// ── Result card ───────────────────────────────────────────────────────────────
+
 function ResultCard({ card, locked, onToggleLock }: { card: Card; locked: boolean; onToggleLock: () => void }) {
   const typeColor = card.types.includes("Attack") ? "border-red-800/60 bg-red-950/40"
     : card.types.includes("Duration") ? "border-orange-800/60 bg-orange-950/40"
@@ -176,6 +176,8 @@ function ResultCard({ card, locked, onToggleLock }: { card: Card; locked: boolea
     : card.types.includes("Victory") ? "border-purple-800/60 bg-purple-950/40"
     : card.types.includes("Treasure") ? "border-yellow-800/60 bg-yellow-950/40"
     : "border-stone-700/60 bg-stone-800/40";
+
+  const exp = EXPANSION_MAP[card.expansion];
 
   return (
     <div
@@ -203,13 +205,134 @@ function ResultCard({ card, locked, onToggleLock }: { card: Card; locked: boolea
           {card.plusCoins > 0 && <span className="text-yellow-400 text-[10px] font-bold">+{card.plusCoins}$</span>}
         </div>
       </div>
-      <span className="text-[10px] text-stone-500 shrink-0">{card.expansion}</span>
+      {/* Expansion tag */}
+      <span
+        className={`text-[10px] px-1.5 py-0.5 rounded text-white/80 font-medium shrink-0 ${exp?.color ?? "bg-stone-600"}`}
+        title={`${exp?.name ?? card.expansion}${card.edition ? ` (${card.edition}e)` : ""}`}
+      >
+        {card.expansion === "base" ? "Base"
+          : card.expansion.split("-").map((w) => w[0].toUpperCase()).join("")}
+        {card.edition ? <span className="opacity-70"> {card.edition}e</span> : null}
+      </span>
     </div>
   );
 }
 
+// ── Non-supply suggestions panel ──────────────────────────────────────────────
+
+function NonSupplyPanel({ nonSupply }: { nonSupply: SelectedNonSupply }) {
+  const sections: { label: string; items: NonSupplyCard[] | NonSupplyCard | undefined; typeColor: string }[] = [
+    { label: "Events",   items: nonSupply.events,   typeColor: "bg-teal-800/60 border-teal-700/60" },
+    { label: "Way",      items: nonSupply.way,       typeColor: "bg-lime-800/60 border-lime-700/60" },
+    { label: "Projects", items: nonSupply.projects,  typeColor: "bg-cyan-800/60 border-cyan-700/60" },
+    { label: "Landmark", items: nonSupply.landmark,  typeColor: "bg-red-900/60 border-red-800/60" },
+    { label: "Traits",   items: nonSupply.traits,    typeColor: "bg-sky-800/60 border-sky-700/60" },
+    { label: "Ally",     items: nonSupply.ally,      typeColor: "bg-pink-800/60 border-pink-700/60" },
+  ];
+
+  const flatItems = sections.flatMap(({ label, items, typeColor }) => {
+    if (!items) return [];
+    const arr = Array.isArray(items) ? items : [items];
+    return arr.map((item) => ({ label, item, typeColor }));
+  });
+
+  if (flatItems.length === 0) return null;
+
+  return (
+    <div className="bg-stone-900/80 border border-stone-800 rounded-xl p-4">
+      <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-3">
+        Suggested Non-Supply Cards
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {flatItems.map(({ label, item, typeColor }) => (
+          <div
+            key={item.id}
+            className={`flex flex-col gap-0.5 px-3 py-2 rounded-lg border text-xs ${typeColor}`}
+            title={item.description}
+          >
+            <div className="flex items-center gap-1.5">
+              <span className="text-[9px] text-stone-400 uppercase font-semibold">{label}</span>
+              {item.cost !== undefined && (
+                <span className="text-stone-400">${item.cost}</span>
+              )}
+            </div>
+            <span className="font-semibold text-stone-100">{item.name}</span>
+            <span className="text-stone-400 text-[10px] leading-snug max-w-[220px]">{item.description}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Component requirements panel ──────────────────────────────────────────────
+
+function ComponentsPanel({ components }: { components: ComponentRequirement[] }) {
+  if (components.length === 0) return null;
+
+  return (
+    <div className="bg-stone-900/80 border border-amber-800/40 rounded-xl p-4">
+      <p className="text-[11px] text-amber-500 uppercase tracking-widest font-semibold mb-3">
+        ⚠ Additional Components Needed
+      </p>
+      <div className="grid gap-1.5 sm:grid-cols-2">
+        {components.map((comp) => (
+          <div key={comp.id} className="flex items-start gap-2 text-xs">
+            <span className="text-amber-400 shrink-0 mt-0.5">▸</span>
+            <div>
+              <span className="font-semibold text-stone-200">{comp.name}</span>
+              <span className="text-stone-500"> — {comp.reason}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Edition toggle ────────────────────────────────────────────────────────────
+
+function EditionToggle({
+  expansionId,
+  edition,
+  onChange,
+}: {
+  expansionId: string;
+  edition: 1 | 2;
+  onChange: (ed: 1 | 2) => void;
+}) {
+  const exp = EXPANSION_MAP[expansionId];
+  if (!exp?.hasEditions) return null;
+
+  return (
+    <div className="flex items-center gap-0.5 rounded overflow-hidden border border-stone-700 text-[10px] font-semibold">
+      <button
+        onClick={() => onChange(1)}
+        className={`px-1.5 py-0.5 transition-colors ${
+          edition === 1 ? "bg-stone-600 text-white" : "text-stone-500 hover:text-stone-300"
+        }`}
+        title={`Use ${exp.name} 1st edition (${exp.editionYears?.[1]})`}
+      >
+        1st
+      </button>
+      <button
+        onClick={() => onChange(2)}
+        className={`px-1.5 py-0.5 transition-colors ${
+          edition === 2 ? "bg-stone-600 text-white" : "text-stone-500 hover:text-stone-300"
+        }`}
+        title={`Use ${exp.name} 2nd edition (${exp.editionYears?.[2]})`}
+      >
+        2nd
+      </button>
+    </div>
+  );
+}
+
+// ── Main BuildMode component ──────────────────────────────────────────────────
+
 export default function BuildMode() {
   const [expansions, setExpansions] = useState<string[]>(["base"]);
+  const [editionOverrides, setEditionOverrides] = useState<Record<string, 1 | 2>>({});
   const [costMin, setCostMin] = useState(2);
   const [costMax, setCostMax] = useState(8);
   const [minPlusActions, setMinPlusActions] = useState(0);
@@ -250,35 +373,29 @@ export default function BuildMode() {
     );
   };
 
+  const setEdition = (expansionId: string, ed: 1 | 2) => {
+    setEditionOverrides((prev) => ({ ...prev, [expansionId]: ed }));
+  };
+
   const setRoleCount = (role: CardRole, count: number) => {
     setRequireRoles((prev) => {
       const next = { ...prev };
-      if (count === 0) {
-        delete next[role];
-      } else {
-        next[role] = count;
-      }
+      if (count === 0) delete next[role];
+      else next[role] = count;
       return next;
     });
   };
 
-  const toggleMustInclude = (id: string) => {
-    setMustInclude((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
+  const toggleMustInclude = (id: string) =>
+    setMustInclude((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
 
-  const toggleMustExclude = (id: string) => {
-    setMustExclude((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
+  const toggleMustExclude = (id: string) =>
+    setMustExclude((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
 
   const toggleLock = (id: string) => {
     setLocked((prev) => {
       const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
+      if (next.has(id)) next.delete(id); else next.add(id);
       return next;
     });
   };
@@ -297,6 +414,7 @@ export default function BuildMode() {
       requireRoles: Object.keys(requireRoles).length > 0 ? requireRoles : undefined,
       mustInclude: allMustInclude.length > 0 ? allMustInclude : undefined,
       mustExclude: mustExclude.length > 0 ? mustExclude : undefined,
+      editionOverrides,
     };
 
     const activeFilters = countActiveFilters(filters) > 0;
@@ -316,51 +434,74 @@ export default function BuildMode() {
 
     setResult(kingdom);
     setHasGenerated(true);
-  }, [expansions, costMin, costMax, minPlusActions, minPlusBuys, minPlusCards, minPlusCoins, requireRoles, mustInclude, mustExclude, locked, customWeights, generateBestMode, filters]);
+  }, [expansions, editionOverrides, costMin, costMax, minPlusActions, minPlusBuys, minPlusCards, minPlusCoins, requireRoles, mustInclude, mustExclude, locked, customWeights, generateBestMode, filters]);
 
   const poolSize = useMemo(() => {
-    return CARDS.filter((c) => expansions.includes(c.expansion) && !mustExclude.includes(c.id)).length;
-  }, [expansions, mustExclude]);
+    return CARDS.filter((c) => {
+      if (!expansions.includes(c.expansion)) return false;
+      if (mustExclude.includes(c.id)) return false;
+      if (c.edition !== undefined) {
+        const override = editionOverrides[c.expansion] ?? 2;
+        if (c.edition !== override) return false;
+      }
+      return true;
+    }).length;
+  }, [expansions, mustExclude, editionOverrides]);
 
   const constraintWarnings = useMemo(() => {
-    const pool = CARDS.filter((c) => expansions.includes(c.expansion) && !mustExclude.includes(c.id));
+    const pool = CARDS.filter((c) => {
+      if (!expansions.includes(c.expansion)) return false;
+      if (mustExclude.includes(c.id)) return false;
+      if (c.edition !== undefined) {
+        const override = editionOverrides[c.expansion] ?? 2;
+        if (c.edition !== override) return false;
+      }
+      return true;
+    });
     const warnings: string[] = [];
 
     for (const [role, min] of Object.entries(requireRoles)) {
       if (!min) continue;
       const available = pool.filter((c) => c.roles.includes(role as CardRole)).length;
       if (available < min) {
-        warnings.push(`${role}: need ${min} but only ${available} available in selected expansions`);
+        warnings.push(`${role}: need ${min} but only ${available} available`);
       }
     }
-
     if (pool.length < 10) {
       warnings.push(`Only ${pool.length} cards in pool (need at least 10)`);
     }
-
     return warnings;
-  }, [expansions, mustExclude, requireRoles]);
+  }, [expansions, mustExclude, requireRoles, editionOverrides]);
 
   return (
     <div className="space-y-8">
       {/* Expansion selector */}
       <section>
         <h2 className="text-base font-semibold text-stone-200 mb-1">Expansions</h2>
-        <p className="text-xs text-stone-500 mb-3">Base is always included. Select all expansions you own.</p>
+        <p className="text-xs text-stone-500 mb-3">Base is always included. Select all expansions you own. Use 1st/2nd toggles for editions.</p>
         <div className="flex flex-wrap gap-2">
           {EXPANSIONS.map((exp) => (
-            <button
-              key={exp.id}
-              onClick={() => toggleExpansion(exp.id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all duration-150 ${
-                expansions.includes(exp.id)
-                  ? `${exp.color} border-transparent text-white shadow-md`
-                  : "border-stone-700 text-stone-400 bg-stone-900 hover:border-stone-500 hover:text-white"
-              } ${exp.id === "base" ? "opacity-80 cursor-default" : ""}`}
-            >
-              {expansions.includes(exp.id) && <span className="text-xs">✓</span>}
-              {exp.name}
-            </button>
+            <div key={exp.id} className="flex flex-col gap-1 items-start">
+              <button
+                onClick={() => toggleExpansion(exp.id)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all duration-150 ${
+                  expansions.includes(exp.id)
+                    ? `${exp.color} border-transparent text-white shadow-md`
+                    : "border-stone-700 text-stone-400 bg-stone-900 hover:border-stone-500 hover:text-white"
+                } ${exp.id === "base" ? "opacity-80 cursor-default" : ""}`}
+              >
+                {expansions.includes(exp.id) && <span className="text-xs">✓</span>}
+                {exp.name}
+              </button>
+              {/* Show edition toggle only if expansion is selected and has editions */}
+              {expansions.includes(exp.id) && exp.hasEditions && (
+                <EditionToggle
+                  expansionId={exp.id}
+                  edition={editionOverrides[exp.id] ?? 2}
+                  onChange={(ed) => setEdition(exp.id, ed)}
+                />
+              )}
+            </div>
           ))}
         </div>
         <p className="text-xs text-stone-500 mt-2">{poolSize} cards in pool</p>
@@ -388,34 +529,18 @@ export default function BuildMode() {
         <div>
           <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Min cards with stat</p>
           <div className="grid grid-cols-2 gap-2">
-            <label className="flex items-center gap-1.5 text-xs text-stone-300">
-              <span className="text-sky-400 font-bold">+A</span>
-              <select value={minPlusActions} onChange={(e) => setMinPlusActions(Number(e.target.value))}
-                className="bg-stone-800 border border-stone-700 rounded px-1.5 py-0.5 text-xs text-stone-200 w-12">
-                {[0,1,2,3,4,5].map((n) => <option key={n} value={n}>{n}</option>)}
-              </select>
-            </label>
-            <label className="flex items-center gap-1.5 text-xs text-stone-300">
-              <span className="text-emerald-400 font-bold">+B</span>
-              <select value={minPlusBuys} onChange={(e) => setMinPlusBuys(Number(e.target.value))}
-                className="bg-stone-800 border border-stone-700 rounded px-1.5 py-0.5 text-xs text-stone-200 w-12">
-                {[0,1,2,3,4,5].map((n) => <option key={n} value={n}>{n}</option>)}
-              </select>
-            </label>
-            <label className="flex items-center gap-1.5 text-xs text-stone-300">
-              <span className="text-violet-400 font-bold">+C</span>
-              <select value={minPlusCards} onChange={(e) => setMinPlusCards(Number(e.target.value))}
-                className="bg-stone-800 border border-stone-700 rounded px-1.5 py-0.5 text-xs text-stone-200 w-12">
-                {[0,1,2,3,4,5].map((n) => <option key={n} value={n}>{n}</option>)}
-              </select>
-            </label>
-            <label className="flex items-center gap-1.5 text-xs text-stone-300">
-              <span className="text-yellow-400 font-bold">+$</span>
-              <select value={minPlusCoins} onChange={(e) => setMinPlusCoins(Number(e.target.value))}
-                className="bg-stone-800 border border-stone-700 rounded px-1.5 py-0.5 text-xs text-stone-200 w-12">
-                {[0,1,2,3,4,5].map((n) => <option key={n} value={n}>{n}</option>)}
-              </select>
-            </label>
+            {([["minPlusActions", minPlusActions, setMinPlusActions, "sky", "+A"],
+               ["minPlusBuys", minPlusBuys, setMinPlusBuys, "emerald", "+B"],
+               ["minPlusCards", minPlusCards, setMinPlusCards, "violet", "+C"],
+               ["minPlusCoins", minPlusCoins, setMinPlusCoins, "yellow", "+$"]] as const).map(([, val, set, color, label]) => (
+              <label key={label} className="flex items-center gap-1.5 text-xs text-stone-300">
+                <span className={`text-${color}-400 font-bold`}>{label}</span>
+                <select value={val} onChange={(e) => (set as any)(Number(e.target.value))}
+                  className="bg-stone-800 border border-stone-700 rounded px-1.5 py-0.5 text-xs text-stone-200 w-12">
+                  {[0,1,2,3,4,5].map((n) => <option key={n} value={n}>{n}</option>)}
+                </select>
+              </label>
+            ))}
           </div>
         </div>
 
@@ -424,10 +549,7 @@ export default function BuildMode() {
           <div className="flex items-center justify-between mb-2">
             <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold">Minimum cards per role</p>
             {Object.keys(requireRoles).length > 0 && (
-              <button
-                onClick={() => setRequireRoles({})}
-                className="text-[10px] text-stone-500 hover:text-stone-300 transition-colors"
-              >
+              <button onClick={() => setRequireRoles({})} className="text-[10px] text-stone-500 hover:text-stone-300 transition-colors">
                 Reset all
               </button>
             )}
@@ -439,29 +561,14 @@ export default function BuildMode() {
                 <div key={id} className="flex items-center gap-1.5">
                   <span className={`text-xs w-24 truncate ${val > 0 ? "text-stone-200" : "text-stone-400"}`}>{label}</span>
                   <div className="flex items-center gap-0.5">
-                    <button
-                      onClick={() => setRoleCount(id, Math.max(0, val - 1))}
-                      className="w-5 h-5 rounded border border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200 text-xs flex items-center justify-center transition-colors"
-                    >
-                      -
-                    </button>
-                    <span className={`w-5 text-center text-xs font-mono ${val > 0 ? "text-amber-400" : "text-stone-600"}`}>
-                      {val}
-                    </span>
-                    <button
-                      onClick={() => setRoleCount(id, Math.min(5, val + 1))}
-                      className="w-5 h-5 rounded border border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200 text-xs flex items-center justify-center transition-colors"
-                    >
-                      +
-                    </button>
+                    <button onClick={() => setRoleCount(id, Math.max(0, val - 1))}
+                      className="w-5 h-5 rounded border border-stone-700 text-stone-400 hover:border-stone-500 text-xs flex items-center justify-center">-</button>
+                    <span className={`w-5 text-center text-xs font-mono ${val > 0 ? "text-amber-400" : "text-stone-600"}`}>{val}</span>
+                    <button onClick={() => setRoleCount(id, Math.min(5, val + 1))}
+                      className="w-5 h-5 rounded border border-stone-700 text-stone-400 hover:border-stone-500 text-xs flex items-center justify-center">+</button>
                   </div>
                   {val > 0 && (
-                    <button
-                      onClick={() => setRoleCount(id, 0)}
-                      className="text-[10px] text-stone-600 hover:text-red-400 transition-colors"
-                    >
-                      &times;
-                    </button>
+                    <button onClick={() => setRoleCount(id, 0)} className="text-[10px] text-stone-600 hover:text-red-400">&times;</button>
                   )}
                 </div>
               );
@@ -470,26 +577,24 @@ export default function BuildMode() {
         </div>
       </section>
 
-      {/* Must include / exclude */}
+      {/* Must include / exclude — searches ALL cards */}
       <section className="grid gap-6 sm:grid-cols-2">
         <div>
           <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Must include</p>
           <CardSearchPicker
-            expansions={expansions}
             selected={mustInclude}
             excluded={mustExclude}
             onToggle={toggleMustInclude}
-            placeholder="Search cards to include..."
+            placeholder="Search any card to include..."
           />
         </div>
         <div>
           <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Must exclude</p>
           <CardSearchPicker
-            expansions={expansions}
             selected={mustExclude}
             excluded={mustInclude}
             onToggle={toggleMustExclude}
-            placeholder="Search cards to exclude..."
+            placeholder="Search any card to exclude..."
           />
         </div>
       </section>
@@ -499,59 +604,36 @@ export default function BuildMode() {
         <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-3">Optimize for...</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {OPTIMIZATION_PRESETS.map((preset) => (
-            <button
-              key={preset.id}
-              onClick={() => selectPreset(preset.id)}
-              title={preset.description}
+            <button key={preset.id} onClick={() => selectPreset(preset.id)} title={preset.description}
               className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors ${
-                presetId === preset.id
-                  ? "bg-amber-700 border-amber-600 text-white"
-                  : "border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200"
-              }`}
-            >
+                presetId === preset.id ? "bg-amber-700 border-amber-600 text-white" : "border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200"
+              }`}>
               {preset.name}
             </button>
           ))}
           {presetId === "custom" && (
-            <span className="px-3 py-1.5 rounded-lg border border-violet-600 bg-violet-950/30 text-sm font-medium text-violet-400">
-              Custom
-            </span>
+            <span className="px-3 py-1.5 rounded-lg border border-violet-600 bg-violet-950/30 text-sm font-medium text-violet-400">Custom</span>
           )}
         </div>
 
-        <button
-          onClick={() => setShowWeightSliders(!showWeightSliders)}
-          className="text-xs text-stone-500 hover:text-stone-300 transition-colors mb-3"
-        >
+        <button onClick={() => setShowWeightSliders(!showWeightSliders)}
+          className="text-xs text-stone-500 hover:text-stone-300 transition-colors mb-3">
           {showWeightSliders ? "Hide weight sliders" : "Fine-tune weights..."}
         </button>
 
         {showWeightSliders && (
           <div className="bg-stone-900/80 border border-stone-800 rounded-xl p-4 grid gap-3 sm:grid-cols-2">
             {([
-              ["villageCoverage", "Village Coverage"],
-              ["drawAvailability", "Draw"],
-              ["costCurve", "Cost Curve"],
-              ["buyAvailability", "+Buy Access"],
-              ["interaction", "Interaction"],
-              ["economy", "Economy"],
-              ["strategicDiversity", "Strategic Diversity"],
-              ["thinningAccess", "Thinning"],
+              ["villageCoverage","Village Coverage"],["drawAvailability","Draw"],["costCurve","Cost Curve"],
+              ["buyAvailability","+Buy Access"],["interaction","Interaction"],["economy","Economy"],
+              ["strategicDiversity","Strategic Diversity"],["thinningAccess","Thinning"],
             ] as [keyof ScoringWeights, string][]).map(([key, label]) => (
               <label key={key} className="flex items-center gap-2">
                 <span className="text-xs text-stone-400 w-32 shrink-0">{label}</span>
-                <input
-                  type="range"
-                  min="0"
-                  max="3"
-                  step="0.1"
-                  value={customWeights[key]}
+                <input type="range" min="0" max="3" step="0.1" value={customWeights[key]}
                   onChange={(e) => setWeight(key, parseFloat(e.target.value))}
-                  className="flex-1 accent-amber-500"
-                />
-                <span className="text-xs text-stone-300 w-6 text-right font-mono">
-                  {customWeights[key].toFixed(1)}
-                </span>
+                  className="flex-1 accent-amber-500" />
+                <span className="text-xs text-stone-300 w-6 text-right font-mono">{customWeights[key].toFixed(1)}</span>
               </label>
             ))}
           </div>
@@ -576,17 +658,10 @@ export default function BuildMode() {
             )}
           </button>
           {countActiveFilters(filters) > 0 && (
-            <button
-              onClick={() => setFilters(DEFAULT_FILTERS)}
-              className="text-xs text-stone-500 hover:text-stone-300 transition-colors"
-            >
-              Reset filters
-            </button>
+            <button onClick={() => setFilters(DEFAULT_FILTERS)} className="text-xs text-stone-500 hover:text-stone-300">Reset filters</button>
           )}
         </div>
-        {showFilters && (
-          <FilterPanel filters={filters} onChange={setFilters} hideDifficulty />
-        )}
+        {showFilters && <FilterPanel filters={filters} onChange={setFilters} hideDifficulty />}
       </section>
 
       {/* Constraint warnings */}
@@ -615,14 +690,10 @@ export default function BuildMode() {
           </button>
         </div>
         <label className="flex items-center gap-2 cursor-pointer select-none">
-          <input
-            type="checkbox"
-            checked={generateBestMode}
-            onChange={(e) => setGenerateBestMode(e.target.checked)}
-            className="rounded border-stone-600 bg-stone-800 text-amber-500 accent-amber-500"
-          />
+          <input type="checkbox" checked={generateBestMode} onChange={(e) => setGenerateBestMode(e.target.checked)}
+            className="rounded border-stone-600 bg-stone-800 text-amber-500 accent-amber-500" />
           <span className="text-sm text-stone-400">Generate best</span>
-          <span className="text-xs text-stone-600" title="Runs 30 generations and picks the highest-scoring result">(tries 30x, picks the top scorer)</span>
+          <span className="text-xs text-stone-600" title="Runs 30 generations and picks the highest-scoring result">(tries 30×, picks top scorer)</span>
         </label>
         {locked.size > 0 && (
           <p className="text-xs text-stone-500">{locked.size} card{locked.size > 1 ? "s" : ""} locked</p>
@@ -651,12 +722,7 @@ export default function BuildMode() {
                     return ca - cb;
                   })
                   .map((card) => (
-                    <ResultCard
-                      key={card.id}
-                      card={card}
-                      locked={locked.has(card.id)}
-                      onToggleLock={() => toggleLock(card.id)}
-                    />
+                    <ResultCard key={card.id} card={card} locked={locked.has(card.id)} onToggleLock={() => toggleLock(card.id)} />
                   ))}
               </div>
             </div>
@@ -667,24 +733,26 @@ export default function BuildMode() {
             />
           </div>
 
+          {/* Non-supply suggestions */}
+          {result.selectedNonSupply && Object.keys(result.selectedNonSupply).length > 0 && (
+            <NonSupplyPanel nonSupply={result.selectedNonSupply} />
+          )}
+
+          {/* Required components */}
+          {result.requiredComponents && result.requiredComponents.length > 0 && (
+            <ComponentsPanel components={result.requiredComponents} />
+          )}
+
           {/* Save section */}
           <div className="bg-stone-900/80 border border-stone-800 rounded-xl p-4">
             <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-3">Save this kingdom</p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="text"
-                value={saveName}
-                onChange={(e) => setSaveName(e.target.value)}
+              <input type="text" value={saveName} onChange={(e) => setSaveName(e.target.value)}
                 placeholder="Kingdom name..."
-                className="flex-1 px-3 py-2 rounded-lg bg-stone-800 border border-stone-700 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-stone-500"
-              />
-              <input
-                type="text"
-                value={saveNotes}
-                onChange={(e) => setSaveNotes(e.target.value)}
+                className="flex-1 px-3 py-2 rounded-lg bg-stone-800 border border-stone-700 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-stone-500" />
+              <input type="text" value={saveNotes} onChange={(e) => setSaveNotes(e.target.value)}
                 placeholder="Notes (optional)..."
-                className="flex-1 px-3 py-2 rounded-lg bg-stone-800 border border-stone-700 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-stone-500"
-              />
+                className="flex-1 px-3 py-2 rounded-lg bg-stone-800 border border-stone-700 text-sm text-stone-200 placeholder:text-stone-500 focus:outline-none focus:border-stone-500" />
               <button
                 onClick={() => {
                   if (!result) return;
@@ -699,14 +767,11 @@ export default function BuildMode() {
                   };
                   saveKingdom(kingdom);
                   setJustSaved(true);
-                  setSaveName("");
-                  setSaveNotes("");
+                  setSaveName(""); setSaveNotes("");
                   setTimeout(() => setJustSaved(false), 2000);
                 }}
                 className={`px-5 py-2 rounded-lg text-sm font-medium transition-all shrink-0 ${
-                  justSaved
-                    ? "bg-emerald-700 text-white"
-                    : "bg-stone-700 hover:bg-stone-600 text-stone-200"
+                  justSaved ? "bg-emerald-700 text-white" : "bg-stone-700 hover:bg-stone-600 text-stone-200"
                 }`}
               >
                 {justSaved ? "Saved!" : "Save"}

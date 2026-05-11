@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
-import { EXPANSIONS } from "@/data/expansions";
+import { EXPANSIONS, EXPANSION_MAP } from "@/data/expansions";
 import { COMBINATIONS, getCombinationsForExpansions } from "@/data/combinations";
 import { CARD_MAP, CARDS } from "@/data/cards";
-import type { Combination, Expansion, GeneratorConstraints } from "@/types";
+import type { Combination, Expansion, GeneratorConstraints, ComponentRequirement, SelectedNonSupply } from "@/types";
 import { generateKingdom, type GeneratedKingdom } from "@/lib/kingdom-generator";
+import { detectRequiredComponents } from "@/data/expansion-components";
 import BuildMode from "@/components/BuildMode";
 import FilterPanel from "@/components/FilterPanel";
 import {
@@ -158,11 +159,18 @@ function CardChip({ cardId, highlight }: { cardId: string; highlight?: boolean }
     : card.types.includes("Treasure")  ? "border-yellow-800/60 bg-yellow-950/40"
     : "border-stone-700/60 bg-stone-800/40";
 
+  const exp = EXPANSION_MAP[card.expansion];
+  const expAbbr = card.expansion === "base" ? "Base"
+    : card.expansion.split("-").map((w: string) => w[0].toUpperCase()).join("");
+
   return (
     <div
       className={`flex items-center gap-1.5 px-2 py-1 rounded border text-xs ${typeColor} ${highlight ? "ring-1 ring-amber-400/60" : ""}`}
       title={card.notes}
     >
+      <span className={`text-[9px] px-1 py-0.5 rounded font-bold text-white/90 leading-none ${exp?.color ?? "bg-stone-600"}`}>
+        {expAbbr}
+      </span>
       <span className="font-medium text-stone-100">{card.name}</span>
       <span className="text-stone-400">{card.cost}</span>
       {card.plusActions >= 2 && <span className="text-sky-400 font-bold text-[10px]">+A</span>}
@@ -242,7 +250,10 @@ function StatBadges({ stats }: { stats: ComboStats }) {
 
 // ─── Supply Strip ─────────────────────────────────────────────────────────────
 
-function SupplyStrip({ expansions }: { expansions: string[] }) {
+function SupplyStrip({ expansions, requiredComponents }: {
+  expansions: string[];
+  requiredComponents?: ComponentRequirement[];
+}) {
   const specials = expansions.flatMap((id) => SPECIAL_SUPPLY[id] ?? []);
   return (
     <div className="bg-stone-900/60 border border-stone-800 rounded-xl p-4 mb-8">
@@ -264,6 +275,70 @@ function SupplyStrip({ expansions }: { expansions: string[] }) {
           </div>
         </>
       )}
+      {requiredComponents && requiredComponents.length > 0 && (
+        <div className="mt-3 pt-3 border-t border-stone-800">
+          <p className="text-[11px] text-amber-500 uppercase tracking-widest font-semibold mb-2">Required components</p>
+          <div className="flex flex-wrap gap-1.5">
+            {requiredComponents.map((comp) => (
+              <span
+                key={comp.id}
+                className="px-2 py-0.5 rounded text-xs font-medium bg-amber-950/50 text-amber-300 border border-amber-800/40"
+                title={comp.reason}
+              >
+                {comp.name} <span className="opacity-50 text-[10px]">ⓘ</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Non-Supply Strip ─────────────────────────────────────────────────────────
+
+function NonSupplyStrip({ nonSupply }: { nonSupply: SelectedNonSupply }) {
+  const typeColor: Record<string, string> = {
+    event:    "bg-teal-800/60 text-teal-300 border-teal-700/40",
+    way:      "bg-lime-800/60 text-lime-300 border-lime-700/40",
+    project:  "bg-cyan-800/60 text-cyan-300 border-cyan-700/40",
+    landmark: "bg-purple-800/60 text-purple-300 border-purple-700/40",
+    trait:    "bg-pink-800/60 text-pink-300 border-pink-700/40",
+  };
+
+  const sections: Array<{ label: string; key: keyof SelectedNonSupply; color: string }> = [
+    { label: "Events",    key: "events",    color: typeColor.event    },
+    { label: "Way",       key: "way",       color: typeColor.way      },
+    { label: "Projects",  key: "projects",  color: typeColor.project  },
+    { label: "Landmark",  key: "landmark",  color: typeColor.landmark },
+    { label: "Traits",    key: "traits",    color: typeColor.trait    },
+  ];
+
+  const hasAny = sections.some(({ key }) => {
+    const v = nonSupply[key];
+    return Array.isArray(v) ? v.length > 0 : !!v;
+  });
+  if (!hasAny) return null;
+
+  return (
+    <div className="bg-stone-900/60 border border-stone-800 rounded-xl p-4 mb-4">
+      <p className="text-[11px] text-stone-500 uppercase tracking-widest font-semibold mb-2">Non-supply cards</p>
+      <div className="flex flex-wrap gap-1.5">
+        {sections.map(({ label, key, color }) => {
+          const val = nonSupply[key];
+          const items = Array.isArray(val) ? val : val ? [val] : [];
+          return items.map((card) => (
+            <span
+              key={card.id}
+              className={`px-2 py-0.5 rounded text-xs font-medium border ${color}`}
+              title={card.description}
+            >
+              <span className="text-[9px] opacity-60 mr-1">{label}</span>
+              {card.name} <span className="opacity-40 text-[10px]">ⓘ</span>
+            </span>
+          ));
+        })}
+      </div>
     </div>
   );
 }
@@ -567,30 +642,46 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
 // ─── Auto Pick Mode ───────────────────────────────────────────────────────────
 
 function AutoPickMode({ expansionColors }: { expansionColors: Record<string, string> }) {
-  const [owned, setOwned]             = useState<string[]>([]);
-  const [filters, setFilters]         = useState<Filters>(DEFAULT_FILTERS);
-  const [showFilters, setShowFilters] = useState(false);
-  const [result, setResult]           = useState<GeneratedKingdom | null>(null);
-  const [hasRolled, setHasRolled]     = useState(false);
-  const [noResult, setNoResult]       = useState(false);
-  const [shake, setShake]             = useState(false);
+  const [owned, setOwned]                   = useState<string[]>([]);
+  const [editionOverrides, setEditionOverrides] = useState<Record<string, 1 | 2>>({});
+  const [filters, setFilters]               = useState<Filters>(DEFAULT_FILTERS);
+  const [showFilters, setShowFilters]       = useState(false);
+  const [result, setResult]                 = useState<GeneratedKingdom | null>(null);
+  const [hasRolled, setHasRolled]           = useState(false);
+  const [noResult, setNoResult]             = useState(false);
+  const [shake, setShake]                   = useState(false);
 
   const toggleOwned = (id: string) => {
     setOwned((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
     setResult(null); setHasRolled(false); setNoResult(false);
   };
 
+  const setEdition = (expId: string, ed: 1 | 2) => {
+    setEditionOverrides((prev) => ({ ...prev, [expId]: ed }));
+    setResult(null); setHasRolled(false); setNoResult(false);
+  };
+
   const activeFilterCount = countActiveFilters(filters);
 
-  const poolSize = useMemo(
-    () => CARDS.filter((c) => ["base", ...owned].includes(c.expansion)).length,
-    [owned]
-  );
+  const poolSize = useMemo(() => {
+    const allExpansions = ["base", ...owned];
+    return CARDS.filter((c) => {
+      if (!allExpansions.includes(c.expansion)) return false;
+      if (c.edition !== undefined) {
+        const override = editionOverrides[c.expansion] ?? 2;
+        if (c.edition !== override) return false;
+      }
+      return true;
+    }).length;
+  }, [owned, editionOverrides]);
 
   const roll = useCallback(() => {
     if (owned.length === 0) return;
 
-    const constraints: GeneratorConstraints = { expansions: ["base", ...owned] };
+    const constraints: GeneratorConstraints = {
+      expansions: ["base", ...owned],
+      editionOverrides,
+    };
     const hasFilters = activeFilterCount > 0;
     let kingdom: GeneratedKingdom | null = null;
 
@@ -608,7 +699,7 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
     setHasRolled(true);
     setShake(true);
     setTimeout(() => setShake(false), 400);
-  }, [owned, filters, activeFilterCount]);
+  }, [owned, editionOverrides, filters, activeFilterCount]);
 
   const scoreColor = (v: number) =>
     v >= 8 ? "text-emerald-400" : v >= 6 ? "text-amber-400" : v >= 4 ? "text-orange-400" : "text-red-400";
@@ -631,19 +722,37 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
         <p className="text-xs text-stone-500 mb-4">Tick every box you own — Base is always included.</p>
         <div className="flex flex-wrap gap-2">
           {SELECTABLE_EXPANSIONS.map((exp) => (
-            <button key={exp.id} onClick={() => toggleOwned(exp.id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all duration-150
-                ${owned.includes(exp.id)
-                  ? `${exp.color} border-transparent text-white shadow-md`
-                  : "border-stone-700 text-stone-400 bg-stone-900 hover:border-stone-500 hover:text-white hover:bg-stone-800"}`}
-            >
-              <span className={`w-4 h-4 rounded border flex items-center justify-center text-[10px] shrink-0
-                ${owned.includes(exp.id) ? "bg-white/25 border-white/40 text-white" : "border-stone-600"}`}>
-                {owned.includes(exp.id) && "✓"}
-              </span>
-              {exp.name}
-              <span className="text-xs opacity-60">{exp.year}</span>
-            </button>
+            <div key={exp.id} className="flex flex-col gap-1">
+              <button onClick={() => toggleOwned(exp.id)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all duration-150
+                  ${owned.includes(exp.id)
+                    ? `${exp.color} border-transparent text-white shadow-md`
+                    : "border-stone-700 text-stone-400 bg-stone-900 hover:border-stone-500 hover:text-white hover:bg-stone-800"}`}
+              >
+                <span className={`w-4 h-4 rounded border flex items-center justify-center text-[10px] shrink-0
+                  ${owned.includes(exp.id) ? "bg-white/25 border-white/40 text-white" : "border-stone-600"}`}>
+                  {owned.includes(exp.id) && "✓"}
+                </span>
+                {exp.name}
+                <span className="text-xs opacity-60">{exp.year}</span>
+              </button>
+              {exp.hasEditions && owned.includes(exp.id) && (
+                <div className="flex gap-1 pl-1">
+                  {([1, 2] as const).map((ed) => (
+                    <button
+                      key={ed}
+                      onClick={() => setEdition(exp.id, ed)}
+                      className={`px-2 py-0.5 rounded text-[10px] font-semibold border transition-colors
+                        ${(editionOverrides[exp.id] ?? 2) === ed
+                          ? "bg-white/20 border-white/40 text-white"
+                          : "border-stone-600 text-stone-500 hover:border-stone-400 hover:text-stone-300"}`}
+                    >
+                      {ed === 1 ? "1st" : "2nd"}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </section>
@@ -697,7 +806,10 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
       {/* Result */}
       {result && (
         <div className="max-w-2xl mx-auto">
-          <SupplyStrip expansions={owned} />
+          <SupplyStrip expansions={owned} requiredComponents={result.requiredComponents} />
+          {result.selectedNonSupply && Object.keys(result.selectedNonSupply).length > 0 && (
+            <NonSupplyStrip nonSupply={result.selectedNonSupply} />
+          )}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-semibold text-stone-200">Your Kingdom</h2>
             <div className="flex items-center gap-4 text-xs text-stone-500">
@@ -719,7 +831,7 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
                 .filter((e) => e !== "base")
                 .map((expId) => (
                   <span key={expId} className={`text-[11px] px-2 py-0.5 rounded-full text-white/90 font-medium ${expansionColors[expId] ?? "bg-stone-700"}`}>
-                    {expId.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ")}
+                    {expId.split("-").map((w: string) => w[0].toUpperCase() + w.slice(1)).join(" ")}
                   </span>
                 ))}
             </div>

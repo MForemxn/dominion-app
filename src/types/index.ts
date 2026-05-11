@@ -49,6 +49,8 @@ export interface Card {
   plusCoins: number;
   roles: CardRole[];
   notes: string;
+  /** undefined = present in all editions of this expansion */
+  edition?: 1 | 2;
 }
 
 export interface KingdomScore {
@@ -56,7 +58,7 @@ export interface KingdomScore {
   villageCoverage: number;
   drawAvailability: number;
   costCurve: number;
-  terminalBalance: number; // now represents +Buy availability
+  terminalBalance: number;
   interaction: number;
   economy: number;
   strategicDiversity: number;
@@ -74,23 +76,78 @@ export interface GeneratorConstraints {
   mustInclude?: string[];
   mustExclude?: string[];
   minScore?: number;
+  /** Per-expansion edition override: 1 = first edition, 2 = second edition (default) */
+  editionOverrides?: Record<string, 1 | 2>;
 }
 
 export interface Combination {
   id: string;
   name: string;
-  expansions: string[];       // sorted; must exactly match user selection
-  cards: string[];            // exactly 10 card IDs (Kingdom supply cards)
-  nonSupplyCard?: string;     // optional 11th card (non-supply, e.g. Horse)
-  strategy: string;           // 1–3 sentence description of how to play it
-  keyCards: string[];         // 2–3 card IDs to highlight as the engine core
+  expansions: string[];
+  cards: string[];
+  nonSupplyCard?: string;
+  strategy: string;
+  keyCards: string[];
   difficulty: "beginner" | "intermediate" | "advanced";
-  tags: string[];             // e.g. ["engine", "attack-heavy", "alt-victory"]
+  tags: string[];
 }
 
 export interface Expansion {
   id: string;
   name: string;
   year: number;
-  color: string;             // tailwind bg color class for UI theming
+  color: string;
+  /** True if this expansion has 1st and 2nd editions with different card lists */
+  hasEditions?: boolean;
+  /** Year each edition was released */
+  editionYears?: { 1: number; 2: number };
+}
+
+// ── Non-supply cards (Events, Ways, Projects, Landmarks, Traits, Allies) ──────
+
+export type NonSupplyType =
+  | "event"
+  | "way"
+  | "project"
+  | "landmark"
+  | "trait"
+  | "ally";
+
+export interface NonSupplyCard {
+  id: string;
+  name: string;
+  expansion: string;
+  type: NonSupplyType;
+  /** Cost in coins; some events cost Debt (string like "4D") */
+  cost?: number | string;
+  description: string;
+}
+
+/** How many non-supply cards of each type to include per kingdom */
+export interface NonSupplyCounts {
+  events: number;
+  ways: number;
+  projects: number;
+  landmarks: number;
+  traits: number;
+}
+
+export interface SelectedNonSupply {
+  events?: NonSupplyCard[];
+  way?: NonSupplyCard;
+  projects?: NonSupplyCard[];
+  landmark?: NonSupplyCard;
+  traits?: NonSupplyCard[];
+  ally?: NonSupplyCard;
+}
+
+// ── Physical component requirements ───────────────────────────────────────────
+
+export interface ComponentRequirement {
+  id: string;
+  name: string;
+  /** Why this component is needed */
+  reason: string;
+  /** Which card/expansion triggers this requirement */
+  triggeredBy: string;
 }

@@ -1,17 +1,30 @@
-import type { Card, GeneratorConstraints, KingdomScore } from "@/types";
+import type { Card, GeneratorConstraints, KingdomScore, ComponentRequirement, SelectedNonSupply } from "@/types";
 import { CARDS, CARD_MAP } from "@/data/cards";
 import { scoreKingdom, DEFAULT_WEIGHTS, type ScoringWeights } from "./kingdom-scorer";
+import { selectNonSupply } from "@/data/non-supply";
+import { detectRequiredComponents } from "@/data/expansion-components";
 
 export interface GeneratedKingdom {
   cards: Card[];
   score: KingdomScore;
   fitScore?: KingdomScore;
+  selectedNonSupply?: SelectedNonSupply;
+  requiredComponents?: ComponentRequirement[];
 }
 
 function getCardPool(constraints: GeneratorConstraints): Card[] {
-  let pool = CARDS.filter((c) => {
+  const { editionOverrides = {} } = constraints;
+
+  return CARDS.filter((c) => {
     if (!constraints.expansions.includes(c.expansion)) return false;
     if (constraints.mustExclude?.includes(c.id)) return false;
+
+    // Edition filtering: if the expansion has editions and an override is set,
+    // exclude cards that belong only to the other edition.
+    if (c.edition !== undefined) {
+      const override = editionOverrides[c.expansion] ?? 2; // default to 2nd edition
+      if (c.edition !== override) return false;
+    }
 
     if (constraints.costRange) {
       const cost = typeof c.cost === "number" ? c.cost : 99;
@@ -20,8 +33,6 @@ function getCardPool(constraints: GeneratorConstraints): Card[] {
 
     return true;
   });
-
-  return pool;
 }
 
 function meetsStatRequirements(
@@ -101,6 +112,32 @@ function weightedSelect(pool: Card[], currentSelection: Card[]): Card {
   return pool[pool.length - 1];
 }
 
+function buildExtras(cards: Card[], expansionIds: string[]): {
+  selectedNonSupply: SelectedNonSupply;
+  requiredComponents: ComponentRequirement[];
+} {
+  // Determine which expansions are actually represented in the selected cards
+  const cardExpansions = Array.from(new Set(cards.map((c) => c.expansion)));
+  // Also include all expansions that were explicitly selected (for component detection)
+  const allExpansions = Array.from(new Set([...cardExpansions, ...expansionIds]));
+
+  // Only suggest non-supply for expansions that have cards in the kingdom
+  const nonSupplyExpansions = cardExpansions.filter((e) => e !== "base");
+
+  const { events, way, projects, landmark, traits } = selectNonSupply(nonSupplyExpansions);
+
+  const selectedNonSupply: SelectedNonSupply = {};
+  if (events.length > 0)    selectedNonSupply.events   = events;
+  if (way)                   selectedNonSupply.way      = way;
+  if (projects.length > 0)  selectedNonSupply.projects = projects;
+  if (landmark)              selectedNonSupply.landmark = landmark;
+  if (traits.length > 0)    selectedNonSupply.traits   = traits;
+
+  const requiredComponents = detectRequiredComponents(cards, allExpansions);
+
+  return { selectedNonSupply, requiredComponents };
+}
+
 export function generateKingdom(
   constraints: GeneratorConstraints,
   weights?: ScoringWeights,
@@ -142,7 +179,8 @@ export function generateKingdom(
     const checkScore = fitScore ?? qualityScore;
 
     if (checkScore.overall >= minScore) {
-      return { cards: selected, score: qualityScore, fitScore };
+      const { selectedNonSupply, requiredComponents } = buildExtras(selected, constraints.expansions);
+      return { cards: selected, score: qualityScore, fitScore, selectedNonSupply, requiredComponents };
     }
   }
 
