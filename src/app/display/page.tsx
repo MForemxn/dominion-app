@@ -5,7 +5,7 @@ import { CARD_MAP } from "@/data/cards";
 import { EXPANSION_MAP } from "@/data/expansions";
 import { NON_SUPPLY_MAP } from "@/data/non-supply";
 import { detectRequiredComponents } from "@/data/expansion-components";
-import { loadTableGame, tableGameFromSearchParams, subscribeTableGame, type TableGame } from "@/lib/now-playing";
+import { subscribeTableGame, type TableGame } from "@/lib/now-playing";
 import type { Card } from "@/types";
 
 const PLAYER_COUNTS = [2, 3, 4, 5, 6] as const;
@@ -74,12 +74,10 @@ export default function DisplayPage() {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   useEffect(() => {
-    const sp = new URLSearchParams(window.location.search);
-    const fromUrl = tableGameFromSearchParams(sp);
-    setGame(fromUrl ?? loadTableGame());
-    setLoaded(true);
-    if (fromUrl) return;
-    return subscribeTableGame(setGame);
+    return subscribeTableGame((g) => {
+      setGame(g);
+      setLoaded(true);
+    });
   }, []);
 
   const cards = useMemo(() => {

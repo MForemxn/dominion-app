@@ -3,6 +3,10 @@ import type { SelectedNonSupply } from "@/types";
 
 export const NOW_PLAYING_KEY = "dominion-now-playing";
 export const NOW_PLAYING_CHANNEL = "dominion-table";
+/** Same Redis-backed store the vinyl TV uses — phone POSTs, kiosk polls. */
+export const TABLE_API =
+  process.env.NEXT_PUBLIC_TABLE_API ??
+  "https://vinyl-now-playing-three.vercel.app/api/dominion-table";
 
 export interface TableGame {
   name?: string;
@@ -42,13 +46,16 @@ export function clearTableGame(): void {
   openChannel()?.postMessage(null);
 }
 
-/** Send the current game to the table display, then open it in a new tab. */
-export function sendToTable(game: Omit<TableGame, "updatedAt">): void {
+/** Push the kingdom to the TV. Phone is the remote; the kiosk polls Redis. */
+export async function sendToTable(game: Omit<TableGame, "updatedAt">): Promise<void> {
   const full: TableGame = { ...game, updatedAt: Date.now() };
   saveTableGame(full);
-  if (typeof window !== "undefined") {
-    window.open(`/display?${tableGameToSearchParams(full)}`, "_blank");
-  }
+  const res = await fetch(TABLE_API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(full),
+  });
+  if (!res.ok) throw new Error(`Table update failed: ${res.status}`);
 }
 
 /** Flatten a SelectedNonSupply (events/way/projects/landmark/traits/ally/prophecy) into ids. */
@@ -86,24 +93,24 @@ export function tableGameToSearchParams(game: TableGame): string {
   return params.toString();
 }
 
-/** Fires whenever the table game changes: same-tab (BroadcastChannel), other tabs
- * (storage event), or a stale kiosk tab that missed both (2s localStorage poll). */
+/** TV kiosk: poll the shared store every 3s, same as vinyl /api/nowplaying. */
 export function subscribeTableGame(cb: (g: TableGame | null) => void): () => void {
   if (typeof window === "undefined") return () => {};
 
-  const onStorage = (e: StorageEvent) => {
-    if (e.key === NOW_PLAYING_KEY) cb(loadTableGame());
-  };
-  window.addEventListener("storage", onStorage);
-
-  const channel = openChannel();
-  if (channel) channel.onmessage = (e) => cb(e.data ?? null);
-
-  const poll = setInterval(() => cb(loadTableGame()), 2000);
-
+  let active = true;
+  async function poll() {
+    try {
+      const res = await fetch(TABLE_API, { cache: "no-store" });
+      const data = await res.json();
+      if (active) cb(data.nowPlaying ?? null);
+    } catch {
+      // ignore transient network errors between polls
+    }
+  }
+  poll();
+  const interval = setInterval(poll, 3000);
   return () => {
-    window.removeEventListener("storage", onStorage);
-    channel?.close();
-    clearInterval(poll);
+    active = false;
+    clearInterval(interval);
   };
 }
