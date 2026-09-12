@@ -44,8 +44,11 @@ export function clearTableGame(): void {
 
 /** Send the current game to the table display, then open it in a new tab. */
 export function sendToTable(game: Omit<TableGame, "updatedAt">): void {
-  saveTableGame({ ...game, updatedAt: Date.now() });
-  if (typeof window !== "undefined") window.open("/display", "_blank");
+  const full: TableGame = { ...game, updatedAt: Date.now() };
+  saveTableGame(full);
+  if (typeof window !== "undefined") {
+    window.open(`/display?${tableGameToSearchParams(full)}`, "_blank");
+  }
 }
 
 /** Flatten a SelectedNonSupply (events/way/projects/landmark/traits/ally/prophecy) into ids. */
