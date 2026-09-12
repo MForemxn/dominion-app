@@ -7,7 +7,8 @@ import { CARD_MAP, CARDS } from "@/data/cards";
 import type { Combination, Expansion, GeneratorConstraints, ComponentRequirement, SelectedNonSupply } from "@/types";
 import { generateKingdom, type GeneratedKingdom } from "@/lib/kingdom-generator";
 import { detectRequiredComponents } from "@/data/expansion-components";
-import { sendToTable, flattenNonSupplyIds } from "@/lib/now-playing";
+import { flattenNonSupplyIds } from "@/lib/now-playing";
+import TableSendButton from "@/components/TableSendButton";
 import BuildMode from "@/components/BuildMode";
 import FilterPanel from "@/components/FilterPanel";
 import {
@@ -392,20 +393,16 @@ function CombinationCard({
             <span className={`text-xs font-medium ${difficultyColor} uppercase tracking-wide`}>
               {combo.difficulty}
             </span>
-            <button
-              onClick={() =>
-                sendToTable({
-                  name: combo.name,
-                  cards: combo.cards,
-                  expansions: combo.expansions,
-                  nonSupplyIds: combo.nonSupplyCard ? [combo.nonSupplyCard] : undefined,
-                })
-              }
-              className="text-[10px] px-2 py-0.5 rounded border border-stone-700 text-stone-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
-              title="Send this kingdom to the table display"
-            >
-              Table ↗
-            </button>
+            <TableSendButton
+              compact
+              label="Send to table"
+              game={{
+                name: combo.name,
+                cards: combo.cards,
+                expansions: combo.expansions,
+                nonSupplyIds: combo.nonSupplyCard ? [combo.nonSupplyCard] : undefined,
+              }}
+            />
           </div>
         </div>
 
@@ -553,13 +550,11 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
                   <h3 className="text-sm font-bold text-stone-100">{kingdom.name}</h3>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-stone-500 font-mono">{kingdom.score.overall}/10</span>
-                    <button
-                      onClick={() => sendToTable({ name: kingdom.name, cards: kingdom.cards, expansions: kingdom.expansions })}
-                      className="text-[10px] px-2 py-0.5 rounded border border-stone-700 text-stone-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
-                      title="Send this kingdom to the table display"
-                    >
-                      Table ↗
-                    </button>
+                    <TableSendButton
+                      compact
+                      label="Send to table"
+                      game={{ name: kingdom.name, cards: kingdom.cards, expansions: kingdom.expansions }}
+                    />
                     <button
                       onClick={() => handleDelete(kingdom.id)}
                       className="text-xs text-stone-600 hover:text-red-400 transition-colors"
@@ -879,19 +874,15 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
                 </span>
                 <span className="text-stone-600">/10</span>
               </span>
-              <button
-                onClick={() =>
-                  sendToTable({
-                    cards: result.cards.map((c) => c.id),
-                    expansions: Array.from(new Set(result.cards.map((c) => c.expansion))),
-                    nonSupplyIds: flattenNonSupplyIds(result.selectedNonSupply),
-                  })
-                }
-                className="px-2 py-0.5 rounded border border-stone-700 text-stone-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
-                title="Send this kingdom to the table display"
-              >
-                Table ↗
-              </button>
+              <TableSendButton
+                compact
+                label="Send to table"
+                game={{
+                  cards: result.cards.map((c) => c.id),
+                  expansions: Array.from(new Set(result.cards.map((c) => c.expansion))),
+                  nonSupplyIds: flattenNonSupplyIds(result.selectedNonSupply),
+                }}
+              />
             </div>
           </div>
           <div className="bg-stone-900 border border-amber-500/60 rounded-xl p-5 shadow-lg shadow-amber-900/20">

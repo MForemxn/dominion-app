@@ -4,9 +4,8 @@ import type { SelectedNonSupply } from "@/types";
 export const NOW_PLAYING_KEY = "dominion-now-playing";
 export const NOW_PLAYING_CHANNEL = "dominion-table";
 /** Same Redis-backed store the vinyl TV uses — phone POSTs, kiosk polls. */
-export const TABLE_API =
-  process.env.NEXT_PUBLIC_TABLE_API ??
-  "https://vinyl-now-playing-three.vercel.app/api/dominion-table";
+/** Same-origin proxy → Redis store. Avoids CORS on the phone and TV. */
+export const TABLE_API = "/api/table";
 
 export interface TableGame {
   name?: string;
