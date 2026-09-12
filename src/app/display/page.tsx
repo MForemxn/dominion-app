@@ -15,6 +15,29 @@ function sortKey(card: Card): number {
   return 100 + (match ? parseInt(match[1], 10) : 0);
 }
 
+const EXPANSION_TEXT: Record<string, string> = {
+  base: "text-amber-300",
+  intrigue: "text-purple-300",
+  seaside: "text-blue-300",
+  alchemy: "text-violet-300",
+  prosperity: "text-yellow-300",
+  hinterlands: "text-orange-300",
+  "dark-ages": "text-stone-300",
+  "cornucopia-guilds": "text-green-300",
+  adventures: "text-teal-300",
+  empires: "text-red-300",
+  nocturne: "text-indigo-300",
+  renaissance: "text-cyan-300",
+  menagerie: "text-lime-300",
+  allies: "text-pink-300",
+  plunder: "text-sky-300",
+  "rising-sun": "text-red-400",
+};
+
+function expansionTextClass(expansionId: string): string {
+  return EXPANSION_TEXT[expansionId] ?? "text-stone-300";
+}
+
 function costLabel(cost: number | string): string {
   return typeof cost === "number" ? `$${cost}` : `$${cost}`;
 }
@@ -138,6 +161,7 @@ export default function DisplayPage() {
       <div className="flex-1 min-h-0 flex">
         <div className="flex-1 p-3 grid grid-cols-5 grid-rows-2 gap-2">
           {cards.map((card) => {
+            const tint = expansionTextClass(card.expansion);
             const stats = statsLine(card);
             return (
               <div key={card.id} className="flex flex-col min-h-0 rounded-lg overflow-hidden ring-1 ring-white/10 bg-neutral-950">
@@ -146,16 +170,18 @@ export default function DisplayPage() {
                   alt={card.name}
                   className="w-full flex-1 min-h-0 object-contain bg-black"
                 />
-                <div className="shrink-0 px-2 py-1.5 border-t border-white/10">
+                <div className={`shrink-0 px-2 py-1.5 border-t border-white/10 ${tint}`}>
                   <p className="text-sm font-semibold leading-tight">
                     {card.name}{" "}
-                    <span className="text-amber-300 font-normal">{costLabel(card.cost)}</span>
+                    <span className="font-normal opacity-80">{costLabel(card.cost)}</span>
                   </p>
-                  <p className="text-[11px] text-neutral-400 truncate">
+                  <p className="text-[11px] opacity-80 truncate">
+                    {EXPANSION_MAP[card.expansion]?.name ?? card.expansion}
+                    {" · "}
                     {card.types.join(" · ")}
                     {stats ? ` · ${stats}` : ""}
                   </p>
-                  <p className="text-[11px] text-neutral-200 leading-snug mt-0.5 line-clamp-3">{card.notes}</p>
+                  <p className="text-[11px] leading-snug mt-0.5 line-clamp-3 opacity-95">{card.notes}</p>
                 </div>
               </div>
             );
