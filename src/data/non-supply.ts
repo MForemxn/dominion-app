@@ -23,28 +23,28 @@ const ADVENTURES_EVENTS: NonSupplyCard[] = [
 
 // ── ADVENTURES – Landmarks ────────────────────────────────────────────────────
 
-const ADVENTURES_LANDMARKS: NonSupplyCard[] = [
-  { id: "lm-aqueduct",       name: "Aqueduct",        expansion: "adventures", type: "landmark", description: "When you gain a Silver or Gold, take 1VP from the Aqueduct pile (starts with 8VP). At game end, take remaining VP." },
-  { id: "lm-arena",          name: "Arena",           expansion: "adventures", type: "landmark", description: "At the start of your Buy phase, you may discard an Action card for 2VP from the Arena pile (starts with 6VP per player)." },
-  { id: "lm-bandit-fort",    name: "Bandit Fort",     expansion: "adventures", type: "landmark", description: "At game end, −2VP per Silver and −2VP per Gold in your deck." },
-  { id: "lm-battlefield",    name: "Battlefield",     expansion: "adventures", type: "landmark", description: "When a Province is gained, take 2VP from the Battlefield pile (starts with 6VP per player)." },
-  { id: "lm-colonnade",      name: "Colonnade",       expansion: "adventures", type: "landmark", description: "When you buy an Action card you already have a copy of in play, take 2VP from the Colonnade pile (starts with 6VP per player)." },
-  { id: "lm-defiled-shrine", name: "Defiled Shrine",  expansion: "adventures", type: "landmark", description: "When you gain a card from an Action pile, move 1VP from it to your Defiled Shrine mat. Take them all when the Curse pile is empty." },
-  { id: "lm-fountain",       name: "Fountain",        expansion: "adventures", type: "landmark", description: "At game end, +15VP if you have at least 10 Coppers in your deck." },
-  { id: "lm-keep",           name: "Keep",            expansion: "adventures", type: "landmark", description: "At game end, +5VP for each type of Treasure you have the most of (or tied for most) among all players." },
-  { id: "lm-labyrinth",      name: "Labyrinth",       expansion: "adventures", type: "landmark", description: "When you gain your second card in one turn, take 2VP from the Labyrinth pile (starts with 6VP per player)." },
-  { id: "lm-mountain-pass",  name: "Mountain Pass",   expansion: "adventures", type: "landmark", description: "When the first Province is gained, players bid Debt tokens; highest bidder takes 8VP but owes that much Debt." },
-  { id: "lm-museum",         name: "Museum",          expansion: "adventures", type: "landmark", description: "At game end, +2VP per differently named card in your deck." },
-  { id: "lm-obelisk",        name: "Obelisk",         expansion: "adventures", type: "landmark", description: "Choose a Kingdom supply pile at setup; at game end, +2VP per card from that pile in your deck." },
-  { id: "lm-orchard",        name: "Orchard",         expansion: "adventures", type: "landmark", description: "At game end, +4VP for each Action supply pile from which you have at least 3 differently named cards." },
-  { id: "lm-palace",         name: "Palace",          expansion: "adventures", type: "landmark", description: "At game end, +3VP per matched set of one Copper, one Silver, and one Gold in your deck." },
-  { id: "lm-ritual",         name: "Ritual",          expansion: "adventures", type: "landmark", description: "When you buy a Curse, trash a card from hand; +VP equal to its cost in coins." },
-  { id: "lm-saltmarsh",      name: "Saltmarsh",       expansion: "adventures", type: "landmark", description: "When you gain a Treasure costing at least $3, take 1VP from the Saltmarsh pile (starts with 4VP per player)." },
-  { id: "lm-tomb",           name: "Tomb",            expansion: "adventures", type: "landmark", description: "When you trash a card, +1VP." },
-  { id: "lm-tower",          name: "Tower",           expansion: "adventures", type: "landmark", description: "At game end, +1VP per non-Victory card in your deck from any empty supply pile." },
-  { id: "lm-triumphal-arch", name: "Triumphal Arch",  expansion: "adventures", type: "landmark", description: "At game end, +3VP per copy of the second most common Action card in your deck (fewest copies if tied)." },
-  { id: "lm-wall",           name: "Wall",            expansion: "adventures", type: "landmark", description: "At game end, −1VP per card in your deck beyond 15." },
-  { id: "lm-wolf-den",       name: "Wolf Den",        expansion: "adventures", type: "landmark", description: "At game end, −3VP per card type in your deck of which you have exactly one copy." },
+const EMPIRES_LANDMARKS: NonSupplyCard[] = [
+  { id: "lm-aqueduct",       name: "Aqueduct",        expansion: "empires", type: "landmark", description: "When you gain a Silver or Gold, take 1VP from the Aqueduct pile (starts with 8VP). At game end, take remaining VP." },
+  { id: "lm-arena",          name: "Arena",           expansion: "empires", type: "landmark", description: "At the start of your Buy phase, you may discard an Action card for 2VP from the Arena pile (starts with 6VP per player)." },
+  { id: "lm-bandit-fort",    name: "Bandit Fort",     expansion: "empires", type: "landmark", description: "At game end, −2VP per Silver and −2VP per Gold in your deck." },
+  { id: "lm-battlefield",    name: "Battlefield",     expansion: "empires", type: "landmark", description: "When a Province is gained, take 2VP from the Battlefield pile (starts with 6VP per player)." },
+  { id: "lm-colonnade",      name: "Colonnade",       expansion: "empires", type: "landmark", description: "When you buy an Action card you already have a copy of in play, take 2VP from the Colonnade pile (starts with 6VP per player)." },
+  { id: "lm-defiled-shrine", name: "Defiled Shrine",  expansion: "empires", type: "landmark", description: "When you gain a card from an Action pile, move 1VP from it to your Defiled Shrine mat. Take them all when the Curse pile is empty." },
+  { id: "lm-fountain",       name: "Fountain",        expansion: "empires", type: "landmark", description: "At game end, +15VP if you have at least 10 Coppers in your deck." },
+  { id: "lm-keep",           name: "Keep",            expansion: "empires", type: "landmark", description: "At game end, +5VP for each type of Treasure you have the most of (or tied for most) among all players." },
+  { id: "lm-labyrinth",      name: "Labyrinth",       expansion: "empires", type: "landmark", description: "When you gain your second card in one turn, take 2VP from the Labyrinth pile (starts with 6VP per player)." },
+  { id: "lm-mountain-pass",  name: "Mountain Pass",   expansion: "empires", type: "landmark", description: "When the first Province is gained, players bid Debt tokens; highest bidder takes 8VP but owes that much Debt." },
+  { id: "lm-museum",         name: "Museum",          expansion: "empires", type: "landmark", description: "At game end, +2VP per differently named card in your deck." },
+  { id: "lm-obelisk",        name: "Obelisk",         expansion: "empires", type: "landmark", description: "Choose a Kingdom supply pile at setup; at game end, +2VP per card from that pile in your deck." },
+  { id: "lm-orchard",        name: "Orchard",         expansion: "empires", type: "landmark", description: "At game end, +4VP for each Action supply pile from which you have at least 3 differently named cards." },
+  { id: "lm-palace",         name: "Palace",          expansion: "empires", type: "landmark", description: "At game end, +3VP per matched set of one Copper, one Silver, and one Gold in your deck." },
+  { id: "lm-ritual",         name: "Ritual",          expansion: "empires", type: "landmark", description: "When you buy a Curse, trash a card from hand; +VP equal to its cost in coins." },
+  { id: "lm-saltmarsh",      name: "Saltmarsh",       expansion: "empires", type: "landmark", description: "When you gain a Treasure costing at least $3, take 1VP from the Saltmarsh pile (starts with 4VP per player)." },
+  { id: "lm-tomb",           name: "Tomb",            expansion: "empires", type: "landmark", description: "When you trash a card, +1VP." },
+  { id: "lm-tower",          name: "Tower",           expansion: "empires", type: "landmark", description: "At game end, +1VP per non-Victory card in your deck from any empty supply pile." },
+  { id: "lm-triumphal-arch", name: "Triumphal Arch",  expansion: "empires", type: "landmark", description: "At game end, +3VP per copy of the second most common Action card in your deck (fewest copies if tied)." },
+  { id: "lm-wall",           name: "Wall",            expansion: "empires", type: "landmark", description: "At game end, −1VP per card in your deck beyond 15." },
+  { id: "lm-wolf-den",       name: "Wolf Den",        expansion: "empires", type: "landmark", description: "At game end, −3VP per card type in your deck of which you have exactly one copy." },
 ];
 
 // ── EMPIRES – Events ──────────────────────────────────────────────────────────
@@ -174,25 +174,63 @@ const PLUNDER_TRAITS: NonSupplyCard[] = [
   { id: "trait-tireless",  name: "Tireless",  expansion: "plunder", type: "trait", description: "When you discard a card from this pile from play, set it aside; put it into your hand at the end of your turn." },
 ];
 
+// ── RISING SUN – Events ───────────────────────────────────────────────────────
+
+const RISING_SUN_EVENTS: NonSupplyCard[] = [
+  { id: "ev-amass",           name: "Amass",           expansion: "rising-sun", type: "event", cost: 2,   description: "Gain a Copper onto your deck; +1 Coin per Copper you have." },
+  { id: "ev-asceticism",      name: "Asceticism",      expansion: "rising-sun", type: "event", cost: 2,   description: "Trash any number of differently named cards from your hand; +1 Coin per card trashed." },
+  { id: "ev-continue",        name: "Continue",        expansion: "rising-sun", type: "event", cost: "8D",description: "Take another turn after this one, in which you can't buy Continue." },
+  { id: "ev-credit",          name: "Credit",          expansion: "rising-sun", type: "event", cost: 2,   description: "Gain an Action card costing up to $5, and take Debt equal to its cost." },
+  { id: "ev-foresight",       name: "Foresight",       expansion: "rising-sun", type: "event", cost: 2,   description: "Set aside the top card of your deck face up; play it at the start of your next turn." },
+  { id: "ev-gather",          name: "Gather",          expansion: "rising-sun", type: "event", cost: 3,   description: "Gain a card costing up to $3 for each differently named Treasure you have in play." },
+  { id: "ev-kintsugi",        name: "Kintsugi",        expansion: "rising-sun", type: "event", cost: 3,   description: "Trash a card from your hand; if it's the first time this turn, gain a cheaper card." },
+  { id: "ev-practice",        name: "Practice",        expansion: "rising-sun", type: "event", cost: 3,   description: "Set aside an Action card from your hand; play it twice at the start of your next turn." },
+  { id: "ev-receive-tribute", name: "Receive Tribute", expansion: "rising-sun", type: "event", cost: 5,   description: "Gain a card of each type your opponents' Kingdom cards have (Action, Attack, etc.)." },
+  { id: "ev-sea-trade",       name: "Sea Trade",       expansion: "rising-sun", type: "event", cost: 4,   description: "Discard your hand; +1 Card per card discarded this way; gain a Silver per differently named Victory card discarded." },
+];
+
+// ── RISING SUN – Prophecies ───────────────────────────────────────────────────
+
+const RISING_SUN_PROPHECIES: NonSupplyCard[] = [
+  { id: "pr-approaching-army", name: "Approaching Army", expansion: "rising-sun", type: "prophecy", description: "Once active: the first Action card each player plays each turn that costs less than their previously played Action, they gain a Curse." },
+  { id: "pr-biding-time",      name: "Biding Time",      expansion: "rising-sun", type: "prophecy", description: "Once active: at the start of each turn, that player puts their hand onto their deck, then draws that many." },
+  { id: "pr-bureaucracy",      name: "Bureaucracy",      expansion: "rising-sun", type: "prophecy", description: "Once active: at the start of each turn, that player reveals their hand; if it has no Actions or Treasures, +1 Card and +1 Action." },
+  { id: "pr-divine-wind",      name: "Divine Wind",      expansion: "rising-sun", type: "prophecy", description: "Once active: when a pile becomes empty, the game ends after the current turn (not waiting for 3 piles)." },
+  { id: "pr-enlightenment",    name: "Enlightenment",    expansion: "rising-sun", type: "prophecy", description: "Once active: Treasures also give +1 Card and +1 Action, and Actions also give +1 Coin, for the rest of the game." },
+  { id: "pr-flourishing-trade",name: "Flourishing Trade",expansion: "rising-sun", type: "prophecy", description: "Once active: cards cost $1 less, but not less than $0, for the rest of the game." },
+  { id: "pr-good-harvest",     name: "Good Harvest",     expansion: "rising-sun", type: "prophecy", description: "Once active: when you play a Treasure that's the first of its name you've played this turn, +1 Buy." },
+  { id: "pr-great-leader",     name: "Great Leader",     expansion: "rising-sun", type: "prophecy", description: "Once active: turns don't end while you have 8 or more Actions in play." },
+  { id: "pr-growth",           name: "Growth",           expansion: "rising-sun", type: "prophecy", description: "Once active: when you gain a card, if it's the most expensive card you've gained this turn, gain a cheaper card." },
+  { id: "pr-harsh-winter",     name: "Harsh Winter",     expansion: "rising-sun", type: "prophecy", description: "Once active: Actions cost $1 more for the rest of the game." },
+  { id: "pr-kind-emperor",     name: "Kind Emperor",     expansion: "rising-sun", type: "prophecy", description: "Once active: at the start of your turn, +1 Card if you have no more cards in hand than each other player." },
+  { id: "pr-panic",            name: "Panic",            expansion: "rising-sun", type: "prophecy", description: "Once active: when you buy a card costing $3 or more, return a copy of it and any others you have to the supply." },
+  { id: "pr-progress",         name: "Progress",         expansion: "rising-sun", type: "prophecy", description: "Once active: when you gain a card costing $5 or more, gain a Silver." },
+  { id: "pr-rapid-expansion",  name: "Rapid Expansion",  expansion: "rising-sun", type: "prophecy", description: "Once active: when you trash a card, gain a card costing up to $2 more than it, onto your deck." },
+  { id: "pr-sickness",         name: "Sickness",         expansion: "rising-sun", type: "prophecy", description: "Once active: at the start of your turn, gain a Curse and put it into your hand." },
+];
+
 // ── Combined exports ──────────────────────────────────────────────────────────
 
 export const NON_SUPPLY_CARDS: NonSupplyCard[] = [
   ...ADVENTURES_EVENTS,
-  ...ADVENTURES_LANDMARKS,
+  ...EMPIRES_LANDMARKS,
   ...EMPIRES_EVENTS,
   ...MENAGERIE_EVENTS,
   ...MENAGERIE_WAYS,
   ...RENAISSANCE_PROJECTS,
   ...PLUNDER_EVENTS,
   ...PLUNDER_TRAITS,
+  ...RISING_SUN_EVENTS,
+  ...RISING_SUN_PROPHECIES,
 ];
 
 export const NON_SUPPLY_BY_EXPANSION: Record<string, NonSupplyCard[]> = {
-  adventures: [...ADVENTURES_EVENTS, ...ADVENTURES_LANDMARKS],
-  empires:    [...EMPIRES_EVENTS],
+  adventures: [...ADVENTURES_EVENTS],
+  empires:    [...EMPIRES_EVENTS, ...EMPIRES_LANDMARKS],
   menagerie:  [...MENAGERIE_EVENTS, ...MENAGERIE_WAYS],
   renaissance:[...RENAISSANCE_PROJECTS],
   plunder:    [...PLUNDER_EVENTS, ...PLUNDER_TRAITS],
+  "rising-sun": [...RISING_SUN_EVENTS, ...RISING_SUN_PROPHECIES],
 };
 
 export const NON_SUPPLY_MAP = Object.fromEntries(
@@ -200,21 +238,23 @@ export const NON_SUPPLY_MAP = Object.fromEntries(
 );
 
 /** How many of each non-supply type to include when that expansion is represented */
-export const NON_SUPPLY_COUNTS: Record<string, { events?: number; ways?: number; projects?: number; landmarks?: number; traits?: number }> = {
-  adventures:  { events: 2, landmarks: 1 },
-  empires:     { events: 2, landmarks: 1 },
-  menagerie:   { events: 2, ways: 1 },
-  renaissance: { projects: 2 },
-  plunder:     { events: 2, traits: 2 },
+export const NON_SUPPLY_COUNTS: Record<string, { events?: number; ways?: number; projects?: number; landmarks?: number; traits?: number; prophecies?: number }> = {
+  adventures:   { events: 2 },
+  empires:      { events: 2, landmarks: 1 },
+  menagerie:    { events: 2, ways: 1 },
+  renaissance:  { projects: 2 },
+  plunder:      { events: 2, traits: 2 },
+  "rising-sun": { events: 2, prophecies: 1 },
 };
 
-/** Given a set of expansion IDs in the kingdom, return the non-supply cards to suggest */
-export function selectNonSupply(expansionIds: string[]): {
+/** Given a set of expansion IDs and the selected cards, return the non-supply cards to suggest */
+export function selectNonSupply(expansionIds: string[], hasOmens = false): {
   events: NonSupplyCard[];
   way: NonSupplyCard | undefined;
   projects: NonSupplyCard[];
   landmark: NonSupplyCard | undefined;
   traits: NonSupplyCard[];
+  prophecy: NonSupplyCard | undefined;
 } {
   const shuffle = <T>(arr: T[]): T[] => {
     const a = [...arr];
@@ -227,11 +267,12 @@ export function selectNonSupply(expansionIds: string[]): {
 
   const pick = <T>(arr: T[], n: number): T[] => shuffle(arr).slice(0, n);
 
-  const eventPool:   NonSupplyCard[] = [];
-  const wayPool:     NonSupplyCard[] = [];
-  const projectPool: NonSupplyCard[] = [];
-  const landmarkPool:NonSupplyCard[] = [];
-  const traitPool:   NonSupplyCard[] = [];
+  const eventPool:    NonSupplyCard[] = [];
+  const wayPool:      NonSupplyCard[] = [];
+  const projectPool:  NonSupplyCard[] = [];
+  const landmarkPool: NonSupplyCard[] = [];
+  const traitPool:    NonSupplyCard[] = [];
+  const prophecyPool: NonSupplyCard[] = [];
 
   for (const expId of expansionIds) {
     const cards = NON_SUPPLY_BY_EXPANSION[expId] ?? [];
@@ -241,14 +282,16 @@ export function selectNonSupply(expansionIds: string[]): {
       else if (c.type === "project") projectPool.push(c);
       else if (c.type === "landmark") landmarkPool.push(c);
       else if (c.type === "trait") traitPool.push(c);
+      else if (c.type === "prophecy") prophecyPool.push(c);
     }
   }
 
   const hasProjects  = expansionIds.includes("renaissance");
   const hasWays      = expansionIds.includes("menagerie");
-  const hasLandmarks = expansionIds.some((e) => e === "adventures" || e === "empires");
+  const hasLandmarks = expansionIds.includes("empires");
   const hasTraits    = expansionIds.includes("plunder");
   const hasEvents    = expansionIds.some((e) => NON_SUPPLY_BY_EXPANSION[e]?.some((c) => c.type === "event"));
+  const hasProphecy  = expansionIds.includes("rising-sun") && hasOmens;
 
   return {
     events:   hasEvents    ? pick(eventPool, 2)   : [],
@@ -256,5 +299,6 @@ export function selectNonSupply(expansionIds: string[]): {
     projects: hasProjects  ? pick(projectPool, 2)  : [],
     landmark: hasLandmarks ? pick(landmarkPool, 1)[0] : undefined,
     traits:   hasTraits    ? pick(traitPool, 2)   : [],
+    prophecy: hasProphecy  ? pick(prophecyPool, 1)[0] : undefined,
   };
 }

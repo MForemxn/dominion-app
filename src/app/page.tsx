@@ -304,6 +304,7 @@ function NonSupplyStrip({ nonSupply }: { nonSupply: SelectedNonSupply }) {
     project:  "bg-cyan-800/60 text-cyan-300 border-cyan-700/40",
     landmark: "bg-purple-800/60 text-purple-300 border-purple-700/40",
     trait:    "bg-pink-800/60 text-pink-300 border-pink-700/40",
+    prophecy: "bg-red-800/60 text-red-300 border-red-700/40",
   };
 
   const sections: Array<{ label: string; key: keyof SelectedNonSupply; color: string }> = [
@@ -312,6 +313,7 @@ function NonSupplyStrip({ nonSupply }: { nonSupply: SelectedNonSupply }) {
     { label: "Projects",  key: "projects",  color: typeColor.project  },
     { label: "Landmark",  key: "landmark",  color: typeColor.landmark },
     { label: "Traits",    key: "traits",    color: typeColor.trait    },
+    { label: "Prophecy",  key: "prophecy",  color: typeColor.prophecy },
   ];
 
   const hasAny = sections.some(({ key }) => {

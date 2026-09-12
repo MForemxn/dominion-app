@@ -19,7 +19,8 @@ export type CardType =
   | "Boon"
   | "Hex"
   | "Looter"
-  | "Command";
+  | "Command"
+  | "Shadow";
 
 export type CardRole =
   | "village"
@@ -111,7 +112,8 @@ export type NonSupplyType =
   | "project"
   | "landmark"
   | "trait"
-  | "ally";
+  | "ally"
+  | "prophecy";
 
 export interface NonSupplyCard {
   id: string;
@@ -130,6 +132,7 @@ export interface NonSupplyCounts {
   projects: number;
   landmarks: number;
   traits: number;
+  prophecies: number;
 }
 
 export interface SelectedNonSupply {
@@ -139,6 +142,7 @@ export interface SelectedNonSupply {
   landmark?: NonSupplyCard;
   traits?: NonSupplyCard[];
   ally?: NonSupplyCard;
+  prophecy?: NonSupplyCard;
 }
 
 // ── Physical component requirements ───────────────────────────────────────────

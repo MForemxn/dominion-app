@@ -151,13 +151,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // SINGLE EXPANSION — CORNUCOPIA
+  // SINGLE EXPANSION — CORNUCOPIA & GUILDS
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-001",
+    id: "cornucopia-guilds-001",
     name: "Fair Festival",
-    expansions: ["cornucopia"],
+    expansions: ["cornucopia-guilds"],
     cards: ["hamlet","farming-village","hunting-party","horn-of-plenty","tournament","fairgrounds","horse-traders","remake","menagerie-card","harvest"],
     strategy: "Score Fairgrounds by assembling a diverse deck — every different card name adds VP. Horn of Plenty converts card diversity directly into free gains. Hunting Party reliably finds what you need. Tournament rewards Province ownership with unique Prizes. Hamlet and Farming Village keep Actions flowing.",
     keyCards: ["fairgrounds","horn-of-plenty","hunting-party"],
@@ -166,9 +166,9 @@ export const COMBINATIONS: Combination[] = [
   },
 
   {
-    id: "cornucopia-002",
+    id: "cornucopia-guilds-002",
     name: "Jester's Carnival",
-    expansions: ["cornucopia"],
+    expansions: ["cornucopia-guilds"],
     cards: ["jester","farming-village","hamlet","fortune-teller","horse-traders","hunting-party","harvest","young-witch","menagerie-card","fairgrounds"],
     strategy: "Jester punishes Victory-heavy decks by forcing Curses; if opponent's top card is an Action or Treasure you gain a copy instead — great value. Young Witch threatens Curses unless opponents have the Bane. Fortune Teller locks Victory cards on top of opponent decks. Horse Traders provides excellent burst economy plus an attack reaction.",
     keyCards: ["jester","young-witch","fortune-teller"],
@@ -178,9 +178,9 @@ export const COMBINATIONS: Combination[] = [
   },
 
   {
-    id: "cornucopia-003",
+    id: "cornucopia-guilds-003",
     name: "Tournament Circuit",
-    expansions: ["cornucopia"],
+    expansions: ["cornucopia-guilds"],
     cards: ["tournament","farming-village","menagerie-card","hamlet","horn-of-plenty","horse-traders","remake","jester","young-witch","harvest"],
     strategy: "Tournament is the pivot: reveal Province when you play it to gain a powerful Prize card (Bag of Gold, Followers, Princess, Trusty Steed, or Diadem). Remake efficiently upgrades Coppers to Silvers and Estates to useful cards. Menagerie rewards hand diversity with +3 Cards. Horse Traders doubles as a Reaction to protect yourself.",
     keyCards: ["tournament","remake","menagerie-card"],
@@ -263,13 +263,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // SINGLE EXPANSION — GUILDS
+  // SINGLE EXPANSION — CORNUCOPIA & GUILDS (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-001",
+    id: "cornucopia-guilds-004",
     name: "Coffers Engine",
-    expansions: ["guilds"],
+    expansions: ["cornucopia-guilds"],
     cards: ["plaza","herald","butcher","advisor","journeyman","merchant-guild","candlestick-maker","stonemason","doctor","soothsayer"],
     strategy: "Coffers are deferred coins — save them up and spend in the Buy phase. Plaza generates Coffers when you discard Treasures. Merchant Guild banks one Coffer for every card bought. Butcher spends Coffers to gain any card. Herald reveals your top card and plays it if it's an Action — chain multiple Heralds for explosive turns.",
     keyCards: ["plaza","merchant-guild","butcher"],
@@ -278,9 +278,9 @@ export const COMBINATIONS: Combination[] = [
   },
 
   {
-    id: "guilds-002",
+    id: "cornucopia-guilds-005",
     name: "Overpay Workshop",
-    expansions: ["guilds"],
+    expansions: ["cornucopia-guilds"],
     cards: ["plaza","herald","taxman","masterpiece","stonemason","doctor","advisor","butcher","journeyman","candlestick-maker"],
     strategy: "Overpay Masterpiece to flood the supply with Silvers, then use Doctor's overpay to surgically trash junk from the top of your deck. Taxman trashes your own Treasures to upgrade them and makes opponents discard their copies — wrecking Silver stacks. Stonemason splits one expensive card into two mid-range ones.",
     keyCards: ["doctor","masterpiece","stonemason"],
@@ -289,9 +289,9 @@ export const COMBINATIONS: Combination[] = [
   },
 
   {
-    id: "guilds-003",
+    id: "cornucopia-guilds-006",
     name: "Guild Hall Feast",
-    expansions: ["guilds"],
+    expansions: ["cornucopia-guilds"],
     cards: ["plaza","herald","merchant-guild","candlestick-maker","soothsayer","journeyman","taxman","butcher","advisor","stonemason"],
     strategy: "Soothsayer is the attack of choice: you gain Gold and opponents gain Curses, but those cursed players draw a card — not entirely bad for them, but the Gold income advantage is decisive. Journeyman draws targeted cards to hand. Candlestick Maker provides early Coffers and Buys cheaply. Everything feeds the Coffer engine.",
     keyCards: ["soothsayer","journeyman","merchant-guild"],
@@ -560,13 +560,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + GUILDS
+  // MORE — CORNUCOPIA & GUILDS
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-guilds-001",
+    id: "cornucopia-guilds-007",
     name: "The Grand Fair",
-    expansions: ["cornucopia","guilds"],
+    expansions: ["cornucopia-guilds"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","herald","plaza","butcher","merchant-guild","soothsayer"],
     strategy: "Cornucopia rewards deck diversity; Guilds rewards accumulating Coffers. Hunting Party reliably draws distinct cards to hand, padding Fairgrounds VP. Herald plays the top card if it's an Action — combine with topdecking from Hamlet to chain powerful turns. Merchant Guild banks a Coffer for every card bought. Butcher spends Coffers to freely upgrade or gain any card.",
     keyCards: ["hunting-party","herald","merchant-guild"],
@@ -827,13 +827,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — ADVENTURES + CORNUCOPIA
+  // PAIRS — ADVENTURES + CORNUCOPIA & GUILDS
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "adventures-cornucopia-001",
+    id: "adventures-cornucopia-guilds-001",
     name: "Diverse Expedition",
-    expansions: ["adventures","cornucopia"],
+    expansions: ["adventures","cornucopia-guilds"],
     cards: ["port","lost-city","gear","dungeon","ranger","farming-village","hamlet","hunting-party","fairgrounds","horse-traders"],
     strategy: "Fairgrounds rewards deck diversity; Adventures supplies plenty of unique card names. Port gives two villages for one buy. Lost City provides +2 Actions and +2 Cards, turbocharging the engine. Hunting Party reliably finds the exact card needed. Hamlet's flexible +1 Action or +1 Buy covers whatever the turn requires. Ranger's +1 Buy on flip rewards building the expedition token.",
     keyCards: ["fairgrounds","hunting-party","lost-city"],
@@ -872,13 +872,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — ADVENTURES + GUILDS
+  // PAIRS — ADVENTURES + CORNUCOPIA & GUILDS (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "adventures-guilds-001",
+    id: "adventures-cornucopia-guilds-002",
     name: "Coffers Reserve",
-    expansions: ["adventures","guilds"],
+    expansions: ["adventures","cornucopia-guilds"],
     cards: ["port","coin-of-the-realm","royal-carriage","storyteller","plaza","herald","merchant-guild","butcher","candlestick-maker","dungeon"],
     strategy: "Plaza discards Treasures to earn Coffers. Merchant Guild banks a Coffer for every card bought. Butcher spends Coffers to freely gain or upgrade cards. Royal Carriage replays your best Action at zero cost. Coin of the Realm sits on the Tavern mat as a free +2 Actions mid-turn. Storyteller spends Treasures for card draw. Herald plays the top card if it's an Action.",
     keyCards: ["plaza","merchant-guild","royal-carriage"],
@@ -1008,13 +1008,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — ALLIES + CORNUCOPIA
+  // PAIRS — ALLIES + CORNUCOPIA & GUILDS
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "allies-cornucopia-001",
+    id: "allies-cornucopia-guilds-001",
     name: "Diverse Favors",
-    expansions: ["allies","cornucopia"],
+    expansions: ["allies","cornucopia-guilds"],
     cards: ["destination","innkeeper","galleria","sycophant","sentinel","farming-village","hamlet","hunting-party","fairgrounds","horse-traders"],
     strategy: "Fairgrounds VP scales with deck diversity — Allies cards add more unique names cheaply. Galleria earns Favors when buying cheap cards; pair with Hamlet's flexible buy to bank Favors. Hunting Party reliably finds the card you need from any hand. Sycophant provides burst economy when Favors are spent. Innkeeper filters hand and provides village. Sentinel trashes to keep the deck lean.",
     keyCards: ["fairgrounds","galleria","hunting-party"],
@@ -1053,13 +1053,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — ALLIES + GUILDS
+  // PAIRS — ALLIES + CORNUCOPIA & GUILDS (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "allies-guilds-001",
+    id: "allies-cornucopia-guilds-002",
     name: "Coffer Favors",
-    expansions: ["allies","guilds"],
+    expansions: ["allies","cornucopia-guilds"],
     cards: ["destination","innkeeper","sycophant","galleria","sentinel","plaza","herald","merchant-guild","butcher","candlestick-maker"],
     strategy: "Plaza discards Treasures for Coffers; Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade any card. Galleria earns Favors on cheap buys and Herald is a cantrip that plays the top card if it's an Action. Sycophant spends Favors for burst economy. Destination and Innkeeper provide village effects. Sentinel trashes to keep the engine tight.",
     keyCards: ["merchant-guild","butcher","galleria"],
@@ -1189,13 +1189,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + DARK AGES
+  // PAIRS — CORNUCOPIA & GUILDS + DARK AGES
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-dark-ages-001",
+    id: "cornucopia-guilds-dark-ages-001",
     name: "Jester's Dark Fair",
-    expansions: ["cornucopia","dark-ages"],
+    expansions: ["cornucopia-guilds","dark-ages"],
     cards: ["farming-village","hamlet","jester","hunting-party","fairgrounds","wandering-minstrel","fortress","junk-dealer","market-square","forager"],
     strategy: "Jester punishes Victory-heavy decks and gains copies of revealed actions or Treasures. Fairgrounds rewards diversity — Dark Ages cards add many unique names. Fortress as indestructible village. Wandering Minstrel reveals top 3 and keeps Actions. Hunting Party reliably draws what you need. Market Square reacts to junk-dealing trashing for free Gold. Forager trashes for coins from unique Treasures.",
     keyCards: ["jester","fortress","market-square"],
@@ -1204,13 +1204,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + EMPIRES
+  // PAIRS — CORNUCOPIA & GUILDS + EMPIRES
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-empires-001",
+    id: "cornucopia-guilds-empires-001",
     name: "Tournament Empire",
-    expansions: ["cornucopia","empires"],
+    expansions: ["cornucopia-guilds","empires"],
     cards: ["farming-village","hamlet","tournament","hunting-party","fairgrounds","city-quarter","encampment","crown","farmers-market","groundskeeper"],
     strategy: "Tournament grants Prizes when you reveal a Province — combine with Groundskeeper to earn VP tokens every time you gain a Victory card. Crown doubles the next Action or Treasure. City Quarter draws as many cards as Actions in hand. Fairgrounds VP grows with deck diversity. Farming Village and Hamlet ensure reliable Action chains. Farmers' Market provides a Buy and accumulates VP tokens.",
     keyCards: ["tournament","groundskeeper","city-quarter"],
@@ -1219,13 +1219,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + HINTERLANDS
+  // PAIRS — CORNUCOPIA & GUILDS + HINTERLANDS
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-hinterlands-001",
+    id: "cornucopia-guilds-hinterlands-001",
     name: "Fair Roads",
-    expansions: ["cornucopia","hinterlands"],
+    expansions: ["cornucopia-guilds","hinterlands"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","inn","highway","haggler","cartographer","jack-of-all-trades"],
     strategy: "Highway drives down costs and stacks with Haggler's free gains for an explosive value engine. Fairgrounds rewards deck diversity — both sets contribute many unique names. Hunting Party reliably finds the exact card needed. Inn reloads discarded Actions when gained. Jack of All Trades gains Silver, draws to 5, and trashes junk. Hamlet gives flexible +Action or +Buy.",
     keyCards: ["highway","fairgrounds","hunting-party"],
@@ -1234,13 +1234,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + INTRIGUE
+  // PAIRS — CORNUCOPIA & GUILDS + INTRIGUE
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-intrigue-001",
+    id: "cornucopia-guilds-intrigue-001",
     name: "Noble Fair",
-    expansions: ["cornucopia","intrigue"],
+    expansions: ["cornucopia-guilds","intrigue"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","tournament","nobles","mining-village","shanty-town","conspirator","upgrade"],
     strategy: "Nobles and Farming Village provide flexible Action and draw options. Conspirator triggers after 3 Actions — easy with four village types available. Tournament grants Prizes on Province reveals. Fairgrounds VP grows with the dense diversity across both sets. Hunting Party reliably finds the card needed. Shanty Town draws when Action-light. Upgrade reshapes mid-tier cards.",
     keyCards: ["nobles","conspirator","fairgrounds"],
@@ -1249,13 +1249,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + MENAGERIE
+  // PAIRS — CORNUCOPIA & GUILDS + MENAGERIE
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-menagerie-001",
+    id: "cornucopia-guilds-menagerie-001",
     name: "Animal Fair",
-    expansions: ["cornucopia","menagerie"],
+    expansions: ["cornucopia-guilds","menagerie"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
     strategy: "Fairgrounds with Cornucopia and Menagerie gives enormous card name diversity. Snowy Village provides 4 Actions and a Buy. Paddock gives +2 Actions and two Horses. Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions for draw. Animal Fair trashes an Action instead of paying cost. Hunting Party finds key cards reliably.",
     keyCards: ["fairgrounds","snowy-village","cavalry"],
@@ -1265,13 +1265,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + NOCTURNE
+  // PAIRS — CORNUCOPIA & GUILDS + NOCTURNE
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-nocturne-001",
+    id: "cornucopia-guilds-nocturne-001",
     name: "Dark Carnival",
-    expansions: ["cornucopia","nocturne"],
+    expansions: ["cornucopia-guilds","nocturne"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","jester","blessed-village","conclave","cobbler","shepherd","skulk"],
     strategy: "Jester punishes Victory-heavy decks and grants copies of revealed Actions/Treasures. Fairgrounds VP grows with diversity across both sets. Cobbler is a Night card gaining any card up to 4 for next turn. Blessed Village receives Boons. Shepherd discards Victories to draw 2 each. Skulk gains Gold when bought. Hunting Party finds the card needed. Conclave plays an Action from hand for free.",
     keyCards: ["jester","fairgrounds","cobbler"],
@@ -1280,13 +1280,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + PLUNDER
+  // PAIRS — CORNUCOPIA & GUILDS + PLUNDER
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-plunder-001",
+    id: "cornucopia-guilds-plunder-001",
     name: "Fair Plunder",
-    expansions: ["cornucopia","plunder"],
+    expansions: ["cornucopia-guilds","plunder"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","wealthy-village","harbor-village","pickaxe","mapmaker","mining-road"],
     strategy: "Fairgrounds rewards deck diversity — Plunder's Loot cards add many unique Treasure names. Wealthy Village provides a village and Loot when three different Treasures are in play. Pickaxe trashes a card costing 3+ to gain Loot. Harbor Village rewards multiple Actions with bonus coins. Mining Road gives a Buy and lets you play gained Treasures. Hunting Party finds key cards. Mapmaker draws and filters.",
     keyCards: ["fairgrounds","wealthy-village","pickaxe"],
@@ -1295,13 +1295,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + PROSPERITY
+  // PAIRS — CORNUCOPIA & GUILDS + PROSPERITY
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-prosperity-001",
+    id: "cornucopia-guilds-prosperity-001",
     name: "Fair Fortune",
-    expansions: ["cornucopia","prosperity"],
+    expansions: ["cornucopia-guilds","prosperity"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","tournament","workers-village","city","grand-market","peddler","vault"],
     strategy: "Fairgrounds VP combined with Colony as the win condition creates a dual scoring axis. City surges as piles empty. Peddler's cost drops to 0 with many Actions. Grand Market draws and buys. Workers' Village chains cheaply alongside Farming Village. Tournament grants Prizes on Province reveals. Vault discards excess cards for coins. Hunting Party finds the card needed every turn.",
     keyCards: ["fairgrounds","city","grand-market"],
@@ -1310,13 +1310,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + RENAISSANCE
+  // PAIRS — CORNUCOPIA & GUILDS + RENAISSANCE
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-renaissance-001",
+    id: "cornucopia-guilds-renaissance-001",
     name: "Scholar's Fair",
-    expansions: ["cornucopia","renaissance"],
+    expansions: ["cornucopia-guilds","renaissance"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
     strategy: "Fairgrounds rewards diversity — Renaissance's Villager and Coffer cards add many unique names cheaply. Acting Troupe dumps 4 Villagers then disappears. Recruiter converts trashed cards into Villagers. Silk Merchant draws and buys. Mountain Village recovers discarded cards. Hunting Party reliably finds the card needed. Hamlet's flexible +Action or +Buy covers whatever the turn requires.",
     keyCards: ["fairgrounds","acting-troupe","hunting-party"],
@@ -1325,13 +1325,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — CORNUCOPIA + SEASIDE
+  // PAIRS — CORNUCOPIA & GUILDS + SEASIDE
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-seaside-001",
+    id: "cornucopia-guilds-seaside-001",
     name: "Carnival Sea",
-    expansions: ["cornucopia","seaside"],
+    expansions: ["cornucopia-guilds","seaside"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","horse-traders","fishing-village","wharf","caravan","lighthouse","salvager"],
     strategy: "Wharf's sustained draw and Buys across two turns keeps the engine running. Fairgrounds VP grows quickly with both sets adding unique card names. Farming Village and Fishing Village provide flexible village types. Hunting Party finds what you need reliably. Caravan drips cards over two turns. Horse Traders provides burst economy and a Reaction. Salvager converts junk for economy.",
     keyCards: ["fairgrounds","wharf","hunting-party"],
@@ -1355,13 +1355,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — DARK AGES + GUILDS
+  // PAIRS — CORNUCOPIA & GUILDS + DARK AGES (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "dark-ages-guilds-001",
+    id: "cornucopia-guilds-dark-ages-002",
     name: "Dark Coffers",
-    expansions: ["dark-ages","guilds"],
+    expansions: ["cornucopia-guilds","dark-ages"],
     cards: ["wandering-minstrel","fortress","junk-dealer","market-square","forager","plaza","herald","merchant-guild","butcher","candlestick-maker"],
     strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards freely. Junk Dealer trashes for economy. Market Square reacts to trashing for Gold. Herald plays top card if it's an Action. Forager trashes for coins per unique Treasure in trash. Fortress is the indestructible village. Wandering Minstrel keeps Actions flowing.",
     keyCards: ["plaza","merchant-guild","market-square"],
@@ -1476,13 +1476,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — EMPIRES + GUILDS
+  // PAIRS — CORNUCOPIA & GUILDS + EMPIRES (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "empires-guilds-001",
+    id: "cornucopia-guilds-empires-002",
     name: "Coffer Empire",
-    expansions: ["empires","guilds"],
+    expansions: ["cornucopia-guilds","empires"],
     cards: ["city-quarter","encampment","crown","farmers-market","groundskeeper","plaza","herald","merchant-guild","butcher","candlestick-maker"],
     strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards freely. Crown doubles the next Action or Treasure — double Plaza for double Coffers. City Quarter draws cards equal to Actions in hand. Groundskeeper earns VP tokens for every Victory gained. Farmers' Market provides a Buy and accumulates VP tokens.",
     keyCards: ["crown","merchant-guild","groundskeeper"],
@@ -1612,13 +1612,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + HINTERLANDS
+  // PAIRS — CORNUCOPIA & GUILDS + HINTERLANDS (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-hinterlands-001",
+    id: "cornucopia-guilds-hinterlands-002",
     name: "Overpay Roads",
-    expansions: ["guilds","hinterlands"],
+    expansions: ["cornucopia-guilds","hinterlands"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","inn","highway","haggler","cartographer","spice-merchant"],
     strategy: "Highway stacks cost reductions. Haggler gains a free cheaper non-Victory card on every buy. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards. Herald plays the top card if it's an Action. Inn provides a village that reloads discarded Actions. Spice Merchant trashes Copper for draw or economy. Cartographer smooths draws.",
     keyCards: ["highway","haggler","merchant-guild"],
@@ -1627,13 +1627,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + INTRIGUE
+  // PAIRS — CORNUCOPIA & GUILDS + INTRIGUE (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-intrigue-001",
+    id: "cornucopia-guilds-intrigue-002",
     name: "Guild Nobles",
-    expansions: ["guilds","intrigue"],
+    expansions: ["cornucopia-guilds","intrigue"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","nobles","mining-village","shanty-town","conspirator","steward"],
     strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade cards. Herald plays top card if it's an Action. Nobles and Mining Village provide flexible Action chains. Conspirator triggers after 3 Actions — easy with all the village types. Shanty Town draws when Action-light. Steward thins early.",
     keyCards: ["merchant-guild","nobles","conspirator"],
@@ -1642,13 +1642,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + MENAGERIE
+  // PAIRS — CORNUCOPIA & GUILDS + MENAGERIE (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-menagerie-001",
+    id: "cornucopia-guilds-menagerie-002",
     name: "Guild Stampede",
-    expansions: ["guilds","menagerie"],
+    expansions: ["cornucopia-guilds","menagerie"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","snowy-village","paddock","cavalry","sheepdog","animal-fair"],
     strategy: "Cavalry gains Horses and re-enters the Action phase on buy, triggering Sheepdog reactions for +2 Cards. Paddock gives +2 Actions and two Horses. Snowy Village provides 4 Actions and a Buy. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Herald plays the top card if it's an Action. Animal Fair can trash an Action instead of paying.",
     keyCards: ["cavalry","merchant-guild","snowy-village"],
@@ -1658,13 +1658,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + NOCTURNE
+  // PAIRS — CORNUCOPIA & GUILDS + NOCTURNE (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-nocturne-001",
+    id: "cornucopia-guilds-nocturne-002",
     name: "Dark Guild",
-    expansions: ["guilds","nocturne"],
+    expansions: ["cornucopia-guilds","nocturne"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","blessed-village","conclave","cobbler","shepherd","skulk"],
     strategy: "Cobbler gains any card up to 4 at Night for next turn — gain Candlestick Maker for early Coffers, or gain Plaza to set up Coffer generation. Shepherd discards Victories to draw 2 each. Blessed Village receives Boons. Conclave plays an Action from hand for free. Skulk gains Gold when bought. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers freely.",
     keyCards: ["cobbler","merchant-guild","shepherd"],
@@ -1673,13 +1673,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + PLUNDER
+  // PAIRS — CORNUCOPIA & GUILDS + PLUNDER (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-plunder-001",
+    id: "cornucopia-guilds-plunder-002",
     name: "Guild Fleet",
-    expansions: ["guilds","plunder"],
+    expansions: ["cornucopia-guilds","plunder"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","wealthy-village","harbor-village","pickaxe","mapmaker","mining-road"],
     strategy: "Pickaxe trashes a card costing 3+ to gain Loot. Wealthy Village provides a village and Loot when three different Treasures are in play. Harbor Village rewards multiple Actions with bonus coins. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Mining Road gives a Buy and lets you play gained Treasures. Mapmaker draws and filters.",
     keyCards: ["pickaxe","merchant-guild","wealthy-village"],
@@ -1688,13 +1688,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + PROSPERITY
+  // PAIRS — CORNUCOPIA & GUILDS + PROSPERITY (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-prosperity-001",
+    id: "cornucopia-guilds-prosperity-002",
     name: "Grand Guild",
-    expansions: ["guilds","prosperity"],
+    expansions: ["cornucopia-guilds","prosperity"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","workers-village","city","grand-market","vault","monument"],
     strategy: "Monument accumulates VP tokens every turn it's played. City surges as piles empty. Grand Market draws and buys — never buy it with Copper in hand. Workers' Village chains cheaply. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Herald plays top card. Vault discards excess for coins.",
     keyCards: ["monument","merchant-guild","city"],
@@ -1703,13 +1703,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + RENAISSANCE
+  // PAIRS — CORNUCOPIA & GUILDS + RENAISSANCE (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-renaissance-001",
+    id: "cornucopia-guilds-renaissance-002",
     name: "Double Coffers",
-    expansions: ["guilds","renaissance"],
+    expansions: ["cornucopia-guilds","renaissance"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","mountain-village","hideout","acting-troupe","recruiter","silk-merchant"],
     strategy: "Double Coffers engine: Guilds generates Coffers from Plaza and Merchant Guild; Renaissance adds Silk Merchant's Coffers on entry. Acting Troupe dumps 4 Villagers. Recruiter converts trashed cards into Villagers. Mountain Village recovers discarded cards. Herald plays top card. Butcher spends Coffers to gain or upgrade. Hideout is a village with thinning upside.",
     keyCards: ["merchant-guild","acting-troupe","butcher"],
@@ -1718,13 +1718,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — GUILDS + SEASIDE
+  // PAIRS — CORNUCOPIA & GUILDS + SEASIDE (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-seaside-001",
+    id: "cornucopia-guilds-seaside-002",
     name: "Sea Guild",
-    expansions: ["guilds","seaside"],
+    expansions: ["cornucopia-guilds","seaside"],
     cards: ["plaza","herald","merchant-guild","butcher","candlestick-maker","fishing-village","wharf","caravan","lighthouse","salvager"],
     strategy: "Wharf provides sustained draw and Buys across two turns. Fishing Village provides cheap recurring Actions and coins. Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Herald plays top card. Lighthouse blocks attacks. Salvager converts junk for economy. Caravan drips cards over two turns.",
     keyCards: ["wharf","merchant-guild","fishing-village"],
@@ -1884,13 +1884,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — INTRIGUE + GUILDS
+  // PAIRS — INTRIGUE + CORNUCOPIA & GUILDS (cont.)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "guilds-intrigue-001",
+    id: "cornucopia-guilds-intrigue-003",
     name: "Noble Coffers",
-    expansions: ["guilds","intrigue"],
+    expansions: ["cornucopia-guilds","intrigue"],
     cards: ["plaza","herald","merchant-guild","butcher","soothsayer","nobles","mining-village","shanty-town","conspirator","bridge"],
     strategy: "Plaza discards Treasures for Coffers. Merchant Guild banks a Coffer per card bought. Butcher spends Coffers to gain or upgrade. Soothsayer gains Gold while opponents gain Curses and draw a card. Nobles and Conspirator synergise with heavy Action density. Bridge reduces costs. Herald plays the top card if it's an Action. Shanty Town draws when Action-light.",
     keyCards: ["merchant-guild","nobles","soothsayer"],
@@ -1899,13 +1899,13 @@ export const COMBINATIONS: Combination[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // PAIRS — INTRIGUE + CORNUCOPIA
+  // PAIRS — INTRIGUE + CORNUCOPIA & GUILDS (cont. 2)
   // ═══════════════════════════════════════════════════════════════
 
   {
-    id: "cornucopia-intrigue-001",
+    id: "cornucopia-guilds-intrigue-004",
     name: "Noble Carnival",
-    expansions: ["cornucopia","intrigue"],
+    expansions: ["cornucopia-guilds","intrigue"],
     cards: ["farming-village","hamlet","hunting-party","fairgrounds","jester","nobles","mining-village","shanty-town","conspirator","bridge"],
     strategy: "Fairgrounds VP grows quickly with both sets' diversity. Jester punishes Victory-heavy decks. Nobles and Conspirator synergise with heavy Action density. Farming Village and Hamlet alongside Nobles and Mining Village give four village types. Hunting Party reliably finds the card needed. Bridge reduces costs. Shanty Town draws when Action-light.",
     keyCards: ["fairgrounds","nobles","jester"],
@@ -2215,6 +2215,54 @@ export const COMBINATIONS: Combination[] = [
     keyCards: ["fishing-village","inn","haggler"],
     difficulty: "intermediate",
     tags: ["engine","gain","duration"],
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // SINGLE EXPANSION — RISING SUN
+  // ═══════════════════════════════════════════════════════════════
+
+  {
+    id: "rising-sun-001",
+    name: "Prophecy Engine",
+    expansions: ["rising-sun"],
+    cards: ["kitsune","mountain-shrine","poet","river-shrine","rustic-village","tea-house","rice","rice-broker","change","riverboat"],
+    strategy: "Chain the six Omens — Kitsune, Mountain Shrine, Poet, River Shrine, Rustic Village, and Tea House — to advance the Prophecy quickly. Rustic Village and Tea House keep your engine cycling, River Shrine gains for free, Poet rewards good timing, and Kitsune closes games out with Curses or extra Silver. Change and Rice Broker keep your deck lean, Riverboat replays your best Action, and Rice pays out coin once your play area is diversified.",
+    keyCards: ["kitsune","poet","river-shrine"],
+    difficulty: "intermediate",
+    tags: ["omen","engine","prophecy"],
+  },
+
+  {
+    id: "rising-sun-002",
+    name: "Shadow Assassins",
+    expansions: ["rising-sun"],
+    cards: ["alley","fishmonger","ninja","ronin","tanuki","samurai","snake-witch","aristocrat","root-cellar","craftsman"],
+    strategy: "Alley, Fishmonger, Ninja, Ronin, and Tanuki are all Shadows that can ambush from the top of your deck. Ninja and Samurai force opponents to discard down while Snake Witch and Samurai punish clean hands with Curses. Root Cellar and Craftsman refill your hand, Aristocrat scales up the more copies you stack, and Tanuki upgrades your trash into bigger threats.",
+    keyCards: ["ninja","samurai","tanuki"],
+    difficulty: "advanced",
+    tags: ["shadow","attack","aggro"],
+  },
+
+  {
+    id: "rising-sun-003",
+    name: "Debt Empire",
+    expansions: ["rising-sun"],
+    cards: ["artist","daimyo","mountain-shrine","craftsman","gold-mine","imperial-envoy","litter","root-cellar","change","rice"],
+    strategy: "Nearly every card here trades Debt for tempo — Artist and Mountain Shrine cost Debt outright, Daimyo replays your best Action next turn, and Craftsman, Gold Mine, Imperial Envoy, and Litter all let you take Debt to gain big now and pay later. Root Cellar and Change keep your hand and deck efficient while Rice cashes in your diversified play area for late-game coin.",
+    keyCards: ["daimyo","imperial-envoy","artist"],
+    difficulty: "advanced",
+    tags: ["debt","gain","engine"],
+  },
+
+  {
+    id: "rising-sun-004",
+    name: "Balanced Sun",
+    expansions: ["rising-sun"],
+    cards: ["aristocrat","fishmonger","poet","rice","riverboat","root-cellar","rustic-village","samurai","snake-witch","tea-house"],
+    strategy: "A gentle introduction to Rising Sun — Root Cellar and Rustic Village give straightforward card draw, Tea House and Poet add a splash of Prophecy, and Fishmonger funds your buys. Aristocrat rewards playing multiples, Riverboat replays a strong Action every turn, Samurai and Snake Witch apply light pressure, and Rice pays off once your deck has variety.",
+    keyCards: ["rustic-village","tea-house","samurai"],
+    difficulty: "beginner",
+    tags: ["beginner-friendly","omen","village"],
   },
 
 ];

@@ -34,12 +34,6 @@ export const EXPANSIONS: Expansion[] = [
     editionYears: { 1: 2010, 2: 2022 },
   },
   {
-    id: "cornucopia",
-    name: "Cornucopia",
-    year: 2011,
-    color: "bg-green-600",
-  },
-  {
     id: "hinterlands",
     name: "Hinterlands",
     year: 2011,
@@ -54,10 +48,10 @@ export const EXPANSIONS: Expansion[] = [
     color: "bg-stone-700",
   },
   {
-    id: "guilds",
-    name: "Guilds",
-    year: 2013,
-    color: "bg-rose-700",
+    id: "cornucopia-guilds",
+    name: "Cornucopia & Guilds",
+    year: 2015,
+    color: "bg-green-700",
   },
   {
     id: "adventures",
@@ -104,7 +98,7 @@ export const EXPANSIONS: Expansion[] = [
   {
     id: "rising-sun",
     name: "Rising Sun",
-    year: 2023,
+    year: 2024,
     color: "bg-red-500",
   },
 ];

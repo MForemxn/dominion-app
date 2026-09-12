@@ -24,8 +24,8 @@ const EXPANSION_BASE_COMPONENTS: Record<string, ComponentRequirement[]> = {
     { id: "coffers",   name: "Coffers tokens & mat",  reason: "Many Renaissance cards produce Coffers (saved coin tokens). Use the Coffers mat to track them.", triggeredBy: "renaissance" },
     { id: "villagers", name: "Villagers tokens & mat", reason: "Some Renaissance cards produce Villagers (saved action tokens). Use the Villagers mat.", triggeredBy: "renaissance" },
   ],
-  guilds: [
-    { id: "coffers-guilds", name: "Coffers tokens & mat", reason: "Guilds cards use Coffer tokens (same mechanic as Renaissance Coffers). Use a Coffers mat.", triggeredBy: "guilds" },
+  "cornucopia-guilds": [
+    { id: "coffers-guilds", name: "Coffers tokens & mat", reason: "Guilds cards use Coffer tokens (same mechanic as Renaissance Coffers). Use a Coffers mat.", triggeredBy: "cornucopia-guilds" },
   ],
   menagerie: [
     { id: "exile-mats", name: "Exile mats (one per player)", reason: "Several Menagerie cards and Events exile cards. Each player needs an Exile mat.", triggeredBy: "menagerie" },
@@ -46,6 +46,10 @@ const EXPANSION_BASE_COMPONENTS: Record<string, ComponentRequirement[]> = {
   empires: [
     { id: "debt-tokens",  name: "Debt tokens",    reason: "Several Empires cards and Events cost or accumulate Debt tokens instead of coin.", triggeredBy: "empires" },
     { id: "vp-tokens-emp","name": "VP tokens",   reason: "Landmarks and some Empires cards track points with VP tokens during play.", triggeredBy: "empires" },
+  ],
+  "rising-sun": [
+    { id: "debt-tokens", name: "Debt tokens", reason: "Artist, Daimyo, Mountain Shrine, and the Continue event cost or take Debt tokens.", triggeredBy: "rising-sun" },
+    { id: "sun-tokens",  name: "Sun tokens",  reason: "Omen cards and the Prophecy each require a Sun token to track Prophecy progress.", triggeredBy: "rising-sun" },
   ],
 };
 
@@ -111,8 +115,6 @@ const CARD_TRIGGERS: CardTrigger[] = [
   { cardId: "flag-bearer",     components: [{ id: "artifact-flag",   name: "Flag artifact",           reason: "Flag Bearer can take the Flag artifact (+1 Card at cleanup).", triggeredBy: "Flag Bearer" }] },
   { cardId: "swashbuckler",    components: [{ id: "artifact-chest",  name: "Treasure Chest artifact", reason: "Swashbuckler can take the Treasure Chest artifact when 3+ Coffers.", triggeredBy: "Swashbuckler" }] },
   { cardId: "treasurer",       components: [{ id: "artifact-key",    name: "Key artifact",            reason: "Treasurer can take the Key artifact (+$1 each turn).", triggeredBy: "Treasurer" }] },
-  // Rising Sun
-  { cardId: "toad",            components: [{ id: "hexes", name: "Hexes deck", reason: "Toad gains a Hex at start of next turn if still in play.", triggeredBy: "Toad" }] },
 ];
 
 // ── Main detection function ────────────────────────────────────────────────────
@@ -152,7 +154,7 @@ export function detectRequiredComponents(
         add({ id: "boons", name: "Boons deck", reason: "Fate cards award Boons.", triggeredBy: card.name });
       }
       // Hexes needed for Doom cards
-      const doomCards = new Set(["cursed-village","skulk","tormentor","vampire","werewolf","leprechaun","toad","raider"]);
+      const doomCards = new Set(["cursed-village","skulk","tormentor","vampire","werewolf","leprechaun","raider"]);
       if (doomCards.has(card.id)) {
         add({ id: "hexes", name: "Hexes deck", reason: "Doom cards inflict Hexes.", triggeredBy: card.name });
       }
@@ -166,7 +168,7 @@ export function detectRequiredComponents(
       add({ id: "vp-tokens", name: "VP tokens", reason: "This card generates VP tokens during play.", triggeredBy: card.name });
     }
     // Coffers for Guilds cards
-    if (card.expansion === "guilds" && card.notes.toLowerCase().includes("coffer")) {
+    if (card.expansion === "cornucopia-guilds" && card.notes.toLowerCase().includes("coffer")) {
       add({ id: "coffers-guilds", name: "Coffers tokens & mat", reason: "Guilds Coffer cards store coin tokens on a mat.", triggeredBy: card.name });
     }
     // Villagers for Renaissance cards

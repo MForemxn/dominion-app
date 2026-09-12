@@ -124,7 +124,8 @@ function buildExtras(cards: Card[], expansionIds: string[]): {
   // Only suggest non-supply for expansions that have cards in the kingdom
   const nonSupplyExpansions = cardExpansions.filter((e) => e !== "base");
 
-  const { events, way, projects, landmark, traits } = selectNonSupply(nonSupplyExpansions);
+  const hasOmens = cards.some((c) => c.types.includes("Omen"));
+  const { events, way, projects, landmark, traits, prophecy } = selectNonSupply(nonSupplyExpansions, hasOmens);
 
   const selectedNonSupply: SelectedNonSupply = {};
   if (events.length > 0)    selectedNonSupply.events   = events;
@@ -132,6 +133,7 @@ function buildExtras(cards: Card[], expansionIds: string[]): {
   if (projects.length > 0)  selectedNonSupply.projects = projects;
   if (landmark)              selectedNonSupply.landmark = landmark;
   if (traits.length > 0)    selectedNonSupply.traits   = traits;
+  if (prophecy)               selectedNonSupply.prophecy = prophecy;
 
   const requiredComponents = detectRequiredComponents(cards, allExpansions);
 
