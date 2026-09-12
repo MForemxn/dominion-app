@@ -7,6 +7,7 @@ import { CARD_MAP, CARDS } from "@/data/cards";
 import type { Combination, Expansion, GeneratorConstraints, ComponentRequirement, SelectedNonSupply } from "@/types";
 import { generateKingdom, type GeneratedKingdom } from "@/lib/kingdom-generator";
 import { detectRequiredComponents } from "@/data/expansion-components";
+import { sendToTable, flattenNonSupplyIds } from "@/lib/now-playing";
 import BuildMode from "@/components/BuildMode";
 import FilterPanel from "@/components/FilterPanel";
 import {
@@ -387,9 +388,25 @@ function CombinationCard({
       <div className="px-5 pt-5 pb-4">
         <div className="flex items-start justify-between gap-3 mb-3">
           <h3 className="text-lg font-bold text-stone-100 font-serif leading-tight">{combo.name}</h3>
-          <span className={`text-xs font-medium ${difficultyColor} uppercase tracking-wide shrink-0`}>
-            {combo.difficulty}
-          </span>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className={`text-xs font-medium ${difficultyColor} uppercase tracking-wide`}>
+              {combo.difficulty}
+            </span>
+            <button
+              onClick={() =>
+                sendToTable({
+                  name: combo.name,
+                  cards: combo.cards,
+                  expansions: combo.expansions,
+                  nonSupplyIds: combo.nonSupplyCard ? [combo.nonSupplyCard] : undefined,
+                })
+              }
+              className="text-[10px] px-2 py-0.5 rounded border border-stone-700 text-stone-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
+              title="Send this kingdom to the table display"
+            >
+              Table ↗
+            </button>
+          </div>
         </div>
 
         {/* Expansion tags */}
@@ -536,6 +553,13 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
                   <h3 className="text-sm font-bold text-stone-100">{kingdom.name}</h3>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-stone-500 font-mono">{kingdom.score.overall}/10</span>
+                    <button
+                      onClick={() => sendToTable({ name: kingdom.name, cards: kingdom.cards, expansions: kingdom.expansions })}
+                      className="text-[10px] px-2 py-0.5 rounded border border-stone-700 text-stone-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
+                      title="Send this kingdom to the table display"
+                    >
+                      Table ↗
+                    </button>
                     <button
                       onClick={() => handleDelete(kingdom.id)}
                       className="text-xs text-stone-600 hover:text-red-400 transition-colors"
@@ -855,6 +879,19 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
                 </span>
                 <span className="text-stone-600">/10</span>
               </span>
+              <button
+                onClick={() =>
+                  sendToTable({
+                    cards: result.cards.map((c) => c.id),
+                    expansions: Array.from(new Set(result.cards.map((c) => c.expansion))),
+                    nonSupplyIds: flattenNonSupplyIds(result.selectedNonSupply),
+                  })
+                }
+                className="px-2 py-0.5 rounded border border-stone-700 text-stone-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
+                title="Send this kingdom to the table display"
+              >
+                Table ↗
+              </button>
             </div>
           </div>
           <div className="bg-stone-900 border border-amber-500/60 rounded-xl p-5 shadow-lg shadow-amber-900/20">
@@ -920,6 +957,8 @@ export default function Home() {
             <h1 className="text-2xl font-bold text-amber-400 font-serif tracking-wide">Dominion Kingdom Builder</h1>
             <p className="text-sm text-stone-400 mt-0.5">Build, browse, or randomize your perfect kingdom.</p>
           </div>
+          <div className="flex items-center gap-4 shrink-0">
+          <a href="/display" className="text-sm text-stone-500 hover:text-amber-400 transition-colors">Table</a>
           <div className="flex rounded-lg border border-stone-700 overflow-hidden shrink-0">
             <button
               onClick={() => setMode("build")}
@@ -942,6 +981,7 @@ export default function Home() {
             >
               Random
             </button>
+          </div>
           </div>
         </div>
       </header>

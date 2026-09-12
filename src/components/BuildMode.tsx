@@ -12,6 +12,7 @@ import {
 } from "@/lib/kingdom-scorer";
 import type { Card, CardRole, GeneratorConstraints, KingdomScore, ComponentRequirement, SelectedNonSupply, NonSupplyCard } from "@/types";
 import { saveKingdom, type SavedKingdom } from "@/lib/saved-kingdoms";
+import { sendToTable, flattenNonSupplyIds } from "@/lib/now-playing";
 import FilterPanel from "@/components/FilterPanel";
 import { type Filters, DEFAULT_FILTERS, countActiveFilters, meetsFilters } from "@/lib/filters";
 
@@ -787,6 +788,20 @@ export default function BuildMode() {
                 }`}
               >
                 {justSaved ? "Saved!" : "Save"}
+              </button>
+              <button
+                onClick={() =>
+                  sendToTable({
+                    name: saveName.trim() || undefined,
+                    cards: result.cards.map((c) => c.id),
+                    expansions: Array.from(new Set(result.cards.map((c) => c.expansion))),
+                    nonSupplyIds: flattenNonSupplyIds(result.selectedNonSupply),
+                  })
+                }
+                className="px-5 py-2 rounded-lg text-sm font-medium border border-stone-700 text-stone-300 hover:border-amber-500 hover:text-amber-400 transition-colors shrink-0"
+                title="Send this kingdom to the table display"
+              >
+                Send to table
               </button>
             </div>
           </div>
