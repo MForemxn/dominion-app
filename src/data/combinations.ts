@@ -2265,6 +2265,43 @@ export const COMBINATIONS: Combination[] = [
     tags: ["beginner-friendly","omen","village"],
   },
 
+  // ═══════════════════════════════════════════════════════════════
+  // SINGLE EXPANSION — ALCHEMY
+  // ═══════════════════════════════════════════════════════════════
+
+  {
+    id: "alchemy-001",
+    name: "Potion Engine",
+    expansions: ["alchemy"],
+    cards: ["herbalist","apothecary","university","alchemist","familiar","golem","apprentice","transmute","vineyard","philosophers-stone"],
+    strategy: "University and Alchemist are the engine. Apothecary finds Potions and Coppers so you can keep buying potion cards, Apprentice and Transmute trash junk, Vineyard scores the Action density, and Philosopher's Stone pays out once the deck is large. Familiar is the curse pressure; Golem replays your two best Actions.",
+    keyCards: ["university","alchemist","vineyard"],
+    difficulty: "intermediate",
+    tags: ["potion","engine","alt-victory"],
+  },
+
+  {
+    id: "alchemy-002",
+    name: "Familiar Pressure",
+    expansions: ["alchemy"],
+    cards: ["familiar","scrying-pool","apothecary","university","herbalist","apprentice","golem","possession","alchemist","transmute"],
+    strategy: "Rush Familiar while University and Scrying Pool keep your hand full of Actions. Apprentice and Transmute thin, Golem chains the attacks, and Possession is the late-game hammer once potions are flowing. Herbalist and Apothecary keep buys and potions online.",
+    keyCards: ["familiar","scrying-pool","possession"],
+    difficulty: "advanced",
+    tags: ["attack","potion","combo"],
+  },
+
+  {
+    id: "alchemy-003",
+    name: "Vineyard Lab",
+    expansions: ["alchemy"],
+    cards: ["vineyard","university","alchemist","apothecary","herbalist","golem","apprentice","philosophers-stone","transmute","scrying-pool"],
+    strategy: "Skip the curses and pile Vineyards. University floods the deck with cheap Actions, Alchemist and Scrying Pool draw through them, Apprentice and Transmute keep it thin, and Philosopher's Stone is a backup score if the Vineyard math is close.",
+    keyCards: ["vineyard","university","alchemist"],
+    difficulty: "beginner",
+    tags: ["alt-victory","potion","engine"],
+  },
+
 ];
 
 export const COMBINATION_MAP = Object.fromEntries(

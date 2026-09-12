@@ -368,6 +368,7 @@ export default function BuildMode() {
 
   const toggleExpansion = (id: string) => {
     if (id === "base") return;
+    if (EXPANSION_MAP[id]?.unreleased) return;
     setExpansions((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
@@ -482,6 +483,16 @@ export default function BuildMode() {
         <div className="flex flex-wrap gap-2">
           {EXPANSIONS.map((exp) => (
             <div key={exp.id} className="flex flex-col gap-1 items-start">
+              {exp.unreleased ? (
+                <button
+                  disabled
+                  title="Not yet released"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium border-stone-800 text-stone-600 cursor-not-allowed bg-stone-900 opacity-60"
+                >
+                  {exp.name}
+                  <span className="text-xs opacity-60">Unreleased</span>
+                </button>
+              ) : (
               <button
                 onClick={() => toggleExpansion(exp.id)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all duration-150 ${
@@ -493,6 +504,7 @@ export default function BuildMode() {
                 {expansions.includes(exp.id) && <span className="text-xs">✓</span>}
                 {exp.name}
               </button>
+              )}
               {/* Show edition toggle only if expansion is selected and has editions */}
               {expansions.includes(exp.id) && exp.hasEditions && (
                 <EditionToggle

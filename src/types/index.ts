@@ -102,6 +102,8 @@ export interface Expansion {
   hasEditions?: boolean;
   /** Year each edition was released */
   editionYears?: { 1: number; 2: number };
+  /** True if this expansion has not actually been released — reference only, no cards */
+  unreleased?: boolean;
 }
 
 // ── Non-supply cards (Events, Ways, Projects, Landmarks, Traits, Allies) ──────

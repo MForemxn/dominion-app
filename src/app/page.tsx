@@ -26,6 +26,8 @@ import {
 
 // Base is always in play — only show additional expansion options
 const SELECTABLE_EXPANSIONS = EXPANSIONS.filter((e) => e.id !== "base");
+// Unreleased expansions (e.g. Arcana) are shown but not playable
+const PLAYABLE_EXPANSIONS = SELECTABLE_EXPANSIONS.filter((e) => !e.unreleased);
 
 // ─── Supply section data ─────────────────────────────────────────────────────
 
@@ -40,6 +42,9 @@ const STANDARD_SUPPLY = [
 ];
 
 const SPECIAL_SUPPLY: Record<string, Array<{ name: string; color: string; note: string }>> = {
+  alchemy: [
+    { name: "Potion", color: "bg-violet-500", note: "Treasure worth 1 Coin; needed to buy Potion-cost cards" },
+  ],
   prosperity: [
     { name: "Platinum", color: "bg-slate-400", note: "Worth 5 Coins" },
     { name: "Colony",   color: "bg-green-500", note: "Worth 10 VP"   },
@@ -126,6 +131,18 @@ function ExpansionButton({
 }: {
   expansion: Expansion; selected: boolean; disabled: boolean; onClick: () => void;
 }) {
+  if (expansion.unreleased) {
+    return (
+      <button
+        disabled
+        title="Not yet released"
+        className="relative flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium border-stone-800 text-stone-600 cursor-not-allowed bg-stone-900 opacity-60"
+      >
+        {expansion.name}
+        <span className="text-xs opacity-60">Unreleased</span>
+      </button>
+    );
+  }
   return (
     <button
       onClick={onClick}
@@ -460,12 +477,14 @@ function BrowseMode({ expansionColors }: { expansionColors: Record<string, strin
     setSavedKingdoms(loadSavedKingdoms());
   };
 
-  const toggleExpansion = (id: string) =>
+  const toggleExpansion = (id: string) => {
+    if (EXPANSION_MAP[id]?.unreleased) return;
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id)
         : prev.length < 2 ? [...prev, id]
         : prev
     );
+  };
 
   const raw         = useMemo(() => getCombinationsForExpansions(selected), [selected]);
   const combinations = useMemo(() => applyFilters(raw, filters), [raw, filters]);
@@ -654,6 +673,7 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
   const [shake, setShake]                   = useState(false);
 
   const toggleOwned = (id: string) => {
+    if (EXPANSION_MAP[id]?.unreleased) return;
     setOwned((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
     setResult(null); setHasRolled(false); setNoResult(false);
   };
@@ -716,8 +736,8 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
             {owned.length > 0 && (
               <button onClick={() => { setOwned([]); setResult(null); setHasRolled(false); setNoResult(false); }} className="hover:text-stone-300 transition-colors">Clear all</button>
             )}
-            {owned.length < SELECTABLE_EXPANSIONS.length && (
-              <button onClick={() => { setOwned(SELECTABLE_EXPANSIONS.map((e) => e.id)); setResult(null); setHasRolled(false); }} className="hover:text-stone-300 transition-colors">Select all</button>
+            {owned.length < PLAYABLE_EXPANSIONS.length && (
+              <button onClick={() => { setOwned(PLAYABLE_EXPANSIONS.map((e) => e.id)); setResult(null); setHasRolled(false); }} className="hover:text-stone-300 transition-colors">Select all</button>
             )}
           </div>
         </div>
@@ -725,6 +745,16 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
         <div className="flex flex-wrap gap-2">
           {SELECTABLE_EXPANSIONS.map((exp) => (
             <div key={exp.id} className="flex flex-col gap-1">
+              {exp.unreleased ? (
+                <button
+                  disabled
+                  title="Not yet released"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium border-stone-800 text-stone-600 cursor-not-allowed bg-stone-900 opacity-60"
+                >
+                  {exp.name}
+                  <span className="text-xs opacity-60">Unreleased</span>
+                </button>
+              ) : (
               <button onClick={() => toggleOwned(exp.id)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all duration-150
                   ${owned.includes(exp.id)
@@ -738,6 +768,7 @@ function AutoPickMode({ expansionColors }: { expansionColors: Record<string, str
                 {exp.name}
                 <span className="text-xs opacity-60">{exp.year}</span>
               </button>
+              )}
               {exp.hasEditions && owned.includes(exp.id) && (
                 <div className="flex gap-1 pl-1">
                   {([1, 2] as const).map((ed) => (

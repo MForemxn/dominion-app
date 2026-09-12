@@ -4,6 +4,9 @@ import type { Card, ComponentRequirement } from "@/types";
 // These are always needed when that expansion is in the kingdom.
 
 const EXPANSION_BASE_COMPONENTS: Record<string, ComponentRequirement[]> = {
+  alchemy: [
+    { id: "potion-pile", name: "Potion pile", reason: "Alchemy adds the Potion Treasure, needed to buy Potion-cost cards.", triggeredBy: "alchemy" },
+  ],
   prosperity: [
     { id: "platinum-colony", name: "Platinum & Colony",    reason: "Prosperity adds a Platinum ($5 Treasure) and Colony (10VP) to the supply.", triggeredBy: "prosperity" },
     { id: "vp-tokens",       name: "VP tokens",             reason: "Several Prosperity cards (Bishop, Monument, etc.) award Victory Point tokens.", triggeredBy: "prosperity" },

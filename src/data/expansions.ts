@@ -26,6 +26,12 @@ export const EXPANSIONS: Expansion[] = [
     editionYears: { 1: 2009, 2: 2021 },
   },
   {
+    id: "alchemy",
+    name: "Alchemy",
+    year: 2010,
+    color: "bg-violet-700",
+  },
+  {
     id: "prosperity",
     name: "Prosperity",
     year: 2010,
@@ -100,6 +106,13 @@ export const EXPANSIONS: Expansion[] = [
     name: "Rising Sun",
     year: 2024,
     color: "bg-red-500",
+  },
+  {
+    id: "arcana",
+    name: "Arcana",
+    year: 2026,
+    color: "bg-stone-700",
+    unreleased: true,
   },
 ];
 
