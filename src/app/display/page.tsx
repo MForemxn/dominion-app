@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { CARD_MAP } from "@/data/cards";
-import { EXPANSION_MAP } from "@/data/expansions";
+import { EXPANSIONS, EXPANSION_MAP } from "@/data/expansions";
 import { NON_SUPPLY_MAP } from "@/data/non-supply";
 import { detectRequiredComponents } from "@/data/expansion-components";
 import { subscribeTableGame, type TableGame } from "@/lib/now-playing";
 import { cardArtCandidates, supplyArtCandidates } from "@/lib/card-art";
-import type { Card, NonSupplyCard } from "@/types";
+import type { Card, ComponentRequirement, NonSupplyCard } from "@/types";
 
 function sortKey(card: Card): number {
   if (typeof card.cost === "number") return card.cost;
@@ -137,11 +137,22 @@ export default function DisplayPage() {
     );
   }
 
+  if (game.phase !== "play") {
+    return (
+      <SetupView
+        game={game}
+        cards={cards}
+        nonSupply={nonSupply}
+        requiredComponents={requiredComponents}
+      />
+    );
+  }
+
   return (
     <div className="h-screen w-screen bg-black text-white overflow-hidden flex flex-col">
       <header className="shrink-0 px-6 py-3 flex items-center gap-4 border-b border-white/10">
         <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-        <p className="text-[11px] tracking-[0.35em] text-neutral-500 font-semibold">NOW PLAYING</p>
+        <p className="text-[11px] tracking-[0.35em] text-neutral-500 font-semibold">PLAY</p>
         <h1 className="text-2xl font-bold tracking-tight truncate">{game.name || "Kingdom"}</h1>
         <div className="flex flex-wrap gap-1.5 min-w-0">
           {["base", ...game.expansions.filter((e) => e !== "base")].map((expId) => {
@@ -253,6 +264,141 @@ export default function DisplayPage() {
             Ends on empty Province{hasProsperity ? " or Colony" : ""}, or any 3 empty piles.
           </p>
         </aside>
+      </div>
+    </div>
+  );
+}
+
+function SetupView({
+  game,
+  cards,
+  nonSupply,
+  requiredComponents,
+}: {
+  game: TableGame;
+  cards: Card[];
+  nonSupply: NonSupplyCard[];
+  requiredComponents: ComponentRequirement[];
+}) {
+  const hasAlchemy = game.expansions.includes("alchemy");
+  const hasProsperity = game.expansions.includes("prosperity");
+  const hasDarkAges = game.expansions.includes("dark-ages");
+  const hasYoungWitch = game.cards.includes("young-witch");
+
+  const groups = EXPANSIONS.map((exp) => {
+    const kingdom = cards.filter((c) => c.expansion === exp.id);
+    const landscapes = nonSupply.filter((n) => n.expansion === exp.id);
+    const pieces = requiredComponents.filter((comp) => {
+      if (comp.triggeredBy === exp.id) return true;
+      const byCard = cards.find((c) => c.name === comp.triggeredBy);
+      return byCard?.expansion === exp.id;
+    });
+    const extras: { name: string; note: string }[] = [];
+    if (exp.id === "base") {
+      extras.push(
+        { name: "Copper", note: "treasure" },
+        { name: "Silver", note: "treasure" },
+        { name: "Gold", note: "treasure" },
+        { name: "Estate", note: "victory" },
+        { name: "Duchy", note: "victory" },
+        { name: "Province", note: "victory" },
+        { name: "Curse", note: "curse" },
+      );
+    }
+    if (exp.id === "alchemy" && hasAlchemy) extras.push({ name: "Potion", note: "treasure" });
+    if (exp.id === "prosperity" && hasProsperity) {
+      extras.push({ name: "Platinum", note: "treasure" }, { name: "Colony", note: "victory" });
+    }
+    if (exp.id === "dark-ages" && hasDarkAges) extras.push({ name: "Shelters", note: "start in place of Estates" });
+    if (exp.id === "cornucopia-guilds" && hasYoungWitch) extras.push({ name: "Bane", note: "11th pile $2–$3" });
+    return { exp, kingdom, landscapes, pieces, extras };
+  }).filter((g) => g.kingdom.length || g.landscapes.length || g.pieces.length || g.extras.length);
+
+  const cols = Math.min(Math.max(groups.length, 1), 4);
+
+  return (
+    <div className="h-screen w-screen bg-black text-white overflow-hidden flex flex-col">
+      <header className="shrink-0 px-6 py-3 flex items-center gap-4 border-b border-white/10">
+        <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+        <p className="text-[11px] tracking-[0.35em] text-amber-400 font-semibold">SETUP</p>
+        <h1 className="text-2xl font-bold tracking-tight truncate">{game.name || "Kingdom"}</h1>
+        <p className="ml-auto text-sm text-neutral-400 shrink-0">Pull from each box below · Finish setup on the phone</p>
+      </header>
+      <div
+        className="flex-1 min-h-0 p-3 gap-3 grid"
+        style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+      >
+        {groups.map(({ exp, kingdom, landscapes, pieces, extras }) => (
+          <section key={exp.id} className="min-h-0 flex flex-col rounded-xl ring-1 ring-white/10 bg-neutral-950 overflow-hidden">
+            <div className={`shrink-0 px-3 py-2 ${exp.color}`}>
+              <p className="text-lg font-bold leading-tight">{exp.name}</p>
+              <p className="text-[11px] text-white/80">
+                {kingdom.length} kingdom
+                {landscapes.length ? ` · ${landscapes.length} landscape` : ""}
+                {pieces.length ? ` · ${pieces.length} extra` : ""}
+              </p>
+            </div>
+            <div className="flex-1 min-h-0 overflow-hidden p-2 flex flex-col gap-2">
+              {kingdom.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {kingdom.map((card) => (
+                    <div key={card.id} className="w-[5.6rem] flex flex-col">
+                      <Art
+                        candidates={cardArtCandidates(card.name, card.expansion)}
+                        alt={card.name}
+                        className="w-full rounded aspect-[15/23] object-cover bg-black"
+                      />
+                      <p className={`text-[11px] font-medium leading-tight mt-1 ${expansionTextClass(card.expansion)}`}>
+                        {card.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {landscapes.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {landscapes.map((item) => (
+                    <div key={item.id} className="w-36 flex flex-col">
+                      <Art
+                        candidates={cardArtCandidates(item.name, item.expansion, item.type)}
+                        alt={item.name}
+                        className="w-full rounded object-cover aspect-[2/1] bg-black"
+                      />
+                      <p className="text-[11px] text-neutral-300 leading-tight mt-1">
+                        {item.type}: {item.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {extras.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {extras.map((item) => (
+                    <div key={item.name} className="w-[4.4rem] flex flex-col">
+                      <Art
+                        candidates={supplyArtCandidates(item.name)}
+                        alt={item.name}
+                        className="w-full rounded aspect-[15/23] object-cover bg-black"
+                      />
+                      <p className="text-[10px] text-neutral-400 leading-tight mt-0.5">{item.name}</p>
+                      <p className="text-[10px] text-neutral-500">{item.note}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {pieces.length > 0 && (
+                <ul className="mt-auto space-y-1">
+                  {pieces.map((comp) => (
+                    <li key={comp.id} className="text-xs text-amber-200 leading-snug">
+                      {comp.name}
+                      <span className="text-neutral-500"> — {comp.reason}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </section>
+        ))}
       </div>
     </div>
   );

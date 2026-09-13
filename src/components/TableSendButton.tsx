@@ -19,7 +19,7 @@ export default function TableSendButton({
     e.stopPropagation();
     setState("sending");
     try {
-      await sendToTable(game);
+      await sendToTable({ ...game, phase: "setup" });
       setState("ok");
       window.setTimeout(() => setState("idle"), 2500);
     } catch {
@@ -29,7 +29,7 @@ export default function TableSendButton({
 
   const text =
     state === "sending" ? "Sending…" :
-    state === "ok" ? "On the TV" :
+    state === "ok" ? "Setup on TV" :
     state === "err" ? "Failed — retry" :
     label;
 

@@ -12,6 +12,8 @@ export interface TableGame {
   cards: string[]; // kingdom card ids, usually 10
   expansions: string[];
   nonSupplyIds?: string[]; // event/way/project/landmark/trait/prophecy/ally ids
+  /** setup = pull-from-boxes view; play = in-game board. New sends start on setup. */
+  phase?: "setup" | "play";
   updatedAt: number;
 }
 
@@ -47,7 +49,11 @@ export function clearTableGame(): void {
 
 /** Push the kingdom to the TV. Phone is the remote; the kiosk polls Redis. */
 export async function sendToTable(game: Omit<TableGame, "updatedAt">): Promise<void> {
-  const full: TableGame = { ...game, updatedAt: Date.now() };
+  const full: TableGame = {
+    ...game,
+    phase: game.phase ?? "setup",
+    updatedAt: Date.now(),
+  };
   saveTableGame(full);
   const res = await fetch(TABLE_API, {
     method: "POST",
@@ -55,6 +61,20 @@ export async function sendToTable(game: Omit<TableGame, "updatedAt">): Promise<v
     body: JSON.stringify(full),
   });
   if (!res.ok) throw new Error(`Table update failed: ${res.status}`);
+}
+
+export async function fetchTableGame(): Promise<TableGame | null> {
+  const res = await fetch(TABLE_API, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Table fetch failed: ${res.status}`);
+  const data = await res.json();
+  return data.nowPlaying ?? null;
+}
+
+export async function setTablePhase(phase: "setup" | "play"): Promise<void> {
+  const game = await fetchTableGame();
+  if (!game) throw new Error("No kingdom on the table");
+  const { updatedAt: _drop, ...rest } = game;
+  await sendToTable({ ...rest, phase });
 }
 
 /** Flatten a SelectedNonSupply (events/way/projects/landmark/traits/ally/prophecy) into ids. */

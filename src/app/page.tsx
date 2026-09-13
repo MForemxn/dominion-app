@@ -9,6 +9,7 @@ import { generateKingdom, type GeneratedKingdom } from "@/lib/kingdom-generator"
 import { detectRequiredComponents } from "@/data/expansion-components";
 import { flattenNonSupplyIds } from "@/lib/now-playing";
 import TableSendButton from "@/components/TableSendButton";
+import TableControls from "@/components/TableControls";
 import BuildMode from "@/components/BuildMode";
 import FilterPanel from "@/components/FilterPanel";
 import {
@@ -949,6 +950,7 @@ export default function Home() {
             <p className="text-sm text-stone-400 mt-0.5">Build, browse, or randomize your perfect kingdom.</p>
           </div>
           <div className="flex items-center gap-4 shrink-0">
+          <TableControls />
           <a href="/display" className="text-sm text-stone-500 hover:text-amber-400 transition-colors">Table</a>
           <div className="flex rounded-lg border border-stone-700 overflow-hidden shrink-0">
             <button
